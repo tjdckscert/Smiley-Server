@@ -8,6 +8,7 @@ class SmileyBackEndApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }
