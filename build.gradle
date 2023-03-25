@@ -44,12 +44,6 @@ dependencies {
     implementation("com.vladmihalcea:hibernate-types-52:2.16.2")
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-
-
-
-
-
 }
 
 tasks.named('test') {

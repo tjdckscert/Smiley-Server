@@ -1,19 +1,23 @@
 package com.smiley.smileybackend.domain;
 
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 import org.json.JSONArray;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
 @Getter
 @NoArgsConstructor
-@MappedSuperclass
+@TypeDef(name = "json", typeClass = JsonType.class)
 public class UserMedicalInfo implements Serializable {
 
     @Id
@@ -26,8 +30,9 @@ public class UserMedicalInfo implements Serializable {
     @Column
     private LocalDate startDate;
 
-    @Column
-    private JSONArray surveyResult;
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private List<String> surveyResult;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,7 +44,7 @@ public class UserMedicalInfo implements Serializable {
     private Hospital hospital;
 
     @Builder
-    public UserMedicalInfo(Integer id, Integer calibrationStatus, LocalDate startDate, JSONArray surveyResult, User user, Hospital hospital) {
+    public UserMedicalInfo(Integer id, Integer calibrationStatus, LocalDate startDate, List<String> surveyResult, User user, Hospital hospital) {
         this.id = id;
         this.calibrationStatus = calibrationStatus;
         this.startDate = startDate;

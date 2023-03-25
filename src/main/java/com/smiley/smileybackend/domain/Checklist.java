@@ -1,12 +1,15 @@
 package com.smiley.smileybackend.domain;
 
 
+import com.smiley.smileybackend.domain.enums.Day_of_week;
+import com.smiley.smileybackend.domain.enums.Repeat_period;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,21 +33,21 @@ public class Checklist {
     @Column
     private Integer alarm;
 
-    @Column(nullable = false)
-    private String dayOfWeek;
+    @Enumerated(EnumType.STRING)
+    private Day_of_week dayOfWeek;
 
-    @Column(nullable = false)
-    private String repeatPeriod;
+    @Enumerated(EnumType.STRING)
+    private Repeat_period repeatPeriod;
 
     @OneToMany(mappedBy = "checklist")
-    private Set<ChecklistResult> checklistChecklistResults;
+    private List<ChecklistResult> checklistChecklistResults;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @Builder
-    public Checklist(Integer id, String title, String memo, OffsetDateTime time, Integer alarm, String dayOfWeek, String repeatPeriod, Set<ChecklistResult> checklistChecklistResults, User user) {
+    public Checklist(Integer id, String title, String memo, OffsetDateTime time, Integer alarm, Day_of_week dayOfWeek, Repeat_period repeatPeriod, List<ChecklistResult> checklistChecklistResults, User user) {
         this.id = id;
         this.title = title;
         this.memo = memo;

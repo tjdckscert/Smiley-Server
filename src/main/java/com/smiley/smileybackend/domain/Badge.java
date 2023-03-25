@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,11 +33,11 @@ public class Badge {
     @Column(length = 200)
     private String badgeImage;
 
-    @OneToOne(mappedBy = "userBadgeBadges") /*onetoone 변경할 예정*/
-    private Set<User> userBadgeUsers;
+    @ManyToMany(mappedBy = "userBadgeBadges")
+    private List<User> userBadgeUsers;
 
     @Builder
-    public Badge(Integer id, String badgeName, String badgeExplain, String badgeCondition, Boolean badgeType, String badgeImage, Set<User> userBadgeUsers) {
+    public Badge(Integer id, String badgeName, String badgeExplain, String badgeCondition, Boolean badgeType, String badgeImage, List<User> userBadgeUsers) {
         this.id = id;
         this.badgeName = badgeName;
         this.badgeExplain = badgeExplain;

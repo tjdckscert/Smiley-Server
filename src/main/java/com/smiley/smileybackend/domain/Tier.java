@@ -1,5 +1,6 @@
 package com.smiley.smileybackend.domain;
 
+import com.smiley.smileybackend.domain.enums.Tiername;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,8 @@ public class Tier {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 200)
-    private Tier tierName;
+    @Enumerated(EnumType.STRING)
+    private Tiername tierName;
 
     @Column
     private Integer expStart;
@@ -26,7 +27,7 @@ public class Tier {
     private Integer expEnd;
 
     @Builder
-    public Tier(Integer id, Tier tierName, Integer expStart, Integer expEnd) {
+    public Tier(Integer id, Tiername tierName, Integer expStart, Integer expEnd) {
         this.id = id;
         this.tierName = tierName;
         this.expStart = expStart;

@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
+import java.util.List;
 
 
 @Entity
@@ -32,22 +33,19 @@ public class User {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user")
-    private Set<UserDevice> userUserDevices;
+    private List<UserDevice> userUserDevices;
 
     @OneToMany(mappedBy = "user")
-    private Set<Userbadge> userBadges;
+    private List<DailyWearTime> userDailyWearTimes;
 
     @OneToMany(mappedBy = "user")
-    private Set<DailyWearTime> userDailyWearTimes;
+    private List<Booking> userBookings;
 
     @OneToMany(mappedBy = "user")
-    private Set<Booking> userBookings;
+    private List<DailyExpStastics> userDailyExpStasticss;
 
     @OneToMany(mappedBy = "user")
-    private Set<DailyExpStastics> userDailyExpStasticss;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Checklist> userChecklists;
+    private List<Checklist> userChecklists;
 
     @ManyToMany
     @JoinTable(
@@ -55,19 +53,19 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "badge_id")
     )
-    private Set<Badge> userBadgeBadges;
+    private List<Badge> userBadgeBadges;
 
     @OneToMany(mappedBy = "user")
-    private Set<FacialResult> userFacialResults;
+    private List<FacialResult> userFacialResults;
 
     @OneToMany(mappedBy = "user")
-    private Set<UserMedicalInfo> userUserMedicalInfos;
+    private List<UserMedicalInfo> userUserMedicalInfos;
 
     @OneToMany(mappedBy = "user")
-    private Set<TotalExpStastics> userTotalExpStasticss;
+    private List<TotalExpStastics> userTotalExpStasticss;
 
     @Builder
-    public User(Integer id, String email, String phoneToken, String name, LocalDate birthDate, Set<UserDevice> userUserDevices, Set<DailyWearTime> userDailyWearTimes, Set<Booking> userBookings, Set<DailyExpStastics> userDailyExpStasticss, Set<Checklist> userChecklists, Set<Badge> userBadgeBadges, Set<FacialResult> userFacialResults, Set<UserMedicalInfo> userUserMedicalInfos, Set<TotalExpStastics> userTotalExpStasticss) {
+    public User(Integer id, String email, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadgeBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
         this.id = id;
         this.email = email;
         this.phoneToken = phoneToken;

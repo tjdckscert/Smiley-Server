@@ -1,25 +1,26 @@
 package com.smiley.smileybackend.domain;
 
-import com.example.deuproject.domain.keys.Hospitalkeys;
+
+import com.smiley.smileybackend.domain.keys.Hospitalkeys;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 
 @Entity
 @Getter
 @NoArgsConstructor
-@IdClass(Hospitalkeys.class)
+//@IdClass(Hospitalkeys.class)
 public class Hospital {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Id
+//    @Id
     @Column(nullable = false)
     private Boolean isPartner;
 
@@ -129,13 +130,13 @@ public class Hospital {
     private String wgs84Lat;
 
     @OneToMany(mappedBy = "hospital")
-    private Set<Booking> hospitalBookings;
+    private List<Booking> hospitalBookings;
 
     @OneToMany(mappedBy = "hospital")
-    private Set<UserMedicalInfo> hospitalUserMedicalInfos;
+    private List<UserMedicalInfo> userMedicalInfos;
 
     @Builder
-    public Hospital(Integer id, Boolean isPartner, String name, String rnum, String dutyAddr, String dutyDiv, String dutyDivNam, String dutyEmcls, String dutyEmclsName, String dutyEryn, String dutyEtc, String dutyInf, String dutyMapimg, String dutyName, String dutyTel1, String dutyTel3, String dutyTime1c, String dutyTime2c, String dutyTime3c, String dutyTime4c, String dutyTime5c, String dutyTime6c, String dutyTime7c, String dutyTime8c, String dutyTime1s, String dutyTime2s, String dutyTime3s, String dutyTime4s, String dutyTime5s, String dutyTime6s, String dutyTime7s, String dutyTime8s, String hpid, String postCdn1, String postCdn2, String wgs84Lon, String wgs84Lat, Set<Booking> hospitalBookings, Set<UserMedicalInfo> hospitalUserMedicalInfos) {
+    public Hospital(Integer id, Boolean isPartner, String name, String rnum, String dutyAddr, String dutyDiv, String dutyDivNam, String dutyEmcls, String dutyEmclsName, String dutyEryn, String dutyEtc, String dutyInf, String dutyMapimg, String dutyName, String dutyTel1, String dutyTel3, String dutyTime1c, String dutyTime2c, String dutyTime3c, String dutyTime4c, String dutyTime5c, String dutyTime6c, String dutyTime7c, String dutyTime8c, String dutyTime1s, String dutyTime2s, String dutyTime3s, String dutyTime4s, String dutyTime5s, String dutyTime6s, String dutyTime7s, String dutyTime8s, String hpid, String postCdn1, String postCdn2, String wgs84Lon, String wgs84Lat, List<Booking> hospitalBookings, List<UserMedicalInfo> userMedicalInfos) {
         this.id = id;
         this.isPartner = isPartner;
         this.name = name;
@@ -174,6 +175,6 @@ public class Hospital {
         this.wgs84Lon = wgs84Lon;
         this.wgs84Lat = wgs84Lat;
         this.hospitalBookings = hospitalBookings;
-        this.hospitalUserMedicalInfos = hospitalUserMedicalInfos;
+        this.userMedicalInfos = userMedicalInfos;
     }
 }
