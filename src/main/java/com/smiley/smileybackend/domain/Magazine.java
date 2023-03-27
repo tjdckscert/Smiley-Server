@@ -29,7 +29,7 @@ public class Magazine {
     private String thumbnail;
 
     @Column
-    private Integer likee;
+    private Integer likes;
 
     @Column
     private Integer viewCount;
@@ -38,13 +38,13 @@ public class Magazine {
     private String contentLink;
 
     @Builder
-    public Magazine(Integer id, String title, String subTitle, String author, String thumbnail, Integer likee, Integer viewCount, String contentLink) {
+    public Magazine(Integer id, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, String contentLink) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
         this.author = author;
         this.thumbnail = thumbnail;
-        this.likee = likee;
+        this.likes = likes;
         this.viewCount = viewCount;
         this.contentLink = contentLink;
     }

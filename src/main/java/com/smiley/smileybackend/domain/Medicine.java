@@ -11,6 +11,9 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class Medicine {
+    /*
+     *식품의약품안전처 묶음의약품정보서비스 API 사용
+     */
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -19,57 +22,75 @@ public class Medicine {
     @Column(nullable = false, length = 200)
     private String name;
 
+    /*대표 품목기준코드*/
     @Column(length = 200)
     private String trustIndutyCode;
 
+    /*대표 제품명*/
     @Column(length = 200)
     private String trustItemName;
 
+    /*대표 주성분*/
     @Column(length = 200)
     private String trustMainingr;
 
+    /*대표 함량*/
     @Column(length = 200)
     private String trustQntList;
 
+    /*대표 업소명*/
     @Column(length = 200)
     private String trustEntpName;
 
+    /*대표 제조소*/
     @Column(length = 200)
     private String trustManuf;
 
+    /*대표 허가일자*/
     @Column(length = 200)
     private String trustItemPermitDate;
 
+    /*대표 심평원주성분코드*/
     @Column(length = 200)
     private String trustHiraMainingrCode;
 
+    /*대표 심평원제품코드*/
     @Column(length = 200)
     private String trustHiraPrductCode;
 
+    /*대표 ATC코드*/
     @Column(length = 200)
     private String trustAtcCode;
 
+    /*취소/취하명*/
     @Column(length = 200)
     private String trustCancelName;
 
+    /*품목기준코드*/
     @Column(length = 200)
     private String cnsgnItemSeq;
 
+    /*제품명*/
     @Column(length = 200)
     private String cnsgnItemName;
 
+    /*업소명*/
     @Column(length = 200)
     private String cnsgnEntpName;
 
+    /*제조소*/
     @Column(length = 200)
     private String cnsgnManuf;
 
+    /*허가일자*/
     @Column(length = 200)
     private String cnsgnItemPermitDate;
 
+    /*심평원제품코드*/
     @Column(length = 200)
     private String cnsgnHiraPrductCode;
 
+    /*취소/취하명*/
     @Column(length = 200)
     private String cnsgnCancelName;
 

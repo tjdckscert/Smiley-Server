@@ -53,7 +53,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "badge_id")
     )
-    private List<Badge> userBadgeBadges;
+    private List<Badge> userBadges;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<FacialResult> userFacialResults;
@@ -65,7 +65,7 @@ public class User {
     private List<TotalExpStastics> userTotalExpStasticss;
 
     @Builder
-    public User(Integer id, String email, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadgeBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
+    public User(Integer id, String email, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
         this.id = id;
         this.email = email;
         this.phoneToken = phoneToken;
@@ -76,7 +76,7 @@ public class User {
         this.userBookings = userBookings;
         this.userDailyExpStasticss = userDailyExpStasticss;
         this.userChecklists = userChecklists;
-        this.userBadgeBadges = userBadgeBadges;
+        this.userBadges = userBadges;
         this.userFacialResults = userFacialResults;
         this.userUserMedicalInfos = userUserMedicalInfos;
         this.userTotalExpStasticss = userTotalExpStasticss;

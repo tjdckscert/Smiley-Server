@@ -33,17 +33,17 @@ public class Badge {
     @Column(length = 200)
     private String badgeImage;
 
-    @ManyToMany(mappedBy = "userBadgeBadges")
-    private List<User> userBadgeUsers;
+    @ManyToMany(mappedBy = "userBadges")
+    private List<User> userBadges;
 
     @Builder
-    public Badge(Integer id, String badgeName, String badgeExplain, String badgeCondition, Boolean badgeType, String badgeImage, List<User> userBadgeUsers) {
+    public Badge(Integer id, String badgeName, String badgeExplain, String badgeCondition, Boolean badgeType, String badgeImage, List<User> userBadges) {
         this.id = id;
         this.badgeName = badgeName;
         this.badgeExplain = badgeExplain;
         this.badgeCondition = badgeCondition;
         this.badgeType = badgeType;
         this.badgeImage = badgeImage;
-        this.userBadgeUsers = userBadgeUsers;
+        this.userBadges = userBadges;
     }
 }
