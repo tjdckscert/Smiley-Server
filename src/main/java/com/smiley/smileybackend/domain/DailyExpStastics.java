@@ -32,7 +32,7 @@ public class DailyExpStastics {
     private List<String> expStastics;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_dailyexpstastics_user"))
     private User user;
 
 

@@ -25,7 +25,7 @@ public class DailyWearTime {
     private Integer totalWeartime;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_dailyweartime_user"))
     private User user;
 
     @Builder

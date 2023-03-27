@@ -29,7 +29,7 @@ public class UserDevice {
     private String devicePoint;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_userdevice_user"))
     private User user;
 
     @Builder

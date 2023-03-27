@@ -13,14 +13,14 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-//@IdClass(Hospitalkeys.class)
+@IdClass(Hospitalkeys.class)
 public class Hospital {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @Id
+    @Id
     @Column(nullable = false)
     private Boolean isPartner;
 
@@ -129,10 +129,10 @@ public class Hospital {
     @Column(length = 200)
     private String wgs84Lat;
 
-    @OneToMany(mappedBy = "hospital")
+    @OneToMany(mappedBy = "hospital", orphanRemoval = true)
     private List<Booking> hospitalBookings;
 
-    @OneToMany(mappedBy = "hospital")
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.PERSIST)
     private List<UserMedicalInfo> userMedicalInfos;
 
     @Builder

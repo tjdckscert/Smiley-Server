@@ -36,11 +36,14 @@ public class UserMedicalInfo implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_usermedicalinfo_user"))
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hospital_id")
+    @JoinColumns({
+            @JoinColumn(name = "hospital_id", foreignKey = @ForeignKey(name = "fk_usermedicalinfo_hospital")),
+            @JoinColumn(name = "is_partner")
+    })
     private Hospital hospital;
 
     @Builder

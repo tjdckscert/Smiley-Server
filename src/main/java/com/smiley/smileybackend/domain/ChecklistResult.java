@@ -21,7 +21,7 @@ public class ChecklistResult {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "checklist_id")
+    @JoinColumn(name = "checklist_id", foreignKey = @ForeignKey(name = "fk_checklistresult_checklist"))
     private Checklist checklist;
 
     @Builder

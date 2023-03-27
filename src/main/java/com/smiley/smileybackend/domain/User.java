@@ -35,19 +35,19 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserDevice> userUserDevices;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<DailyWearTime> userDailyWearTimes;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Booking> userBookings;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<DailyExpStastics> userDailyExpStasticss;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Checklist> userChecklists;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(
             name = "user_badge",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -55,13 +55,13 @@ public class User {
     )
     private List<Badge> userBadgeBadges;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<FacialResult> userFacialResults;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<UserMedicalInfo> userUserMedicalInfos;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<TotalExpStastics> userTotalExpStasticss;
 
     @Builder

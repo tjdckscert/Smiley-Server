@@ -32,7 +32,7 @@ public class TotalExpStastics {
     private String userTier;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_totalexpstastics_user"))
     private User user;
 
     @Builder

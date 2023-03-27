@@ -39,11 +39,11 @@ public class Checklist {
     @Enumerated(EnumType.STRING)
     private Repeat_period repeatPeriod;
 
-    @OneToMany(mappedBy = "checklist")
+    @OneToMany(mappedBy = "checklist", cascade = CascadeType.PERSIST)
     private List<ChecklistResult> checklistChecklistResults;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_checklist_user"))
     private User user;
 
     @Builder
