@@ -4,7 +4,7 @@ package com.smiley.smileybackend.domain.enums;
 import lombok.Getter;
 
 @Getter
-public enum Repeat_period {
+public enum RepeatPeriod {
     DAILY("DAILY"),
 
     WEEKLY("WEEKLY"),
@@ -12,7 +12,7 @@ public enum Repeat_period {
     MONTHLY("MONTHLY");
     private final String repeat;
 
-    Repeat_period(String repeat) {
+    RepeatPeriod(String repeat) {
         this.repeat = repeat;
     }
 }

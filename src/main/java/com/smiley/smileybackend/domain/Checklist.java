@@ -1,8 +1,8 @@
 package com.smiley.smileybackend.domain;
 
 
-import com.smiley.smileybackend.domain.enums.Day_of_week;
-import com.smiley.smileybackend.domain.enums.Repeat_period;
+import com.smiley.smileybackend.domain.enums.DayOfWeek;
+import com.smiley.smileybackend.domain.enums.RepeatPeriod;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -34,10 +33,10 @@ public class Checklist {
     private Integer alarm;
 
     @Enumerated(EnumType.STRING)
-    private Day_of_week dayOfWeek;
+    private DayOfWeek dayOfWeek;
 
     @Enumerated(EnumType.STRING)
-    private Repeat_period repeatPeriod;
+    private RepeatPeriod repeatPeriod;
 
     @OneToMany(mappedBy = "checklist", cascade = CascadeType.PERSIST)
     private List<ChecklistResult> checklistChecklistResults;
@@ -47,7 +46,7 @@ public class Checklist {
     private User user;
 
     @Builder
-    public Checklist(Integer id, String title, String memo, OffsetDateTime time, Integer alarm, Day_of_week dayOfWeek, Repeat_period repeatPeriod, List<ChecklistResult> checklistChecklistResults, User user) {
+    public Checklist(Integer id, String title, String memo, OffsetDateTime time, Integer alarm, DayOfWeek dayOfWeek, RepeatPeriod repeatPeriod, List<ChecklistResult> checklistChecklistResults, User user) {
         this.id = id;
         this.title = title;
         this.memo = memo;

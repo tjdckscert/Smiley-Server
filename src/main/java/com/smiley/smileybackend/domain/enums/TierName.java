@@ -3,7 +3,7 @@ package com.smiley.smileybackend.domain.enums;
 import lombok.Getter;
 
 @Getter
-public enum Tiername {
+public enum TierName {
     BRONZE("BRONZE"),
     SILVER("SILVER"),
     GOLD("GOLD"),
@@ -13,7 +13,7 @@ public enum Tiername {
     MASTER("MASTER");
 
     private final String tier;
-    Tiername(String tier) {
+    TierName(String tier) {
         this.tier = tier;
     }
 }

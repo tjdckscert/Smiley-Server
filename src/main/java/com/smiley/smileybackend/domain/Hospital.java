@@ -15,6 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @IdClass(Hospitalkeys.class)
 public class Hospital {
+    /*
+     *국립중앙의료원 국립중앙의료원 전국 병·의원 찾기 서비스 API 사용
+     */
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -27,105 +30,139 @@ public class Hospital {
     @Column(nullable = false, length = 200)
     private String name;
 
+    /*일련번호*/
     @Column(length = 200)
     private String rnum;
 
+    /*주소*/
     @Column(length = 200)
     private String dutyAddr;
 
+    /*병원분류*/
     @Column(length = 200)
     private String dutyDiv;
 
+    /*병원분류명*/
     @Column(length = 200)
     private String dutyDivNam;
 
+    /*응급의료기관코드*/
     @Column(length = 20)
     private String dutyEmcls;
 
+    /*응급의료기관코드명*/
     @Column(length = 200)
     private String dutyEmclsName;
 
+    /*응급실운영여부(1/2)*/
     @Column(length = 200)
     private String dutyEryn;
 
+    /*비고*/
     @Column(length = 200)
     private String dutyEtc;
 
+    /*기관설명상세*/
     @Column(length = 200)
     private String dutyInf;
 
+    /*건이약도*/
     @Column(length = 200)
     private String dutyMapimg;
 
+    /*기관명*/
     @Column(length = 200)
     private String dutyName;
 
+    /*대표전화번호*/
     @Column(length = 20)
     private String dutyTel1;
 
+    /*응급실전화번호*/
     @Column(length = 20)
     private String dutyTel3;
 
+    /*진료시간(월요일)종료시간*/
     @Column(length = 20)
     private String dutyTime1c;
 
+    /*진료시간(화요일)종료시간*/
     @Column(length = 20)
     private String dutyTime2c;
 
+    /*진료시간(수요일)종료시간*/
     @Column(length = 20)
     private String dutyTime3c;
 
+    /*진료시간(목요일)종료시간*/
     @Column(length = 20)
     private String dutyTime4c;
 
+    /*진료시간(금요일)종료시간*/
     @Column(length = 20)
     private String dutyTime5c;
 
+    /*진료시간(토요일)종료시간*/
     @Column(length = 20)
     private String dutyTime6c;
 
+    /*진료시간(일요일)종료시간*/
     @Column(length = 20)
     private String dutyTime7c;
 
+    /*진료시간(공휴일)종료시간*/
     @Column(length = 20)
     private String dutyTime8c;
 
+    /*진료시간(월요일)시작시간*/
     @Column(length = 20)
     private String dutyTime1s;
 
+    /*진료시간(화요일)시작시간*/
     @Column(length = 20)
     private String dutyTime2s;
 
+    /*진료시간(수요일)시작시간*/
     @Column(length = 20)
     private String dutyTime3s;
 
+    /*진료시간(목요일)시작시간*/
     @Column(length = 20)
     private String dutyTime4s;
 
+    /*진료시간(금요일)시작시간*/
     @Column(length = 20)
     private String dutyTime5s;
 
+    /*진료시간(토요일)시작시간*/
     @Column(length = 20)
     private String dutyTime6s;
 
+    /*진료시간(일요일)시작시간*/
     @Column(length = 20)
     private String dutyTime7s;
 
+    /*진료시간(공휴일)시작시간*/
     @Column(length = 20)
     private String dutyTime8s;
 
+    /*기관ID*/
     @Column(length = 200)
     private String hpid;
 
+    /*우편번호1*/
     @Column(length = 200)
     private String postCdn1;
 
+    /*우편번호2*/
     @Column(length = 200)
     private String postCdn2;
 
+    /*병원경도*/
     @Column(length = 200)
     private String wgs84Lon;
 
+    /*병원위도*/
     @Column(length = 200)
     private String wgs84Lat;
 

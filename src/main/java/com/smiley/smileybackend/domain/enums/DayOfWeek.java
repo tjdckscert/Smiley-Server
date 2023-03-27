@@ -3,7 +3,7 @@ package com.smiley.smileybackend.domain.enums;
 import lombok.Getter;
 
 @Getter
-public enum Day_of_week {
+public enum DayOfWeek {
 
     MONDAY("MONDAY"),
 
@@ -21,7 +21,7 @@ public enum Day_of_week {
 
     private final String dayofweek;
 
-    Day_of_week(String dayofweek) {
+    DayOfWeek(String dayofweek) {
         this.dayofweek = dayofweek;
     }
 }
