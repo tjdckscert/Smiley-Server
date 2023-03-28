@@ -22,6 +22,9 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:20.1.0'
 
     /* devtools */
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -46,6 +49,9 @@ dependencies {
     /*swagger*/
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation "io.springfox:springfox-swagger-ui:3.0.0"
+
+    /*Valid*/
+    implementation"org.springframework.boot:spring-boot-starter-validation"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
