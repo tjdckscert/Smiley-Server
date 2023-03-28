@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 50)
+    @Column(length = 50,unique = true)
     private String email;
 
     @Column(nullable = false, length = 200)

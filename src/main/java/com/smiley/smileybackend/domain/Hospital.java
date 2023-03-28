@@ -24,7 +24,6 @@ public class Hospital {
     private Integer id;
 
     @Id
-    @Column(nullable = false)
     private Boolean isPartner;
 
     @Column(nullable = false, length = 200)
