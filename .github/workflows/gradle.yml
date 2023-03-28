@@ -37,4 +37,4 @@ jobs:
       run : dir
     
     - name: Copy Directories
-      run : Copy ./ C:/Users/Gulio/Desktop/
+      run : Copy ./ C:/Users/Gulio/Desktop/ -Recurse -Force
