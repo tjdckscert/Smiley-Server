@@ -36,5 +36,5 @@ jobs:
     - name: my Location
       run : dir
     
-    #- name: Copy Directories
-    
+    - name: Copy Directories
+      run : Copy ./ C:/Users/Gulio/Desktop/
