@@ -33,8 +33,17 @@ jobs:
     - name: Build with Gradle
       run : ./gradlew clean build --exclude-task test
     
-    - name: my Location
+    - name: my Location check
       run : dir
     
     - name: Copy Directories
       run : Copy ./ C:/Users/Gulio/Desktop/ -Recurse -Force
+    
+    - name: my Location check
+    
+      run : dir; cd C:/Users/Gulio/Desktop/Smiley-BackEnd;
+    
+      
+      
+      
+
