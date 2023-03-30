@@ -23,7 +23,7 @@ public class Hospital {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Id
     private Boolean isPartner;
@@ -174,7 +174,7 @@ public class Hospital {
     private List<UserMedicalInfo> userMedicalInfos;
 
     @Builder
-    public Hospital(long id, Boolean isPartner, String name, String rnum, String dutyAddr, String dutyDiv, String dutyDivNam, String dutyEmcls, String dutyEmclsName, String dutyEryn, String dutyEtc, String dutyInf, String dutyMapimg, String dutyName, String dutyTel1, String dutyTel3, String dutyTime1c, String dutyTime2c, String dutyTime3c, String dutyTime4c, String dutyTime5c, String dutyTime6c, String dutyTime7c, String dutyTime8c, String dutyTime1s, String dutyTime2s, String dutyTime3s, String dutyTime4s, String dutyTime5s, String dutyTime6s, String dutyTime7s, String dutyTime8s, String hpid, String postCdn1, String postCdn2, String wgs84Lon, String wgs84Lat, List<Booking> hospitalBookings, List<UserMedicalInfo> userMedicalInfos) {
+    public Hospital(Integer id, Boolean isPartner, String name, String rnum, String dutyAddr, String dutyDiv, String dutyDivNam, String dutyEmcls, String dutyEmclsName, String dutyEryn, String dutyEtc, String dutyInf, String dutyMapimg, String dutyName, String dutyTel1, String dutyTel3, String dutyTime1c, String dutyTime2c, String dutyTime3c, String dutyTime4c, String dutyTime5c, String dutyTime6c, String dutyTime7c, String dutyTime8c, String dutyTime1s, String dutyTime2s, String dutyTime3s, String dutyTime4s, String dutyTime5s, String dutyTime6s, String dutyTime7s, String dutyTime8s, String hpid, String postCdn1, String postCdn2, String wgs84Lon, String wgs84Lat, List<Booking> hospitalBookings, List<UserMedicalInfo> userMedicalInfos) {
         this.id = id;
         this.isPartner = isPartner;
         this.name = name;

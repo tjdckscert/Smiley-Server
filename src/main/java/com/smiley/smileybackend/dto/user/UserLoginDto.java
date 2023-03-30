@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLogin {
+public class UserLoginDto {
     @NotBlank(message = "이메일을 입력해주세요, 공백 X")
     @Email(message = "이메일 형식이 아닙니다.")
     @ApiModelProperty(value = "사용자입력이 Email 형식인지 확인. 공백 X")

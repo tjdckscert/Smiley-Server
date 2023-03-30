@@ -16,10 +16,10 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class MedicalInfo {
+public class MedicalInfoDto {
     @NotNull
     @ApiModelProperty(value = "사용자 ID(user의 index번호). 공백 X")
-    private Integer user_id;
+    private Integer userId;
 
     @NotNull(message = "교정여부를 입력해주세요")
     @ApiModelProperty(value = "사용자 교정 여부(0 or 1). 공백 X")
@@ -29,17 +29,17 @@ public class MedicalInfo {
     private LocalDate startDate;
 
     @ApiModelProperty(value = "이용중인 병원 Id(Hospital table의 index 값). 공백 O")
-    private long hospital_id;
+    private Integer hospitalId;
 
     @NotNull
     @ApiModelProperty(value = "사용자 설무조사 결과. 공백 X.")
-    private List<SurveyJson> survey_result;
+    private List<SurveyJsonDto> surveyResult;
 
     public UserMedicalInfo toEntity(User user, Hospital hospital) {
         return UserMedicalInfo.builder()
                 .calibrationStatus(calibrationStatus)
                 .startDate(startDate)
-                .surveyResult(survey_result)
+                .surveyResult(surveyResult)
                 .hospital(hospital)
                 .user(user)
                 .build();

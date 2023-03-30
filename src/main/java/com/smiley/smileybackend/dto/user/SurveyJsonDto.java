@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SurveyJson {
+public class SurveyJsonDto {
 
     @NotBlank(message = "질문을 입력해주세요")
     @ApiModelProperty(value = "설문조사 질문")
