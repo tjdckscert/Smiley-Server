@@ -1,6 +1,10 @@
 package com.smiley.smileybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.smiley.smileybackend.dto.user.SurveyJson;
 import com.vladmihalcea.hibernate.type.json.JsonType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,8 +35,9 @@ public class UserMedicalInfo implements Serializable {
     private LocalDate startDate;
 
     @Type(type = "json")
+    @JsonIgnore
     @Column(columnDefinition = "json")
-    private List<String> surveyResult;
+    private List<SurveyJson> surveyResult;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,7 +52,7 @@ public class UserMedicalInfo implements Serializable {
     private Hospital hospital;
 
     @Builder
-    public UserMedicalInfo(Integer id, Integer calibrationStatus, LocalDate startDate, List<String> surveyResult, User user, Hospital hospital) {
+    public UserMedicalInfo(Integer id, Integer calibrationStatus, LocalDate startDate, List<SurveyJson> surveyResult, User user, Hospital hospital) {
         this.id = id;
         this.calibrationStatus = calibrationStatus;
         this.startDate = startDate;
