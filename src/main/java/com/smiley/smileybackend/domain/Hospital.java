@@ -5,6 +5,7 @@ import com.smiley.smileybackend.domain.keys.Hospitalkeys;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@ToString
 @NoArgsConstructor
 @IdClass(Hospitalkeys.class)
 public class Hospital {

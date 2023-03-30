@@ -1,8 +1,8 @@
 package com.smiley.smileybackend.service;
 
 import com.smiley.smileybackend.domain.User;
-import com.smiley.smileybackend.dto.response.UserInfo;
-import com.smiley.smileybackend.dto.user.UserLogin;
+import com.smiley.smileybackend.dto.response.UserInfoDto;
+import com.smiley.smileybackend.dto.user.UserLoginDto;
 import com.smiley.smileybackend.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +13,18 @@ import javax.validation.Valid;
 @Service
 @Slf4j
 public class UserService {
-    @Autowired
     private UserRepository userRepository;
+    public UserService(UserRepository userRepository){
+        this.userRepository=userRepository;
+    }
 
-    public UserInfo login(@Valid UserLogin userLogin) {
-        User user = userRepository.findByEmail(userLogin.getEmail()).orElse(
+    public UserInfoDto login(@Valid UserLoginDto userLoginDto) {
+        User user = userRepository.findByEmail(userLoginDto.getEmail()).orElse(
                 null
         );
         if (user==null){
-            user = userRepository.save(userLogin.toEntity());
+            user = userRepository.save(userLoginDto.toEntity());
         }
-        return new UserInfo(user);
+        return new UserInfoDto(user);
     }
 }

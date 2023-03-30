@@ -1,12 +1,13 @@
 package com.smiley.smileybackend.controller;
 
-
-import com.smiley.smileybackend.dto.response.UserInfo;
-import com.smiley.smileybackend.dto.user.UserLogin;
+import com.smiley.smileybackend.dto.response.UserInfoDto;
+import com.smiley.smileybackend.dto.response.UserMedicalInfoDto;
+import com.smiley.smileybackend.dto.user.MedicalInfoDto;
+import com.smiley.smileybackend.dto.user.UserLoginDto;
+import com.smiley.smileybackend.service.UserMedicalInfoService;
 import com.smiley.smileybackend.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-//@RequiredArgsConstructor
-@Api(tags = "Member Controller : 회원, 조교...")
+@Api(tags = "User Controller : 회원정보 및 사용자 의료정보")
 @Slf4j
 public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMedicalInfoService userMedicalInfoService;
+
     @PostMapping("/users/login")
     @ApiOperation(value="로그인" , notes = "사용자는 로그인한다.")
-    public ResponseEntity<UserInfo> login(@Valid @RequestBody UserLogin userLogin) {
-        log.info(userLogin.toString());
-        UserInfo userInfo = userService.login(userLogin);
-        log.info(userInfo.toString());
+    public ResponseEntity<UserInfoDto> login(@Valid @RequestBody UserLoginDto userLoginDto) {
+        UserInfoDto userInfo = userService.login(userLoginDto);
         return ResponseEntity.ok(userInfo);
+    }
+
+    @PostMapping("/users/medicalinfo")
+    @ApiOperation(value="로그인" , notes = "사용자의 의료정보를 저장한다.")
+    public ResponseEntity<UserMedicalInfoDto> login(@Valid @RequestBody MedicalInfoDto medicalInfoDto) {
+        UserMedicalInfoDto userMedicalInfoDto = userMedicalInfoService.savemedicalinfo(medicalInfoDto);
+        return ResponseEntity.ok(userMedicalInfoDto);
     }
 }

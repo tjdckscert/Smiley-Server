@@ -45,7 +45,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .globalOperationParameters(globalParamters)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.Smi)ey.web.apiController"))
+                .apis(RequestHandlerSelectors.basePackage("com.smiley.smileybackend"))
                 .paths(PathSelectors.any())
                 .build();
     }
