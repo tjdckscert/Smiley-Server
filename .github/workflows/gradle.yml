@@ -33,14 +33,14 @@ jobs:
     - name: Build with Gradle
       run : ./gradlew clean build --exclude-task test
     
-    - name: Copy Directories
-      run : Copy ./ C:/Users/Gulio/Desktop/ -Recurse -Force
+#     - name: Copy Directories
+#       run : Copy ./ C:/Users/Gulio/Desktop/ -Recurse -Force
     
-    - name: my Location check
-      run : dir
+#     - name: my Location check
+#       run : dir
       
-    - name: deploy
-      run : C:/Users/Gulio/Desktop/deploy.cmd
+#     - name: deploy
+#       run : C:/Users/Gulio/Desktop/deploy.cmd
       
       
       
