@@ -36,14 +36,11 @@ jobs:
     - name: Copy Directories
       run : Copy ./ C:/Users/Gulio/Desktop/ -Recurse -Force
     
-    - name: move Directiores
-      run : cd C:/Users/Gulio/Desktop
-    
     - name: my Location check
       run : dir
       
     - name: deploy
-      run : deploy.cmd
+      run : C:/Users/Gulio/Desktop/deploy.cmd
       
       
     
