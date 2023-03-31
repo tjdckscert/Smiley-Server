@@ -39,7 +39,7 @@ jobs:
     - name: Code Deploy
     
       run : cd C:/Users/Gulio/Desktop |
-            deploy.bat
+            deploy.cmd
             
       
     
