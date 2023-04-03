@@ -36,16 +36,15 @@ jobs:
     - name: Build with Gradle
       run : ./gradlew clean build --exclude-task test
     
-#     - name: Copy Directories
-#       run : Copy ./ C:/Users/Gulio/Desktop/ -Recurse -Force
-    
-#     - name: my Location check
-#       run : dir
-      
-#     - name: deploy
-#       run : C:/Users/Gulio/Desktop/deploy.cmd
-      
-      
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          whoami
       
     
       
