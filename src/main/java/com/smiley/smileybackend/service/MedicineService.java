@@ -15,7 +15,6 @@ public class MedicineService {
     /**
      * ID 값을 통해 단일 의약품 정보를 가져온다
      * */
-
     public MedicineInfoDto findMedicine(Integer id) {
         Medicine medicine = medicineRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("의약품을 찾을 수 없습니다")
