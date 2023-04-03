@@ -2,8 +2,11 @@ package com.smiley.smileybackend.service;
 
 import com.smiley.smileybackend.domain.Hospital;
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
+import com.smiley.smileybackend.dto.response.SimpleHospitalInfo;
 import com.smiley.smileybackend.repository.HospitalRepository;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HospitalService {
@@ -20,5 +23,9 @@ public class HospitalService {
                 () -> new IllegalArgumentException("병원을 찾을 수 없습니다")
         );
         return  new HospitalInfoDto(hospital);
+    }
+
+    public List<SimpleHospitalInfo> getSimpleHospitalInfo() {
+        return hospitalRepository.findAll().stream().map(hospital -> new SimpleHospitalInfo(hospital.getId(),hospital.getName(),hospital.getDutyAddr())).collect(Collectors.toList());
     }
 }
