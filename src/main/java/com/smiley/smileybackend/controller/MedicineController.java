@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "Medicine Controller :  의약품 정보")
 @Slf4j
-
 public class MedicineController {
     private MedicineService medicineService;
     public MedicineController(MedicineService medicineService){
         this.medicineService = medicineService;
     }
-
 
     @GetMapping("/medicines/{id}")
     @ApiOperation(value="의약품 정보 조회" , notes = "Id 값을 통해 단일 의약품 정보를 가져온다")

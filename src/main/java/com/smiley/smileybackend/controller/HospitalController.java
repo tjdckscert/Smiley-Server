@@ -15,7 +15,7 @@ public class HospitalController {
         }
 
         @GetMapping("/hospitals/{id}")
-        public ResponseEntity<HospitalInfoDto>hospital(@PathVariable Integer id){
+        public ResponseEntity<HospitalInfoDto> hospital(@PathVariable Integer id){
             HospitalInfoDto hospitalInfoDto = hospitalService.findHospital(id);
             return ResponseEntity.ok(hospitalInfoDto);
         }
