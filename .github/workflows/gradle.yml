@@ -21,27 +21,30 @@ jobs:
   build:
 
     runs-on: self-hosted
-    steps:
-    - uses: actions/checkout@v3
     
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
+    steps:
+#     - uses: actions/checkout@v3
+    
+#     - name: Set up JDK 11
+#       uses: actions/setup-java@v3
+#       with:
+#         java-version: '11'
+#         distribution: 'temurin'
         
-    - name: Allow Permission
-      run : chmod +x gradlew
+#     - name: Allow Permission
+#       run : chmod +x gradlew
       
-    - name: Build with Gradle
-      run : ./gradlew clean build --exclude-task test
+#     - name: Build with Gradle
+#       run : ./gradlew clean build --exclude-task test
+    
+    
     
     - name: Deploy
       uses: appleboy/ssh-action@v0.1.8
       with:
-        host: ${{ secrets.REMOTE_IP }}
-        username: ${{ secrets.REMOTE_SSH_ID }}
-        key: ${{ secrets.REMOTE_SSH_KEY }}
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PASSWORD }}
         port: ${{ secrets.REMOTE_SSH_PORT }}
         script: |
           whoami
