@@ -9,7 +9,6 @@ import com.smiley.smileybackend.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,11 +20,13 @@ import javax.validation.Valid;
 @Api(tags = "User Controller : 회원정보 및 사용자 의료정보")
 @Slf4j
 public class UserController {
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private UserMedicalInfoService userMedicalInfoService;
+
+    public UserController(UserService userService, UserMedicalInfoService userMedicalInfoService){
+        this.userService=userService;
+        this.userMedicalInfoService=userMedicalInfoService;
+    }
 
     @PostMapping("/users/login")
     @ApiOperation(value="로그인" , notes = "사용자는 로그인한다.")

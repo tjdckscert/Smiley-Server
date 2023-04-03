@@ -5,7 +5,6 @@ import com.smiley.smileybackend.dto.response.MedicineInfoDto;
 import com.smiley.smileybackend.repository.MedicineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 @Service
 @Slf4j
 public class MedicineService {
