@@ -38,14 +38,13 @@ jobs:
       run : ./gradlew clean build --exclude-task test
     
     
-    
     - name: Deploy
       uses: appleboy/ssh-action@v0.1.8
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.REMOTE_SSH_PORT }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
         script: |
           whoami
 
