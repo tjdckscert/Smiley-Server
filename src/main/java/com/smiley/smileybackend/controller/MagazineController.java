@@ -24,6 +24,7 @@ public class MagazineController {
     public ResponseEntity<List<MagazineInfoDto>> magazines(){
         List<MagazineInfoDto> magazineInfos = magazineService.getAll();
         return ResponseEntity.ok(magazineInfos);
+
     }
 
 }
