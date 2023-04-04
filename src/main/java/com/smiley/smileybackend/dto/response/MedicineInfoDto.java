@@ -5,89 +5,95 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Column;
+
 
 @ToString
 @Getter
 @NoArgsConstructor
 public class MedicineInfoDto {
+
     private Integer id;
 
-    private String name;
+    /**
+     * 업체명
+     * */
+    private String entpName;
 
-    /*대표 품목기준코드*/
-    private String trustIndutyCode;
+    /**
+     * 제품명
+     * */
+    private String itemName;
 
-    /*대표 제품명*/
-    private String trustItemName;
+    /**
+     * 품목기준코드
+     * */
+    private String itemSeq;
 
-    /*대표 주성분*/
-    private String trustMainingr;
+    /**
+     * 문항1(효능)
+     * */
+    private String efcyQesitm;
 
-    /*대표 함량*/
-    private String trustQntList;
+    /**
+     * 문항2(사용법)
+     * */
+    private String useMethodQesitm;
 
-    /*대표 업소명*/
-    private String trustEntpName;
+    /**
+     * 문항3(주의사항경고)
+     * */
+    private String atpnWarnQesitm;
 
-    /*대표 제조소*/
-    private String trustManuf;
+    /**
+     * 문항4(주의사항)
+     * */String atpnQesitm;
 
-    /*대표 허가일자*/
-    private String trustItemPermitDate;
 
-    /*대표 심평원주성분코드*/
-    private String trustHiraMainingrCode;
+    /**
+     * 문항5(상호작용)
+     * */
+    private String intrcQesitm;
 
-    /*대표 심평원제품코드*/
-    private String trustHiraPrductCode;
+    /**
+     * 문항6(부작용)
+     * */
+    private String seQesitm;
 
-    /*대표 ATC코드*/
-    private String trustAtcCode;
+    /**
+     * 문항7(보관법)
+     * */
+    private String depositMethodQesitm;
 
-    /*취소/취하명*/
-    private String trustCancelName;
+    /**
+     * 공개일자
+     * */
+    private String openDe;
 
-    /*품목기준코드*/
-    private String cnsgnItemSeq;
+    /**
+     * 수정일자
+     * */
+    private String updateDe;
 
-    /*제품명*/
-    private String cnsgnItemName;
-
-    /*업소명*/
-    private String cnsgnEntpName;
-
-    /*제조소*/
-    private String cnsgnManuf;
-
-    /*허가일자*/
-    private String cnsgnItemPermitDate;
-
-    /*심평원제품코드*/
-    private String cnsgnHiraPrductCode;
-
-    /*취소/취하명*/
-    private String cnsgnCancelName;
+    /**
+     * 낱알이미지
+     * */
+    private String itemImage;
 
     public MedicineInfoDto(Medicine saved) {
         this.id = saved.getId();
-        this.name = saved.getName();
-        this.trustIndutyCode = saved.getTrustIndutyCode();
-        this.trustItemName = saved.getTrustItemName();
-        this.trustMainingr = saved.getTrustMainingr();
-        this.trustQntList = saved.getTrustQntList();
-        this.trustEntpName = saved.getTrustEntpName();
-        this.trustManuf = saved.getTrustManuf();
-        this.trustItemPermitDate = saved.getTrustItemPermitDate();
-        this.trustHiraMainingrCode = saved.getTrustHiraMainingrCode();
-        this.trustHiraPrductCode = saved.getTrustHiraPrductCode();
-        this.trustAtcCode = saved.getTrustAtcCode();
-        this.trustCancelName = saved.getTrustCancelName();
-        this.cnsgnItemSeq = saved.getCnsgnItemSeq();
-        this.cnsgnItemName = saved.getCnsgnItemName();
-        this.cnsgnEntpName = saved.getCnsgnEntpName();
-        this.cnsgnManuf = saved.getCnsgnManuf();
-        this.cnsgnItemPermitDate = saved.getCnsgnItemPermitDate();
-        this.cnsgnHiraPrductCode = saved.getCnsgnHiraPrductCode();
-        this.cnsgnCancelName = saved.getCnsgnCancelName();
+        this.entpName = saved.getEntpName();
+        this.itemName =saved.getItemName();
+        this.itemSeq = saved.getItemSeq();
+        this.efcyQesitm = saved.getEfcyQesitm();
+        this.useMethodQesitm = saved.getUseMethodQesitm();
+        this.atpnWarnQesitm = saved.getAtpnWarnQesitm();
+        this.atpnQesitm = saved.getAtpnQesitm();
+        this.intrcQesitm = saved.getIntrcQesitm();
+        this.seQesitm = saved.getSeQesitm();
+        this.depositMethodQesitm = saved.getDepositMethodQesitm();
+        this.openDe = saved.getOpenDe();
+        this.updateDe = saved.getUpdateDe();
+        this.itemImage = saved.getItemImage();
     }
 }
