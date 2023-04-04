@@ -96,4 +96,21 @@ public class MedicineInfoDto {
         this.updateDe = saved.getUpdateDe();
         this.itemImage = saved.getItemImage();
     }
+
+    public MedicineInfoDto(Integer id, String entpName, String itemName, String itemSeq, String efcyQesitm, String useMethodQesitm, String atpnWarnQesitm, String atpnQesitm, String intrcQesitm, String seQesitm, String depositMethodQesitm, String openDe, String updateDe, String itemImage) {
+        this.id = id;
+        this.entpName = entpName;
+        this.itemName = itemName;
+        this.itemSeq = itemSeq;
+        this.efcyQesitm = efcyQesitm;
+        this.useMethodQesitm = useMethodQesitm;
+        this.atpnWarnQesitm = atpnWarnQesitm;
+        this.atpnQesitm = atpnQesitm;
+        this.intrcQesitm = intrcQesitm;
+        this.seQesitm = seQesitm;
+        this.depositMethodQesitm = depositMethodQesitm;
+        this.openDe = openDe;
+        this.updateDe = updateDe;
+        this.itemImage = itemImage;
+    }
 }
