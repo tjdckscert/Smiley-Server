@@ -57,8 +57,9 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
     
     /*Actuator for health check*/
-    implementation "org.springframework.boot:spring-boot-starter-actuator"
-
+    
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
