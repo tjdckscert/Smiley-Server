@@ -30,9 +30,6 @@ public class MedicineService {
      * 모든 의약품 정보를 가져온다
      * */
     public List<MedicineInfoDto> getAll() {
-        List<MedicineInfoDto> magazineInfos = medicineRepository.findAll().stream().map(medicine -> new MedicineInfoDto(
-                medicine.getId(),medicine.getItemName(),medicine.getProfessionalism(),medicine.getItemCode(),medicine.getMainIngredient()
-        )).collect(Collectors.toList());
-        return magazineInfos;
+        return medicineRepository.findAll().stream().map(MedicineInfoDto::entityToDto).collect(Collectors.toList());
     }
 }

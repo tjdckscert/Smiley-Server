@@ -2,6 +2,8 @@ package com.smiley.smileybackend.controller;
 
 import com.smiley.smileybackend.dto.response.MagazineInfoDto;
 import com.smiley.smileybackend.service.MagazineService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@ToString
-@NoArgsConstructor
+@Api(tags = "Magazine Controller : 매거진 정보")
 public class MagazineController {
     private MagazineService magazineService;
     public MagazineController(MagazineService magazineService){
@@ -21,6 +22,7 @@ public class MagazineController {
     }
 
     @GetMapping("/magazines")
+    @ApiOperation(value="모든 매거지진" , notes = "모든 매거진 정보를 반환한다.")
     public ResponseEntity<List<MagazineInfoDto>> magazines(){
         List<MagazineInfoDto> magazineInfos = magazineService.getAll();
         return ResponseEntity.ok(magazineInfos);
