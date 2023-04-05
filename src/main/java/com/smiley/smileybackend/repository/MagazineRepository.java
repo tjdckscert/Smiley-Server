@@ -12,5 +12,5 @@ import java.util.List;
 public interface MagazineRepository extends JpaRepository<Magazine,Integer> {
 
     @Query(value = "select * from (select *, ROW_NUMBER() OVER(order by id desc) as rnum from magazine m) Magazine where rnum between 1 and :number",nativeQuery = true)
-    List<Magazine> findNumbeOfMagazines(@Param("number") Integer number);
+    List<Magazine> findNumberOfMagazines(@Param("number") Integer number);
 }
