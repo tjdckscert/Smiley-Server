@@ -4,7 +4,6 @@ import com.smiley.smileybackend.domain.Medicine;
 import com.smiley.smileybackend.dto.response.MedicineInfoDto;
 import com.smiley.smileybackend.repository.MedicineRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +13,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MedicineService {
     private MedicineRepository medicineRepository;
-
-    private ModelMapper modelMapper;
-    public MedicineService(MedicineRepository medicineRepository, ModelMapper modelMapper){
+    public MedicineService(MedicineRepository medicineRepository){
         this.medicineRepository = medicineRepository;
-        this.modelMapper=modelMapper;
     }
     /**
      * ID 값을 통해 단일 의약품 정보를 가져온다
@@ -34,6 +30,6 @@ public class MedicineService {
      * 모든 의약품 정보를 가져온다
      * */
     public List<MedicineInfoDto> getAll() {
-        return medicineRepository.findAll().stream().map(medicine -> modelMapper.map(medicine,MedicineInfoDto.class)).collect(Collectors.toList());
+        return medicineRepository.findAll().stream().map(MedicineInfoDto::entityToDto).collect(Collectors.toList());
     }
 }

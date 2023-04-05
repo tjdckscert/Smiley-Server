@@ -1,14 +1,10 @@
 package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.Medicine;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
-@Setter
 @NoArgsConstructor
 public class MedicineInfoDto {
 
@@ -34,6 +30,15 @@ public class MedicineInfoDto {
      * */
     private String mainIngredient;
 
+    public static MedicineInfoDto entityToDto(Medicine medicine){
+        return new MedicineInfoDto(
+                medicine.getId(),
+                medicine.getItemName(),
+                medicine.getProfessionalism(),
+                medicine.getItemCode(),
+                medicine.getMainIngredient()
+        );
+    }
     public MedicineInfoDto(Medicine saved) {
         this.id = saved.getId();
         this.itemName =saved.getItemName();
@@ -42,6 +47,7 @@ public class MedicineInfoDto {
         this.mainIngredient=saved.getMainIngredient();
     }
 
+    @Builder
     public MedicineInfoDto(Integer id, String itemName, String professionalism, String itemCode, String mainIngredient) {
         this.id = id;
         this.itemName = itemName;
@@ -49,5 +55,4 @@ public class MedicineInfoDto {
         this.itemCode=itemCode;
         this.mainIngredient=mainIngredient;
     }
-
 }

@@ -2,8 +2,6 @@ package com.smiley.smileybackend.service;
 
 import com.smiley.smileybackend.dto.response.MagazineInfoDto;
 import com.smiley.smileybackend.repository.MagazineRepository;
-import org.modelmapper.ModelMapper;
-import com.smiley.smileybackend.domain.Magazine;
 import org.springframework.stereotype.Service;
 
 
@@ -12,14 +10,15 @@ import java.util.stream.Collectors;
 @Service
 public class MagazineService {
     private MagazineRepository magazineRepository;
-    private ModelMapper modelMapper;
-    public MagazineService(MagazineRepository magazineRepository, ModelMapper modelMapper){
+    public MagazineService(MagazineRepository magazineRepository){
         this.magazineRepository=magazineRepository;
-        this.modelMapper=modelMapper;
     }
 
+    /**
+     * 모든 매거진 정보를 가져온다
+     * */
     public List<MagazineInfoDto> getAll() {
-        return magazineRepository.findAll().stream().map(magazine -> modelMapper.map(magazine,MagazineInfoDto.class)).collect(Collectors.toList());
+        return magazineRepository.findAll().stream().map(MagazineInfoDto::entityToDto).collect(Collectors.toList());
     }
 
 }
