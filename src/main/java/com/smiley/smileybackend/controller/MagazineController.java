@@ -22,14 +22,14 @@ public class MagazineController {
     }
 
     @GetMapping("/magazines")
-    @ApiOperation(value="모든 매거지진" , notes = "모든 매거진 정보를 반환한다.")
+    @ApiOperation(value="모든 매거진" , notes = "모든 매거진 정보를 반환한다.")
     public ResponseEntity<List<MagazineInfoDto>> magazines(){
         List<MagazineInfoDto> magazineInfos = magazineService.getAll();
         return ResponseEntity.ok(magazineInfos);
     }
 
     @GetMapping("/magazines/{number}")
-    @ApiOperation(value="선택수량 매거지진" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
+    @ApiOperation(value="선택수량 매거진" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
     public ResponseEntity<List<MagazineInfoDto>> numberOfMagazines(@PathVariable Integer number){
         List<MagazineInfoDto> magazineInfos = magazineService.getListOfNumber(number);
         return ResponseEntity.ok(magazineInfos);

@@ -4,7 +4,6 @@ import com.smiley.smileybackend.dto.response.MagazineInfoDto;
 import com.smiley.smileybackend.repository.MagazineRepository;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
