@@ -4,6 +4,7 @@ import com.smiley.smileybackend.domain.UserMedicalInfo;
 import com.smiley.smileybackend.dto.user.SurveyJsonDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Getter
+@Setter
 @Slf4j
 @ToString
 @NoArgsConstructor

@@ -3,9 +3,11 @@ package com.smiley.smileybackend.dto.response;
 import com.smiley.smileybackend.domain.Hospital;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 @ToString
 @Getter
+@Setter
 @NoArgsConstructor
 public class HospitalInfoDto {
     private Integer id;

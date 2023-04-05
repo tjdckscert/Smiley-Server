@@ -4,15 +4,19 @@ import com.smiley.smileybackend.domain.Hospital;
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
 import com.smiley.smileybackend.dto.response.SimpleHospitalInfo;
 import com.smiley.smileybackend.repository.HospitalRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class HospitalService {
     private HospitalRepository hospitalRepository;
-    public HospitalService(HospitalRepository hospitalRepository){
+    private ModelMapper modelMapper;
+    public HospitalService(HospitalRepository hospitalRepository, ModelMapper modelMapper){
         this.hospitalRepository=hospitalRepository;
+        this.modelMapper=modelMapper;
     }
 
     /**
@@ -26,6 +30,6 @@ public class HospitalService {
     }
 
     public List<SimpleHospitalInfo> getSimpleHospitalInfo() {
-        return hospitalRepository.findAll().stream().map(hospital -> new SimpleHospitalInfo(hospital.getId(),hospital.getName(),hospital.getDutyAddr())).collect(Collectors.toList());
+        return hospitalRepository.findAll().stream().map(hospital -> modelMapper.map(hospital, SimpleHospitalInfo.class)).collect(Collectors.toList());
     }
 }
