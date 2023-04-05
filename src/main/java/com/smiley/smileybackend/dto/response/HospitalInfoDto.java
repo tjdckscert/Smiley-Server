@@ -196,6 +196,7 @@ public class HospitalInfoDto {
         this.wgs84Lat = wgs84Lat;
     }
 
+    @Builder
     public static HospitalInfoDto entityToDto(Hospital hospital){
         return new HospitalInfoDto(
           hospital.getId(),

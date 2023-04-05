@@ -1,6 +1,7 @@
 package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.User;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ public class UserInfoDto {
 
     private LocalDate bitrhDate;
 
+    @Builder
     public UserInfoDto(User saved) {
         this.id = saved.getId();
         this.email = saved.getEmail();

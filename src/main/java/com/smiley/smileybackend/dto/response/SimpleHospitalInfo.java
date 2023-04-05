@@ -18,6 +18,7 @@ public class SimpleHospitalInfo {
         this.dutyAddr = dutyAddr;
     }
 
+    @Builder
     public static SimpleHospitalInfo entityToDto(Hospital hospital){
         return new SimpleHospitalInfo(
         hospital.getId(),

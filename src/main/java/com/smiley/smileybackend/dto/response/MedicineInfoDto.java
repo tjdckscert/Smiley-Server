@@ -30,6 +30,7 @@ public class MedicineInfoDto {
      * */
     private String mainIngredient;
 
+    @Builder
     public static MedicineInfoDto entityToDto(Medicine medicine){
         return new MedicineInfoDto(
                 medicine.getId(),
@@ -39,6 +40,7 @@ public class MedicineInfoDto {
                 medicine.getMainIngredient()
         );
     }
+    @Builder
     public MedicineInfoDto(Medicine saved) {
         this.id = saved.getId();
         this.itemName =saved.getItemName();

@@ -28,6 +28,7 @@ public class MagazineInfoDto {
         this.contentLink = contentLink;
     }
 
+    @Builder
     public static MagazineInfoDto entityToDto(Magazine magazine){
         return new MagazineInfoDto(
                 magazine.getId(),
