@@ -2,6 +2,7 @@ package com.smiley.smileybackend.controller;
 
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
 import com.smiley.smileybackend.dto.response.SimpleHospitalInfo;
+import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoList;
 import com.smiley.smileybackend.service.HospitalService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,9 +26,9 @@ public class HospitalController {
         }
 
         @GetMapping("hospitals/simpleinfo")
-        @ApiOperation(value="모든 병원 정보" , notes = "모든 병원 정보를 반환한다.")
-        public ResponseEntity<List<SimpleHospitalInfo>> simplehostitalinfos(){
-            List<SimpleHospitalInfo> simpleHospitalInfo = hospitalService.getSimpleHospitalInfo();
-            return ResponseEntity.ok(simpleHospitalInfo);
+        @ApiOperation(value="모든 병원의 간단한 정보" , notes = "모든 병원의 간단한 정보를 반환한다.")
+        public ResponseEntity<SimpleHospitalInfoList> simplehostitalinfos(){
+            SimpleHospitalInfoList hospitals = hospitalService.getSimpleHospitalInfo();
+            return ResponseEntity.ok(hospitals);
         }
 }
