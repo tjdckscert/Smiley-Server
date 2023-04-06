@@ -3,6 +3,7 @@ package com.smiley.smileybackend.controller;
 import com.smiley.smileybackend.dto.response.MagazineInfoDto;
 import com.smiley.smileybackend.service.MagazineService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -29,6 +30,7 @@ public class MagazineController {
     }
 
     @GetMapping("/magazines/{number}")
+    @ApiImplicitParam(name="number",value="가져올 매거진의 수량")
     @ApiOperation(value="선택수량 매거진" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
     public ResponseEntity<List<MagazineInfoDto>> numberOfMagazines(@PathVariable Integer number){
         List<MagazineInfoDto> magazineInfos = magazineService.getListOfNumber(number);
