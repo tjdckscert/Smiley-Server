@@ -9,11 +9,11 @@ import java.util.List;
 
 @NoArgsConstructor
 @Getter
-public class SimpleHospitalInfoList {
+public class SimpleHospitalInfoDtoList {
     List<SimpleHospitalInfo> simpleHospitalInfos;
 
     @Builder
-    public SimpleHospitalInfoList(List<SimpleHospitalInfo> simpleHospitalInfos) {
+    public SimpleHospitalInfoDtoList(List<SimpleHospitalInfo> simpleHospitalInfos) {
         this.simpleHospitalInfos = simpleHospitalInfos;
     }
 }

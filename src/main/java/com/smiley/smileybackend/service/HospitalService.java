@@ -3,7 +3,7 @@ package com.smiley.smileybackend.service;
 import com.smiley.smileybackend.domain.Hospital;
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
 import com.smiley.smileybackend.dto.response.SimpleHospitalInfo;
-import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoList;
+import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoDtoList;
 import com.smiley.smileybackend.repository.HospitalRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,7 @@ public class HospitalService {
     /**
      * 모든 병원의 인덱스, 이름 ,주소만 가져온다
      * */
-    public SimpleHospitalInfoList getSimpleHospitalInfo() {
-        return new SimpleHospitalInfoList(hospitalRepository.findAll().stream().map(SimpleHospitalInfo::entityToDto).collect(Collectors.toList()));
+    public SimpleHospitalInfoDtoList getSimpleHospitalInfo() {
+        return new SimpleHospitalInfoDtoList(hospitalRepository.findAll().stream().map(SimpleHospitalInfo::entityToDto).collect(Collectors.toList()));
     }
 }
