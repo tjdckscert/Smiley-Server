@@ -37,6 +37,7 @@ jobs:
       run : ./gradlew clean build --exclude-task test
             
     - name: CodeDeploy
-      run: ~/smiley/deploy.sh
-      
+      #run: ~/smiley/deploy.sh
+    
+      run: java -jar -Dspring.profiles.active=dep1 ~/smiley/jar/dep1-smiley.jar
 
