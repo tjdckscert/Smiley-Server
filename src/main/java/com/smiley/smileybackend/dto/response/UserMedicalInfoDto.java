@@ -2,6 +2,7 @@ package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.UserMedicalInfo;
 import com.smiley.smileybackend.dto.user.SurveyJsonDto;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,9 +15,13 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 public class UserMedicalInfoDto {
+    @ApiModelProperty( example = "인덱스/Integer")
     private Integer id;
+    @ApiModelProperty( example = "교정여부")
     private Integer calibrationStatus;
+    @ApiModelProperty( example = "교정시작일")
     private LocalDate startDate;
+    @ApiModelProperty( example = "설문조사결과/List<Json>")
     private List<SurveyJsonDto> surveyResult;
 
     @Builder

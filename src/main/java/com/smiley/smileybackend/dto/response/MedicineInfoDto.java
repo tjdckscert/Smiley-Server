@@ -1,6 +1,7 @@
 package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.Medicine;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 @ToString
@@ -8,26 +9,19 @@ import lombok.*;
 @NoArgsConstructor
 public class MedicineInfoDto {
 
+    @ApiModelProperty( example = "인덱스/Integer")
     private Integer id;
 
-    /**
-     * 제품명
-     * */
+    @ApiModelProperty( example = "의약품이름")
     private String itemName;
 
-    /**
-     * 전문성
-     * */
+    @ApiModelProperty( example = "전문성")
     private String professionalism;
 
-    /**
-     * 품목기준코드
-     * */
+    @ApiModelProperty( example = "의약품기준코드")
     private String itemCode;
 
-    /**
-     * 주성분
-     * */
+    @ApiModelProperty( example = "주성분")
     private String mainIngredient;
 
     @Builder

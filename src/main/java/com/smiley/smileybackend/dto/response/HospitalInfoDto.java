@@ -1,118 +1,126 @@
 package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.Hospital;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 @ToString
 @Getter
 @NoArgsConstructor
 public class HospitalInfoDto {
+
+    @ApiModelProperty( example = "인덱스/Integer")
     private Integer id;
+
+    @ApiModelProperty( example = "파트너여부/Boolean")
     private Boolean isPartner;
 
+    @ApiModelProperty( example = "병원이름")
     private String name;
 
-    /*일련번호*/
+    @ApiModelProperty( example = "일련번호")
     private String rnum;
 
-    /*주소*/
+    @ApiModelProperty( example = "주소")
     private String dutyAddr;
 
-    /*병원분류*/
+    @ApiModelProperty( example = "병원분류")
     private String dutyDiv;
 
-    /*병원분류명*/
+    @ApiModelProperty( example = "병원분류명")
     private String dutyDivNam;
 
-    /*응급의료기관코드*/
+    @ApiModelProperty( example = "응급의료기관코드")
     private String dutyEmcls;
 
-    /*응급의료기관코드명*/
+    @ApiModelProperty( example = "응급의료기관코드명")
     private String dutyEmclsName;
 
-    /*응급실운영여부(1/2)*/
+    @ApiModelProperty( example = "응급실운영여부(1/2)")
     private String dutyEryn;
 
-    /*비고*/
+    @ApiModelProperty( example = "비고")
     private String dutyEtc;
 
-    /*기관설명상세*/
+    @ApiModelProperty( example = "기관설명상세")
     private String dutyInf;
 
-    /*건이약도*/
+    @ApiModelProperty( example = "건이약도")
     private String dutyMapimg;
 
-    /*기관명*/
+    @ApiModelProperty( example = "기관명")
     private String dutyName;
 
-    /*대표전화번호*/
+    @ApiModelProperty( example = "대표전화번호")
     private String dutyTel1;
 
-    /*응급실전화번호*/
+    @ApiModelProperty( example = "응급실전화번호")
     private String dutyTel3;
 
-    /*진료시간(월요일)종료시간*/
+    @ApiModelProperty( example = "진료시간(월요일)종료시간")
     private String dutyTime1c;
 
-    /*진료시간(화요일)종료시간*/
+    @ApiModelProperty( example = "진료시간(화요일)종료시간")
     private String dutyTime2c;
 
-    /*진료시간(수요일)종료시간*/
+    @ApiModelProperty( example = "진료시간(수요일)종료시간")
     private String dutyTime3c;
 
-    /*진료시간(목요일)종료시간*/
+    @ApiModelProperty( example = "진료시간(목요일)종료시간")
     private String dutyTime4c;
 
+    @ApiModelProperty( example = "진료시간(금요일)종료시간")
     /*진료시간(금요일)종료시간*/
     private String dutyTime5c;
 
-    /*진료시간(토요일)종료시간*/
+    @ApiModelProperty( example = "진료시간(토요일)종료시간")
     private String dutyTime6c;
 
-    /*진료시간(일요일)종료시간*/
+    @ApiModelProperty( example = "진료시간(일요일)종료시간")
     private String dutyTime7c;
 
-    /*진료시간(공휴일)종료시간*/
+    @ApiModelProperty( example = "진료시간(공휴일)종료시간")
     private String dutyTime8c;
 
-    /*진료시간(월요일)시작시간*/
+    @ApiModelProperty( example = "진료시간(월요일)시작시간")
     private String dutyTime1s;
 
-    /*진료시간(화요일)시작시간*/
+    @ApiModelProperty( example = "진료시간(화요일)시작시간")
     private String dutyTime2s;
 
-    /*진료시간(수요일)시작시간*/
+    @ApiModelProperty( example = "진료시간(수요일)시작시간")
     private String dutyTime3s;
 
-    /*진료시간(목요일)시작시간*/
+    @ApiModelProperty( example = "진료시간(목요일)시작시간")
     private String dutyTime4s;
 
-    /*진료시간(금요일)시작시간*/
+    @ApiModelProperty( example = "진료시간(금요일)시작시간")
     private String dutyTime5s;
 
-    /*진료시간(토요일)시작시간*/
+    @ApiModelProperty( example = "진료시간(토요일)시작시간")
     private String dutyTime6s;
 
-    /*진료시간(일요일)시작시간*/
+    @ApiModelProperty( example = "진료시간(일요일)시작시간")
     private String dutyTime7s;
 
-    /*진료시간(공휴일)시작시간*/
+    @ApiModelProperty( example = "진료시간(공휴일)시작시간")
     private String dutyTime8s;
 
-    /*기관ID*/
+    @ApiModelProperty( example = "기관ID")
     private String hpid;
 
-    /*우편번호1*/
+    @ApiModelProperty( example = "우편번호1")
     private String postCdn1;
 
-    /*우편번호2*/
+    @ApiModelProperty( example = "우편번호2")
     private String postCdn2;
 
-    /*병원경도*/
+    @ApiModelProperty( example = "병원경도")
     private String wgs84Lon;
 
-    /*병원위도*/
+    @ApiModelProperty( example = "병원위도")
     private String wgs84Lat;
+
 
     @Builder
     public HospitalInfoDto(Hospital saved) {
