@@ -39,5 +39,5 @@ jobs:
     - name: CodeDeploy
       #run: ~/smiley/deploy.sh
     
-      run: nohup java -jar -Dspring.profiles.active=dep1 ~/smiley/jar/dep1-smiley.jar &
+      run: nohup java -jar -Dspring.profiles.active=dep1 /root/smiley/jar/dep1-smiley.jar &
 
