@@ -39,6 +39,6 @@ jobs:
     - name: CodeDeploy
       #run: ~/smiley/deploy.sh
     
-      run: java -jar -Dspring.profiles.active=dep1 /root/smiley/jar/dep1-smiley.jar &
-      #run: java -jar ~/actions-runner/_work/Smiley-BackEnd/Smiley-BackEnd/build/libs/Smiley-BackEnd-0.0.1-SNAPSHOT.jar &
+      #run: java -jar -Dspring.profiles.active=dep1 /root/smiley/jar/dep1-smiley.jar &
+      run: java -jar -Dspring.profiles.active=dep1 ~/actions-runner/_work/Smiley-BackEnd/Smiley-BackEnd/build/libs/Smiley-BackEnd-0.0.1-SNAPSHOT.jar &
 
