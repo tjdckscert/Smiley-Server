@@ -1,6 +1,7 @@
 package com.smiley.smileybackend.controller;
 
 import com.smiley.smileybackend.dto.response.MedicineInfoDto;
+import com.smiley.smileybackend.dto.response.dtolist.MedicineInfoDtoList;
 import com.smiley.smileybackend.service.MedicineService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,8 +9,6 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @ToString
 @RestController
@@ -31,8 +30,8 @@ public class MedicineController {
 
     @GetMapping("/medicines")
     @ApiOperation(value="모든 의약품 정보 조회" , notes = "모든 의약품 정보를 가져온다")
-    public ResponseEntity<List<MedicineInfoDto>> medicines() {
-        List<MedicineInfoDto> medicineInfoDto = medicineService.getAll();
-        return ResponseEntity.ok(medicineInfoDto);
+    public ResponseEntity<MedicineInfoDtoList> medicines() {
+        MedicineInfoDtoList medicines = medicineService.getAll();
+        return ResponseEntity.ok(medicines);
     }
 }
