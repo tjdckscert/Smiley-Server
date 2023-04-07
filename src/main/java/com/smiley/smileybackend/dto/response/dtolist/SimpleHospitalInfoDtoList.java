@@ -10,10 +10,10 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class SimpleHospitalInfoDtoList {
-    List<SimpleHospitalInfo> simpleHospitalInfos;
+    List<SimpleHospitalInfo> hospitals;
 
     @Builder
-    public SimpleHospitalInfoDtoList(List<SimpleHospitalInfo> simpleHospitalInfos) {
-        this.simpleHospitalInfos = simpleHospitalInfos;
+    public SimpleHospitalInfoDtoList(List<SimpleHospitalInfo> hospitals) {
+        this.hospitals = hospitals;
     }
 }

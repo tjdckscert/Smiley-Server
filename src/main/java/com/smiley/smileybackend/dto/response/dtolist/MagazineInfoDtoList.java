@@ -10,10 +10,10 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class MagazineInfoDtoList {
-    List<MagazineInfoDto> magazineInfoDtos;
+    List<MagazineInfoDto> magazines;
 
     @Builder
-    public MagazineInfoDtoList(List<MagazineInfoDto> magazineInfoDtos) {
-        this.magazineInfoDtos = magazineInfoDtos;
+    public MagazineInfoDtoList(List<MagazineInfoDto> magazines) {
+        this.magazines = magazines;
     }
 }
