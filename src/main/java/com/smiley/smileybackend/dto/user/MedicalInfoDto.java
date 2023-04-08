@@ -28,8 +28,8 @@ public class MedicalInfoDto {
     @ApiModelProperty(value = "교정 시작일 / 입력양식은 'yyyy-mm-dd. 공백 O")
     private LocalDate startDate;
 
-    @ApiModelProperty(value = "이용중인 병원 Id(Hospital table의 index 값). 공백 O")
-    private Integer hospitalId;
+    @ApiModelProperty(value = "이용중인 병원 hPId 공백 O")
+    private String hospitalhPid;
 
     @NotNull
     @ApiModelProperty(value = "사용자 설무조사 결과. 공백 X.")

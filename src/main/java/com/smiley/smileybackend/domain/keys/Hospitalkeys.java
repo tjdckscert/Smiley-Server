@@ -11,6 +11,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Hospitalkeys implements Serializable {
-    private Integer  id;
     private boolean isPartner;
+    private String hPid;
 }
