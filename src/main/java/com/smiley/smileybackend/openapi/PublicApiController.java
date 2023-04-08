@@ -1,4 +1,4 @@
-package com.example.deuproject.projectentity.openapi;
+package com.smiley.smileybackend.openapi;
 
 import com.smiley.smileybackend.domain.Hospital;
 import com.smiley.smileybackend.repository.HospitalRepository;
@@ -24,19 +24,17 @@ import java.util.List;
 @RestController
 @ToString
 @Slf4j
-public class ApiController {
+public class PublicApiController {
 
     private final HospitalService hospitalService;
 
-    @Autowired
-    private HospitalRepository hospitalRepository;
-    public ApiController(HospitalService hospitalService){
+    public PublicApiController(HospitalService hospitalService){
         this.hospitalService=hospitalService;
     }
 
     @GetMapping("open-api")
-    public JSONObject fetch() throws UnsupportedEncodingException {
-        String url= "http://apis.data.go.kr/B552657/HsptlAsembySearchService/getHsptlMdcncListInfoInqire?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D";
+    public JSONArray fetch() throws UnsupportedEncodingException {
+        String url= "http://apis.data.go.kr/B552657/HsptlAsembySearchService/getHsptlMdcncListInfoInqire?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=10";
         URI uri = null;
         try {
             uri = new URI(url.toString());
@@ -46,17 +44,16 @@ public class ApiController {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         String res = restTemplate.getForObject(uri, String.class);
-        JSONObject xmlJson = XML.toJSONObject(res);
-        JSONArray parsingArrays = xmlJson.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
-        List<Hospital> h= new ArrayList<>();
+        JSONArray parsingArrays = XML.toJSONObject(res)
+                .getJSONObject("response")
+                .getJSONObject("body")
+                .getJSONObject("items")
+                .getJSONArray("item");
+        List<Hospital> hospitals= new ArrayList<>();
         for (int i=0;i<parsingArrays.length();i++){
-            JSONObject jsonObject =  parsingArrays.getJSONObject(i);
-            log.info("i = "+i+" "+jsonObject.toString());
-            h.add(hospitalService.saveJson(jsonObject,i));
+            hospitals.add(Hospital.jsonToEntity(parsingArrays.getJSONObject(i)));
         }
-        log.info(h.toString());
-        hospitalRepository.saveAll(h);
-
-        return  xmlJson;
+        hospitalService.saveAll(hospitals);
+        return  parsingArrays;
     }
 }
