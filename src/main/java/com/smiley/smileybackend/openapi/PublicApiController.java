@@ -60,7 +60,8 @@ public class PublicApiController {
 
     @GetMapping("open-api/medicine")
     public void medicineFetch() throws URISyntaxException {
-        String url, res;
+        String url;
+        String res;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         URI uri;
