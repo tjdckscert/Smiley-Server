@@ -4,6 +4,8 @@ import com.smiley.smileybackend.domain.Hospital;
 import com.smiley.smileybackend.domain.Medicine;
 import com.smiley.smileybackend.service.HospitalService;
 import com.smiley.smileybackend.service.MedicineService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -23,6 +25,7 @@ import java.util.List;
 @RestController
 @ToString
 @Slf4j
+@Api(tags = "PublicApiController : 공공 API")
 public class PublicApiController {
 
     private final HospitalService hospitalService;
@@ -35,6 +38,7 @@ public class PublicApiController {
     }
 
     @GetMapping("open-api/hospital")
+    @ApiOperation(value="공공 데이터 포털 국립중앙의료원_국립중앙의료원_전국 병·의원 찾기 서비스 사용" , notes = "병원 정보들을 가져와서 DB에 저장한다.")
     public void fetch() throws UnsupportedEncodingException {
         String url= "http://apis.data.go.kr/B552657/HsptlAsembySearchService/getHsptlMdcncListInfoInqire?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=10";
         URI uri = null;
@@ -59,6 +63,7 @@ public class PublicApiController {
     }
 
     @GetMapping("open-api/medicine")
+    @ApiOperation(value="공공 데이터 포털 식품의약품안전처_의약품 낱알식별 정보 사용" , notes = "의약품 정보들을 가져와서 DB에 저장한다.")
     public void medicineFetch() throws URISyntaxException {
         String url;
         String res;
