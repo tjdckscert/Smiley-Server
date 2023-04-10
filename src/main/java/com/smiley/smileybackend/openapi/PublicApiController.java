@@ -59,22 +59,22 @@ public class PublicApiController {
     }
 
     @GetMapping("open-api/medicine")
-    public void medicineFetch() throws UnsupportedEncodingException {
-        String url = "http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&pageNo=";
+    public void medicineFetch() throws URISyntaxException {
+        String url, res;
         RestTemplate restTemplate = new RestTemplate();
-        String res;
+        restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+        URI uri;
         JSONArray jsonArray;
-        for (Integer i =1; i<=84;i++) {
-            url = "http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=300&pageNo="+i.toString();
-            URI uri = null;
-            try {
-                uri = new URI(url);
-            } catch (URISyntaxException e) {
-                throw new RuntimeException(e);
-            }
-            restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+        for (Integer i =1;;i++) {
+            url = "http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=300&pageNo="+i;
+            uri = new URI(url);
             res = restTemplate.getForObject(uri, String.class);
-            jsonArray = XML.toJSONObject(res).getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
+            try{
+                jsonArray = XML.toJSONObject(res).getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
+            }
+            catch ( Exception e) {
+                break;
+            }
             List<Medicine> medicines = new ArrayList<>();
             for (int j = 0; j < jsonArray.length(); j++) {
                 medicines.add(Medicine.jsonToEntity(jsonArray.getJSONObject(j)));
