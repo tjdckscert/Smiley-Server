@@ -37,6 +37,6 @@ jobs:
       run : ./gradlew clean build --exclude-task test
             
     - name: CodeDeploy
-      run: nohup ~/smiley/deploy.sh &
+      run: ~/smiley/deploy.sh
     
 
