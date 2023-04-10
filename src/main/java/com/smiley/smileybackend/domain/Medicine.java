@@ -15,17 +15,14 @@ import javax.persistence.*;
 public class Medicine {
 
     /**
-     * 국립중앙의료원 국립중앙의료원 전국 병·의원 찾기 서비스 API 사용
+     * 공공데이터포털 OPEN API 식품의약품안전처_의약품 낱알식별 정보 사용
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     /**
-     * 제품명
+     * 품목기준코드
      */
-    @Column
-    private String itemName;
+    @Id
+    private String itemCode;
 
     /**
      * 전문성
@@ -34,31 +31,30 @@ public class Medicine {
     private String professionalism;
 
     /**
-     * 품목기준코드
+     * 제품명_한글
      */
     @Column
-    private String itemCode;
+    private String itemNameKorea;
 
     /**
-     * 주성분
+     * 제품명_영문
      */
     @Column
-    private String mainIngredient;
+    private String itemNameEnglish;
 
     @Builder
-    public Medicine(Integer id, String itemName, String professionalism, String itemCode, String mainIngredient) {
-        this.id = id;
-        this.itemName = itemName;
-        this.professionalism = professionalism;
+    public Medicine(String itemCode, String professionalism, String itemNameKorea, String itemNameEnglish) {
         this.itemCode = itemCode;
-        this.mainIngredient = mainIngredient;
+        this.professionalism = professionalism;
+        this.itemNameKorea = itemNameKorea;
+        this.itemNameEnglish = itemNameEnglish;
     }
 
     public static Medicine jsonToEntity(JSONObject jsonObject) {
         return Medicine.builder()
-                .professionalism(jsonObject.optString("ETC_OTC_NAME"))
                 .itemCode(jsonObject.optString("ITEM_SEQ"))
-                .itemName(jsonObject.optString("ITEM_NAME"))
-                .mainIngredient(jsonObject.optString("ITEM_ENG_NAME")).build();
+                .professionalism(jsonObject.optString("ETC_OTC_NAME"))
+                .itemNameKorea(jsonObject.optString("ITEM_NAME"))
+                .itemNameEnglish(jsonObject.optString("ITEM_ENG_NAME")).build();
     }
 }
