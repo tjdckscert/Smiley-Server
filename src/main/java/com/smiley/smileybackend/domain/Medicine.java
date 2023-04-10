@@ -34,27 +34,27 @@ public class Medicine {
      * 제품명_한글
      */
     @Column
-    private String itemNameKorea;
+    private String itemNameKor;
 
     /**
      * 제품명_영문
      */
     @Column
-    private String itemNameEnglish;
+    private String itemNameEng;
 
     @Builder
-    public Medicine(String itemCode, String professionalism, String itemNameKorea, String itemNameEnglish) {
+    public Medicine(String itemCode, String professionalism, String itemNameKor, String itemNameEng) {
         this.itemCode = itemCode;
         this.professionalism = professionalism;
-        this.itemNameKorea = itemNameKorea;
-        this.itemNameEnglish = itemNameEnglish;
+        this.itemNameKor = itemNameKor;
+        this.itemNameEng = itemNameEng;
     }
 
     public static Medicine jsonToEntity(JSONObject jsonObject) {
         return Medicine.builder()
                 .itemCode(jsonObject.optString("ITEM_SEQ"))
                 .professionalism(jsonObject.optString("ETC_OTC_NAME"))
-                .itemNameKorea(jsonObject.optString("ITEM_NAME"))
-                .itemNameEnglish(jsonObject.optString("ITEM_ENG_NAME")).build();
+                .itemNameKor(jsonObject.optString("ITEM_NAME"))
+                .itemNameEng(jsonObject.optString("ITEM_ENG_NAME")).build();
     }
 }

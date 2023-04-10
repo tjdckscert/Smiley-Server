@@ -16,18 +16,18 @@ public class MedicineInfoDto {
     private String professionalism;
 
     @ApiModelProperty( example = "제품명_한글")
-    private String itemNameKorea;
+    private String itemNameKor;
 
     @ApiModelProperty( example = "제품명_영문")
-    private String itemNameEnglish;
+    private String itemNameEng;
 
     @Builder
     public static MedicineInfoDto entityToDto(Medicine medicine){
         return new MedicineInfoDto(
                 medicine.getItemCode(),
                 medicine.getProfessionalism(),
-                medicine.getItemNameKorea(),
-                medicine.getItemNameEnglish()
+                medicine.getItemNameKor(),
+                medicine.getItemNameEng()
         );
     }
     @Builder
@@ -35,15 +35,15 @@ public class MedicineInfoDto {
         this.itemCode = saved.getItemCode();
         this.professionalism =saved.getProfessionalism();
         this.professionalism=saved.getProfessionalism();
-        this.itemNameKorea=saved.getItemNameKorea();
-        this.itemNameEnglish=saved.getItemNameEnglish();
+        this.itemNameKor =saved.getItemNameKor();
+        this.itemNameEng =saved.getItemNameEng();
     }
 
     @Builder
-    public MedicineInfoDto(String itemCode, String professionalism, String itemNameKorea, String itemNameEnglish) {
+    public MedicineInfoDto(String itemCode, String professionalism, String itemNameKor, String itemNameEng) {
         this.itemCode = itemCode;
         this.professionalism = professionalism;
-        this.itemNameKorea = itemNameKorea;
-        this.itemNameEnglish = itemNameEnglish;
+        this.itemNameKor = itemNameKor;
+        this.itemNameEng = itemNameEng;
     }
 }

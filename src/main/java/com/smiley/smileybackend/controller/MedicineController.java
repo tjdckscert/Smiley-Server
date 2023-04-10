@@ -20,10 +20,10 @@ public class MedicineController {
         this.medicineService = medicineService;
     }
 
-    @GetMapping("/medicines/{id}")
+    @GetMapping("/medicines/{itemCode)}")
     @ApiOperation(value="의약품 정보 조회" , notes = "Id 값을 통해 단일 의약품 정보를 가져온다")
-    public ResponseEntity<MedicineInfoDto> medicine(@PathVariable Integer id) {
-        MedicineInfoDto medicineInfoDto = medicineService.findMedicine(id);
+    public ResponseEntity<MedicineInfoDto> medicine(@PathVariable String itemCode) {
+        MedicineInfoDto medicineInfoDto = medicineService.findMedicine(itemCode);
         log.info(medicineInfoDto.toString());
         return ResponseEntity.ok(medicineInfoDto);
     }
