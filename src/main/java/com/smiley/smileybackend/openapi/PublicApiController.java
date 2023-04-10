@@ -1,14 +1,11 @@
 package com.smiley.smileybackend.openapi;
 
 import com.smiley.smileybackend.domain.Hospital;
-import com.smiley.smileybackend.repository.HospitalRepository;
 import com.smiley.smileybackend.service.HospitalService;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.XML;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,12 +29,12 @@ public class PublicApiController {
         this.hospitalService=hospitalService;
     }
 
-    @GetMapping("open-api")
-    public JSONArray fetch() throws UnsupportedEncodingException {
+    @GetMapping("open-api/hospital")
+    public void fetch() throws UnsupportedEncodingException {
         String url= "http://apis.data.go.kr/B552657/HsptlAsembySearchService/getHsptlMdcncListInfoInqire?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=10";
         URI uri = null;
         try {
-            uri = new URI(url.toString());
+            uri = new URI(url);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -54,6 +51,5 @@ public class PublicApiController {
             hospitals.add(Hospital.jsonToEntity(parsingArrays.getJSONObject(i)));
         }
         hospitalService.saveAll(hospitals);
-        return  parsingArrays;
     }
 }
