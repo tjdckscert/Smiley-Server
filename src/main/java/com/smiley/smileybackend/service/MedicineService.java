@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class MedicineService {
-    private MedicineRepository medicineRepository;
+    private final MedicineRepository medicineRepository;
     public MedicineService(MedicineRepository medicineRepository){
         this.medicineRepository = medicineRepository;
     }

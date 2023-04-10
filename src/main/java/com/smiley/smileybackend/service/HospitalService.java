@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class HospitalService {
-    private HospitalRepository hospitalRepository;
+    private final HospitalRepository hospitalRepository;
     public HospitalService(HospitalRepository hospitalRepository){
         this.hospitalRepository=hospitalRepository;
     }

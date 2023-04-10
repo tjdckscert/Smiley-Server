@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 @Service
 public class MagazineService {
-    private MagazineRepository magazineRepository;
+    private final MagazineRepository magazineRepository;
     public MagazineService(MagazineRepository magazineRepository){
         this.magazineRepository=magazineRepository;
     }

@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserMedicalInfoService {
 
-    private UserMedicalInfoRepository userMedicalInfoRepository;
+    private final UserMedicalInfoRepository userMedicalInfoRepository;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private HospitalRepository hospitalRepository;
+    private final HospitalRepository hospitalRepository;
 
     public UserMedicalInfoService(UserMedicalInfoRepository userMedicalInfoRepository,UserRepository userRepository, HospitalRepository hospitalRepository){
         this.userRepository=userRepository;
