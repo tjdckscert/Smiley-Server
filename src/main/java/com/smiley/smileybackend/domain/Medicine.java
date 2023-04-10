@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.json.JSONObject;
 
 import javax.persistence.*;
 
@@ -22,25 +23,25 @@ public class Medicine {
 
     /**
      * 제품명
-     * */
+     */
     @Column
     private String itemName;
 
     /**
      * 전문성
-     * */
+     */
     @Column
     private String professionalism;
 
     /**
      * 품목기준코드
-     * */
+     */
     @Column
     private String itemCode;
 
     /**
      * 주성분
-     * */
+     */
     @Column
     private String mainIngredient;
 
@@ -53,5 +54,11 @@ public class Medicine {
         this.mainIngredient = mainIngredient;
     }
 
-
+    public static Medicine jsonToEntity(JSONObject jsonObject) {
+        return Medicine.builder()
+                .professionalism(jsonObject.optString("ETC_OTC_NAME"))
+                .itemCode(jsonObject.optString("ITEM_SEQ"))
+                .itemName(jsonObject.optString("ITEM_NAME"))
+                .mainIngredient(jsonObject.optString("ITEM_ENG_NAME")).build();
+    }
 }
