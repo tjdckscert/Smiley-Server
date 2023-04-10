@@ -30,7 +30,7 @@ public class UserMedicalInfoService {
     /**사용자의 ID 와 병원 ID를 가져와서 검색 후 사용자의 의료정보와 함께 UserMedicalInfo에 등록한다.
      * */
     public UserMedicalInfoDto savemedicalinfo(MedicalInfoDto medicalInfoDto) {
-        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(medicalInfoDto.toEntity(getUser(medicalInfoDto.getUserId()), getHospital(medicalInfoDto.getHospitalId())));
+        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(medicalInfoDto.toEntity(getUser(medicalInfoDto.getUserId()), getHospital(medicalInfoDto.getHospitalhPid())));
         return new UserMedicalInfoDto(userMedicalInfo);
     }
 
@@ -45,8 +45,8 @@ public class UserMedicalInfoService {
 
     /**사용자의 ID로 부터 정보를 사져온다.
      * */
-    public Hospital getHospital(Integer id){
-        Hospital hospital = hospitalRepository.findByHospitalId(id).orElseThrow(
+    public Hospital getHospital(String hPid){
+        Hospital hospital = hospitalRepository.findByHPid(hPid).orElseThrow(
                 () -> new IllegalArgumentException("병원을 찾을 수 없습니다")
         );
         return hospital;

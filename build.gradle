@@ -55,6 +55,9 @@ dependencies {
     
     /*Actuator for health check*/
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    /*Jackson*/
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.14.2'
     
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

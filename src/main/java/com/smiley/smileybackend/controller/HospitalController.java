@@ -16,10 +16,10 @@ public class HospitalController {
             this.hospitalService=hospitalService;
         }
 
-        @GetMapping("/hospitals/{id}")
+        @GetMapping("/hospitals/{hPid}")
         @ApiOperation(value="단일 병원 정보" , notes = "단일 병원 정보를 반환한다")
-        public ResponseEntity<HospitalInfoDto> hospital(@PathVariable Integer id){
-            HospitalInfoDto hospitalInfoDto = hospitalService.findHospital(id);
+        public ResponseEntity<HospitalInfoDto> hospital(@PathVariable String hPid){
+            HospitalInfoDto hospitalInfoDto = hospitalService.findHospital(hPid);
             return ResponseEntity.ok(hospitalInfoDto);
         }
 

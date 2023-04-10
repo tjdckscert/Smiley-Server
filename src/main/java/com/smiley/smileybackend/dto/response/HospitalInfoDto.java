@@ -9,17 +9,11 @@ import lombok.*;
 @NoArgsConstructor
 public class HospitalInfoDto {
 
-    @ApiModelProperty( example = "인덱스/Integer")
-    private Integer id;
-
     @ApiModelProperty( example = "파트너여부/Boolean")
     private Boolean isPartner;
 
-    @ApiModelProperty( example = "병원이름")
-    private String name;
-
-    @ApiModelProperty( example = "일련번호")
-    private String rnum;
+    @ApiModelProperty( example = "기관ID")
+    private String hPid;
 
     @ApiModelProperty( example = "주소")
     private String dutyAddr;
@@ -106,9 +100,6 @@ public class HospitalInfoDto {
     @ApiModelProperty( example = "진료시간(공휴일)시작시간")
     private String dutyTime8s;
 
-    @ApiModelProperty( example = "기관ID")
-    private String hpid;
-
     @ApiModelProperty( example = "우편번호1")
     private String postCdn1;
 
@@ -124,10 +115,8 @@ public class HospitalInfoDto {
 
     @Builder
     public HospitalInfoDto(Hospital saved) {
-        this.id = saved.getId();
         this.isPartner = saved.getIsPartner();
-        this.name = saved.getName();
-        this.rnum = saved.getRnum();
+        this.hPid = saved.getHPid();
         this.dutyAddr = saved.getDutyAddr();
         this.dutyDiv = saved.getDutyDiv();
         this.dutyDivNam = saved.getDutyDivNam();
@@ -156,7 +145,6 @@ public class HospitalInfoDto {
         this.dutyTime6s = saved.getDutyTime6s();
         this.dutyTime7s = saved.getDutyTime7s();
         this.dutyTime8s = saved.getDutyTime8s();
-        this.hpid = saved.getHpid();
         this.postCdn1 = saved.getPostCdn1();
         this.postCdn2 = saved.getPostCdn2();
         this.wgs84Lon = saved.getWgs84Lon();
@@ -164,11 +152,9 @@ public class HospitalInfoDto {
     }
 
     @Builder
-    public HospitalInfoDto(Integer id, Boolean isPartner, String name, String rnum, String dutyAddr, String dutyDiv, String dutyDivNam, String dutyEmcls, String dutyEmclsName, String dutyEryn, String dutyEtc, String dutyInf, String dutyMapimg, String dutyName, String dutyTel1, String dutyTel3, String dutyTime1c, String dutyTime2c, String dutyTime3c, String dutyTime4c, String dutyTime5c, String dutyTime6c, String dutyTime7c, String dutyTime8c, String dutyTime1s, String dutyTime2s, String dutyTime3s, String dutyTime4s, String dutyTime5s, String dutyTime6s, String dutyTime7s, String dutyTime8s, String hpid, String postCdn1, String postCdn2, String wgs84Lon, String wgs84Lat) {
-        this.id = id;
+    public HospitalInfoDto(Boolean isPartner, String hPid, String dutyAddr, String dutyDiv, String dutyDivNam, String dutyEmcls, String dutyEmclsName, String dutyEryn, String dutyEtc, String dutyInf, String dutyMapimg, String dutyName, String dutyTel1, String dutyTel3, String dutyTime1c, String dutyTime2c, String dutyTime3c, String dutyTime4c, String dutyTime5c, String dutyTime6c, String dutyTime7c, String dutyTime8c, String dutyTime1s, String dutyTime2s, String dutyTime3s, String dutyTime4s, String dutyTime5s, String dutyTime6s, String dutyTime7s, String dutyTime8s, String postCdn1, String postCdn2, String wgs84Lon, String wgs84Lat) {
         this.isPartner = isPartner;
-        this.name = name;
-        this.rnum = rnum;
+        this.hPid = hPid;
         this.dutyAddr = dutyAddr;
         this.dutyDiv = dutyDiv;
         this.dutyDivNam = dutyDivNam;
@@ -197,7 +183,6 @@ public class HospitalInfoDto {
         this.dutyTime6s = dutyTime6s;
         this.dutyTime7s = dutyTime7s;
         this.dutyTime8s = dutyTime8s;
-        this.hpid = hpid;
         this.postCdn1 = postCdn1;
         this.postCdn2 = postCdn2;
         this.wgs84Lon = wgs84Lon;
@@ -207,10 +192,8 @@ public class HospitalInfoDto {
     @Builder
     public static HospitalInfoDto entityToDto(Hospital hospital){
         return new HospitalInfoDto(
-          hospital.getId(),
           hospital.getIsPartner(),
-          hospital.getName(),
-          hospital.getRnum(),
+          hospital.getHPid(),
           hospital.getDutyAddr(),
           hospital.getDutyDiv(),
           hospital.getDutyDivNam(),
@@ -239,7 +222,6 @@ public class HospitalInfoDto {
           hospital.getDutyTime6s(),
           hospital.getDutyTime7s(),
           hospital.getDutyTime8s(),
-          hospital.getHpid(),
           hospital.getPostCdn1(),
           hospital.getPostCdn2(),
           hospital.getWgs84Lon(),

@@ -7,6 +7,7 @@ import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoDtoList;
 import com.smiley.smileybackend.repository.HospitalRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,8 +20,8 @@ public class HospitalService {
     /**
      * ID 값을 통해 단일 병원 정보를 가져온다
      * */
-    public HospitalInfoDto findHospital(Integer id) {
-        Hospital hospital = hospitalRepository.findByHospitalId(id).orElseThrow(
+    public HospitalInfoDto findHospital(String hPid) {
+        Hospital hospital = hospitalRepository.findByHPid(hPid).orElseThrow(
                 () -> new IllegalArgumentException("병원을 찾을 수 없습니다")
         );
         return  new HospitalInfoDto(hospital);
@@ -31,5 +32,9 @@ public class HospitalService {
      * */
     public SimpleHospitalInfoDtoList getSimpleHospitalInfo() {
         return new SimpleHospitalInfoDtoList(hospitalRepository.findAll().stream().map(SimpleHospitalInfo::entityToDto).collect(Collectors.toList()));
+    }
+
+    public void saveAll(List<Hospital> hospitals) {
+        hospitalRepository.saveAll(hospitals);
     }
 }

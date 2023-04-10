@@ -8,26 +8,26 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 public class SimpleHospitalInfo {
-   @ApiModelProperty( example = "인덱스/Integer")
-    private Integer id;
+   @ApiModelProperty( example = "병원 ID")
+    private String hPid;
 
     @ApiModelProperty(example = "병원이름")
-    private String name;
+    private String dutyName;
     @ApiModelProperty(example = "병원주소")
     private String dutyAddr;
 
     @Builder
-    public SimpleHospitalInfo(Integer id, String name, String dutyAddr) {
-        this.id = id;
-        this.name = name;
+    public SimpleHospitalInfo(String hPid, String dutyName, String dutyAddr) {
+        this.hPid = hPid;
+        this.dutyName = dutyName;
         this.dutyAddr = dutyAddr;
     }
 
     @Builder
     public static SimpleHospitalInfo entityToDto(Hospital hospital){
         return new SimpleHospitalInfo(
-        hospital.getId(),
-        hospital.getName(),
+        hospital.getHPid(),
+        hospital.getDutyName(),
         hospital.getDutyAddr()
         );
     }

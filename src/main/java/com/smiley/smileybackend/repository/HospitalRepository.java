@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface HospitalRepository extends JpaRepository<Hospital, Hospitalkeys> {
 
-    @Query("select h from Hospital h where h.id = :Id")
-    Optional<Hospital> findByHospitalId(@Param("Id") Integer id);
+    @Query("select h from Hospital h where h.hPid = :hPid")
+    Optional<Hospital> findByHPid(@Param("hPid") String hPid);
 }
