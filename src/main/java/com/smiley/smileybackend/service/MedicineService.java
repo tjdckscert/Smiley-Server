@@ -7,6 +7,7 @@ import com.smiley.smileybackend.repository.MedicineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,5 +32,11 @@ public class MedicineService {
      * */
     public MedicineInfoDtoList getAll() {
         return new  MedicineInfoDtoList(medicineRepository.findAll().stream().map(MedicineInfoDto::entityToDto).collect(Collectors.toList()));
+    }
+
+    /**
+     * List 의약품 정보 저장
+     * */
+    public void saveAll(List<Medicine> medicines) {medicineRepository.saveAll(medicines);
     }
 }

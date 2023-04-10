@@ -8,47 +8,42 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 public class MedicineInfoDto {
-
-    @ApiModelProperty( example = "인덱스/Integer")
-    private Integer id;
-
-    @ApiModelProperty( example = "의약품이름")
-    private String itemName;
+    
+    @ApiModelProperty( example = "품목기준코드")
+    private String itemCode;
 
     @ApiModelProperty( example = "전문성")
     private String professionalism;
 
-    @ApiModelProperty( example = "의약품기준코드")
-    private String itemCode;
+    @ApiModelProperty( example = "제품명_한글")
+    private String itemNameKorea;
 
-    @ApiModelProperty( example = "주성분")
-    private String mainIngredient;
+    @ApiModelProperty( example = "제품명_영문")
+    private String itemNameEnglish;
 
     @Builder
     public static MedicineInfoDto entityToDto(Medicine medicine){
         return new MedicineInfoDto(
-                medicine.getId(),
-                medicine.getItemName(),
-                medicine.getProfessionalism(),
                 medicine.getItemCode(),
-                medicine.getMainIngredient()
+                medicine.getProfessionalism(),
+                medicine.getItemNameKorea(),
+                medicine.getItemNameEnglish()
         );
     }
     @Builder
     public MedicineInfoDto(Medicine saved) {
-        this.id = saved.getId();
-        this.itemName =saved.getItemName();
+        this.itemCode = saved.getItemCode();
+        this.professionalism =saved.getProfessionalism();
         this.professionalism=saved.getProfessionalism();
-        this.itemCode=saved.getItemCode();
-        this.mainIngredient=saved.getMainIngredient();
+        this.itemNameKorea=saved.getItemNameKorea();
+        this.itemNameEnglish=saved.getItemNameEnglish();
     }
 
     @Builder
-    public MedicineInfoDto(Integer id, String itemName, String professionalism, String itemCode, String mainIngredient) {
-        this.id = id;
-        this.itemName = itemName;
+    public MedicineInfoDto(String itemCode, String professionalism, String itemNameKorea, String itemNameEnglish) {
+        this.itemCode = itemCode;
         this.professionalism = professionalism;
-        this.itemCode=itemCode;
-        this.mainIngredient=mainIngredient;
+        this.itemNameKorea = itemNameKorea;
+        this.itemNameEnglish = itemNameEnglish;
     }
 }
