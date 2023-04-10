@@ -1,7 +1,9 @@
 package com.smiley.smileybackend.openapi;
 
 import com.smiley.smileybackend.domain.Hospital;
+import com.smiley.smileybackend.domain.Medicine;
 import com.smiley.smileybackend.service.HospitalService;
+import com.smiley.smileybackend.service.MedicineService;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -25,8 +27,11 @@ public class PublicApiController {
 
     private final HospitalService hospitalService;
 
-    public PublicApiController(HospitalService hospitalService){
+    private final MedicineService medicineService;
+
+    public PublicApiController(HospitalService hospitalService, MedicineService medicineService){
         this.hospitalService=hospitalService;
+        this.medicineService=medicineService;
     }
 
     @GetMapping("open-api/hospital")
@@ -51,5 +56,30 @@ public class PublicApiController {
             hospitals.add(Hospital.jsonToEntity(parsingArrays.getJSONObject(i)));
         }
         hospitalService.saveAll(hospitals);
+    }
+
+    @GetMapping("open-api/medicine")
+    public void medicineFetch() throws UnsupportedEncodingException {
+        String url = "http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&pageNo=";
+        RestTemplate restTemplate = new RestTemplate();
+        String res;
+        JSONArray jsonArray;
+        for (Integer i =1; i<=84;i++) {
+            url = "http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=300&pageNo="+i.toString();
+            URI uri = null;
+            try {
+                uri = new URI(url);
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+            restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+            res = restTemplate.getForObject(uri, String.class);
+            jsonArray = XML.toJSONObject(res).getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
+            List<Medicine> medicines = new ArrayList<>();
+            for (int j = 0; j < jsonArray.length(); j++) {
+                medicines.add(Medicine.jsonToEntity(jsonArray.getJSONObject(j)));
+            }
+            medicineService.saveAll(medicines);
+        }
     }
 }
