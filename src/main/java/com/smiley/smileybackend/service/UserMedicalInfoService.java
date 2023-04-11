@@ -37,18 +37,16 @@ public class UserMedicalInfoService {
     /**사용자의 ID로 부터 정보를 사져온다.
      * */
     public User getUser(Integer id){
-        User user = userRepository.findById(id).orElseThrow(
+        return userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다")
         );
-        return user;
     }
 
     /**사용자의 ID로 부터 정보를 사져온다.
      * */
     public Hospital getHospital(String hPid){
-        Hospital hospital = hospitalRepository.findByHPid(hPid).orElseThrow(
+        return hospitalRepository.findByHPid(hPid).orElseThrow(
                 () -> new IllegalArgumentException("병원을 찾을 수 없습니다")
         );
-        return hospital;
     }
 }

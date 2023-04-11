@@ -3,14 +3,17 @@ package com.smiley.smileybackend.service;
 import com.smiley.smileybackend.domain.Hospital;
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
 import com.smiley.smileybackend.dto.response.SimpleHospitalInfo;
+import com.smiley.smileybackend.dto.response.dtolist.HospitalInfoDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoDtoList;
 import com.smiley.smileybackend.repository.HospitalRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class HospitalService {
     private final HospitalRepository hospitalRepository;
     public HospitalService(HospitalRepository hospitalRepository){
@@ -36,5 +39,10 @@ public class HospitalService {
 
     public void saveAll(List<Hospital> hospitals) {
         hospitalRepository.saveAll(hospitals);
+    }
+
+    public HospitalInfoDtoList getHospitalInfos() {
+
+        return new HospitalInfoDtoList(hospitalRepository.findAll().stream().map(HospitalInfoDto::entityToDto).collect(Collectors.toList()));
     }
 }
