@@ -1,2 +1,56 @@
-package com.smiley.smileybackend.dto.user;public class UserDeviceDto {
+package com.smiley.smileybackend.dto.user;
+
+import com.smiley.smileybackend.domain.User;
+import com.smiley.smileybackend.domain.UserDevice;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
+
+import javax.validation.constraints.NotBlank;
+
+@ToString
+@Getter
+@NoArgsConstructor
+@Setter
+public class UserDeviceDto{
+
+        @ApiModelProperty(value = "사용자 id")
+        private Integer  user_id;
+        @NotBlank(message = "장치이름은 빈 칸일 수 없습니다.")
+        @ApiModelProperty(value = "장치 이름")
+        private String deviceName;
+
+        @NotBlank(message = "장치타입을 선택해주세요.")
+        @ApiModelProperty(value = "장치 타입 ( 주걱턱 or 유지 장치 )")
+        private String deviceType;
+
+        @ApiModelProperty(value = "장치 토큰(장치일련번호)")
+        private String deviceUuid;
+
+        @ApiModelProperty(value = "마지막으로 통신한 용자 유지 장치의 X 좌표")
+        private String cordX;
+
+        @ApiModelProperty(value = "마지막으로 통신한 사용자 유지 장치의 Y 좌표")
+        private String cordY;
+
+        @Builder
+        public UserDeviceDto(Integer user_id, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
+                this.user_id = user_id;
+                this.deviceName = deviceName;
+                this.deviceType = deviceType;
+                this.deviceUuid = deviceUuid;
+                this.cordX = cordX;
+                this.cordY = cordY;
+        }
+
+        public UserDevice toEntity(User user) {
+            return UserDevice.builder()
+                    .user(user)
+                    .deviceName(deviceName)
+                    .deviceType(deviceType)
+                    .deviceUuid(deviceUuid)
+                    .cordX(cordX)
+                    .cordY(cordY)
+                    .build();
+        }
 }
