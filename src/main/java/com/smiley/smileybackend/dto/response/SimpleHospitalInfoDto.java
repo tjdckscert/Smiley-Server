@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @Getter
 @NoArgsConstructor
-public class SimpleHospitalInfo {
+public class SimpleHospitalInfoDto {
    @ApiModelProperty( example = "병원 ID")
     private String hPid;
 
@@ -17,15 +17,15 @@ public class SimpleHospitalInfo {
     private String dutyAddr;
 
     @Builder
-    public SimpleHospitalInfo(String hPid, String dutyName, String dutyAddr) {
+    public SimpleHospitalInfoDto(String hPid, String dutyName, String dutyAddr) {
         this.hPid = hPid;
         this.dutyName = dutyName;
         this.dutyAddr = dutyAddr;
     }
 
     @Builder
-    public static SimpleHospitalInfo entityToDto(Hospital hospital){
-        return new SimpleHospitalInfo(
+    public static SimpleHospitalInfoDto entityToDto(Hospital hospital){
+        return new SimpleHospitalInfoDto(
         hospital.getHPid(),
         hospital.getDutyName(),
         hospital.getDutyAddr()

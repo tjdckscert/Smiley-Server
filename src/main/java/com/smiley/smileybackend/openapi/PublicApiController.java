@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.XML;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -39,27 +40,37 @@ public class PublicApiController {
 
     @GetMapping("open-api/hospital")
     @ApiOperation(value="공공 데이터 포털 국립중앙의료원_국립중앙의료원_전국 병·의원 찾기 서비스 사용" , notes = "병원 정보들을 가져와서 DB에 저장한다.")
-    public void fetch() throws UnsupportedEncodingException {
-        String url= "http://apis.data.go.kr/B552657/HsptlAsembySearchService/getHsptlMdcncListInfoInqire?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=10";
-        URI uri = null;
-        try {
-            uri = new URI(url);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+    public void hospitalFetch() throws URISyntaxException {
+        String url;
+        String res;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
-        String res = restTemplate.getForObject(uri, String.class);
-        JSONArray parsingArrays = XML.toJSONObject(res)
-                .getJSONObject("response")
-                .getJSONObject("body")
-                .getJSONObject("items")
-                .getJSONArray("item");
-        List<Hospital> hospitals= new ArrayList<>();
-        for (int i=0;i<parsingArrays.length();i++){
-            hospitals.add(Hospital.jsonToEntity(parsingArrays.getJSONObject(i)));
+        URI uri = null;
+        JSONArray jsonArray;
+        for (Integer i=1;;i++) {
+            url = "http://apis.data.go.kr/B552657/HsptlAsembySearchService/getHsptlMdcncListInfoInqire?serviceKey=J4Eet0ufB15SNzWemvPGDerm64fEPPBrmMe1NACJVDNjMFGWynCXesFOHbAMw%2BrYQ1cgYfMXn5QsQH9XVtt7GA%3D%3D&numOfRows=500&pageNo=" + i;
+            uri = new URI(url);
+
+            res = restTemplate.getForObject(uri, String.class);
+            try{
+                jsonArray = XML.toJSONObject(res).
+                        getJSONObject("response").
+                        getJSONObject("body").
+                        getJSONObject("items").
+                        getJSONArray("item");
+            }
+            catch ( Exception e) {
+                break;
+            }
+            List<Hospital> hospitals = new ArrayList<>();
+            for (int j = 0; j < jsonArray.length(); j++) {
+                if (jsonArray.getJSONObject(j).optString("dutyDiv").equals("N") || jsonArray.getJSONObject(j).optString("dutyDiv").equals("M")) {
+                    log.info((jsonArray.getJSONObject(j).toString()));
+                    hospitals.add(Hospital.jsonToEntity(jsonArray.getJSONObject(j)));
+                }
+            }
+            hospitalService.saveAll(hospitals);
         }
-        hospitalService.saveAll(hospitals);
     }
 
     @GetMapping("open-api/medicine")
@@ -76,7 +87,11 @@ public class PublicApiController {
             uri = new URI(url);
             res = restTemplate.getForObject(uri, String.class);
             try{
-                jsonArray = XML.toJSONObject(res).getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
+                jsonArray = XML.toJSONObject(res).
+                        getJSONObject("response").
+                        getJSONObject("body").
+                        getJSONObject("items").
+                        getJSONArray("item");
             }
             catch ( Exception e) {
                 break;
