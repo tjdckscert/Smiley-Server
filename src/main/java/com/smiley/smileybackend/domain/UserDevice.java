@@ -1,14 +1,17 @@
 package com.smiley.smileybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 
 @Entity
 @Getter
+@ToString
 @NoArgsConstructor
 public class UserDevice {
 
@@ -22,23 +25,28 @@ public class UserDevice {
     @Column(length = 50)
     private String deviceType;
 
-    @Column(length = 200)
+    @Column(length = 200,unique = true)
     private String deviceUuid;
 
     @Column
-    private String devicePoint;
+    private String cordX;
+
+    @Column
+    private String cordY;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_userdevice_user"))
     private User user;
 
     @Builder
-    public UserDevice(Integer id, String deviceName, String deviceType, String deviceUuid, String devicePoint, User user) {
+    public UserDevice(Integer id, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY, User user) {
         this.id = id;
         this.deviceName = deviceName;
         this.deviceType = deviceType;
         this.deviceUuid = deviceUuid;
-        this.devicePoint = devicePoint;
+        this.cordX = cordX;
+        this.cordY = cordY;
         this.user = user;
     }
 }
