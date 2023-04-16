@@ -40,3 +40,4 @@ jobs:
       run: RUNNER_TRACKING_ID="" && ~/smiley/deploy.sh
     
 
+
