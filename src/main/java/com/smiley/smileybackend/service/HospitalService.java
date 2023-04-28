@@ -34,7 +34,10 @@ public class HospitalService {
      * 모든 병원의 인덱스, 이름 ,주소만 가져온다
      * */
     public SimpleHospitalInfoDtoList getSimpleHospitalInfo() {
-        return new SimpleHospitalInfoDtoList(hospitalRepository.findAll().stream().map(SimpleHospitalInfoDto::entityToDto).collect(Collectors.toList()));
+        return new SimpleHospitalInfoDtoList(hospitalRepository.findAll()
+                .stream()
+                .map(SimpleHospitalInfoDto::entityToDto)
+                .collect(Collectors.toList()));
     }
 
     public void saveAll(List<Hospital> hospitals) {
@@ -43,6 +46,9 @@ public class HospitalService {
 
     public HospitalInfoDtoList getHospitalInfos() {
 
-        return new HospitalInfoDtoList(hospitalRepository.findAll().stream().map(HospitalInfoDto::entityToDto).collect(Collectors.toList()));
+        return new HospitalInfoDtoList(hospitalRepository.findAll()
+                .stream()
+                .map(HospitalInfoDto::entityToDto)
+                .collect(Collectors.toList()));
     }
 }

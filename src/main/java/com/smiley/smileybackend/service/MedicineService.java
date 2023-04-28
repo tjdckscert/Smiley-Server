@@ -31,7 +31,10 @@ public class MedicineService {
      * 모든 의약품 정보를 가져온다
      * */
     public MedicineInfoDtoList getAll() {
-        return new  MedicineInfoDtoList(medicineRepository.findAll().stream().map(MedicineInfoDto::entityToDto).collect(Collectors.toList()));
+        return new  MedicineInfoDtoList(medicineRepository.findAll()
+                .stream()
+                .map(MedicineInfoDto::entityToDto)
+                .collect(Collectors.toList()));
     }
 
     /**
