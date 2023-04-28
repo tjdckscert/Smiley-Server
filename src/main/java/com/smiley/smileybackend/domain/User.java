@@ -1,9 +1,6 @@
 package com.smiley.smileybackend.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "\"user\"")
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class User {
@@ -37,16 +35,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserDevice> userUserDevices;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<DailyWearTime> userDailyWearTimes;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<Booking> userBookings;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<DailyExpStastics> userDailyExpStasticss;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<Checklist> userChecklists;
 
     @ManyToMany()
@@ -57,13 +55,13 @@ public class User {
     )
     private List<Badge> userBadges;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<FacialResult> userFacialResults;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<UserMedicalInfo> userUserMedicalInfos;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<TotalExpStastics> userTotalExpStasticss;
 
     @Builder
