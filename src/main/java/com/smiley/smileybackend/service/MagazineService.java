@@ -19,7 +19,10 @@ public class MagazineService {
      * 모든 매거진 정보를 가져온다
      * */
     public MagazineInfoDtoList getAll() {
-        return new MagazineInfoDtoList(magazineRepository.findAll().stream().map(MagazineInfoDto::entityToDto).collect(Collectors.toList()));
+        return new MagazineInfoDtoList(magazineRepository.findAll()
+                .stream()
+                .map(MagazineInfoDto::entityToDto)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -27,7 +30,10 @@ public class MagazineService {
      * */
     public MagazineInfoDtoList getListOfNumber(Integer number) {
         Pageable pageable = PageRequest.of(0,number);
-        return new MagazineInfoDtoList(magazineRepository.findAllByOrderByIdDesc(pageable).stream().map(MagazineInfoDto::entityToDto).collect(Collectors.toList()));
+        return new MagazineInfoDtoList(magazineRepository.findAllByOrderByIdDesc(pageable)
+                .stream()
+                .map(MagazineInfoDto::entityToDto)
+                .collect(Collectors.toList()));
     }
 
 }

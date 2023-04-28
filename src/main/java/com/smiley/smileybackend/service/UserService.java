@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -18,12 +19,8 @@ public class UserService {
     }
 
     public UserInfoDto login(@Valid UserLoginDto userLoginDto) {
-        User user = userRepository.findByEmail(userLoginDto.getEmail()).orElse(
-                null
-        );
-        if (user==null){
-            user = userRepository.save(userLoginDto.toEntity());
-        }
-        return new UserInfoDto(user);
+        Optional<User> user = userRepository.findByEmail(userLoginDto.getEmail());
+        if (user.isEmpty()) user = Optional.of(userRepository.save(userLoginDto.toEntity()));
+        return new UserInfoDto(user.get());
     }
 }
