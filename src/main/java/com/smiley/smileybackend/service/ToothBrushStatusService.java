@@ -86,6 +86,10 @@ public class ToothBrushStatusService {
             process.getInputStream().close();
             process.getOutputStream().close();
             process.waitFor();
+        } catch ( InterruptedException ee) {
+            ee.printStackTrace();
+            Thread.currentThread().interrupt();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +105,7 @@ public class ToothBrushStatusService {
             InputStream inputStream = new FileInputStream(imagePath);
             long fileSize = new File(imagePath).length();
             toothBrushImageDto.setImage(new byte[(int) fileSize]);
-            inputStream.read(toothBrushImageDto.getImage());
+            while (inputStream.read(toothBrushImageDto.getImage()) > 0);
             inputStream.close();
         }catch (FileNotFoundException e) {
             log.info("파일없음");
