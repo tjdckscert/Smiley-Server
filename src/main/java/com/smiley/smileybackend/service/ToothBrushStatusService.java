@@ -86,12 +86,12 @@ public class ToothBrushStatusService {
             process.getInputStream().close();
             process.getOutputStream().close();
             process.waitFor();
-        } catch ( InterruptedException ee) {
-            ee.printStackTrace();
+        } catch (InterruptedException e) {
+            log.info("InterruptedException",e);
             Thread.currentThread().interrupt();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            log.info("Exception",e);
         }
     }
 
@@ -110,7 +110,7 @@ public class ToothBrushStatusService {
         }catch (FileNotFoundException e) {
             log.info("파일없음");
         } catch (IOException e) {
-            e.printStackTrace();
+            log.info("IOException",e);
         }
 
         return toothBrushImageDto;
