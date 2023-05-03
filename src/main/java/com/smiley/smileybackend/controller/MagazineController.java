@@ -1,5 +1,6 @@
 package com.smiley.smileybackend.controller;
 
+import com.smiley.smileybackend.dto.response.MagazineDetailDto;
 import com.smiley.smileybackend.dto.response.dtolist.MagazineInfoDtoList;
 import com.smiley.smileybackend.service.MagazineService;
 import io.swagger.annotations.Api;
@@ -31,6 +32,13 @@ public class MagazineController {
     public ResponseEntity<MagazineInfoDtoList> numberOfMagazines(@PathVariable Integer number){
         MagazineInfoDtoList magazines = magazineService.getListOfNumber(number);
         return ResponseEntity.ok(magazines);
+    }
+
+    @GetMapping("/magazines/detail/{number}")
+    @ApiOperation(value="선택한 메저긴 정보 불러오기" , notes = "선택한 메거진의 정보를 불러와서 반환한다. 사진은 서버에 저장된 사진을 반환.")
+    public ResponseEntity<MagazineDetailDto> magazineinfo(@PathVariable Integer number) {
+        MagazineDetailDto magazineDetailDto =magazineService.getMagazineDetail(number);
+        return ResponseEntity.ok(magazineDetailDto);
     }
 
 }
