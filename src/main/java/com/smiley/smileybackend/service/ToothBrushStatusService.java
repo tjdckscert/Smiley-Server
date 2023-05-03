@@ -35,6 +35,8 @@ public class ToothBrushStatusService {
 
     // 2. 기존에 저장되어 있는 파일 삭제 ( 폴더가 아이디 이름으로 되어 있음 ) -> YOLO가 동일 이름으로 들어오면 이름을 바꿔버림
     public void deleteOriginalFile(String userId){
+
+        // 경로 바꾸기
         File file = new File("C:\\Users\\joon\\Desktop\\ToothFairy_Server\\src\\main\\python\\toothbrush\\yolov5\\runs\\detect\\"+userId);
 
         if(!file.exists()){ // 기존에 저장된 파일이 없다면
