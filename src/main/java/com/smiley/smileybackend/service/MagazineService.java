@@ -45,8 +45,7 @@ public class MagazineService {
                 ()->new IllegalArgumentException("메거진 정보를 찾을 수 없습니다.")
         );
         String imageRoot=String.format("src/main/resources/img/%d.JPG",number);
-        Resource resource = new FileSystemResource(imageRoot);
-        resource = new FileSystemResource(magazine.getContentLink());
+        Resource resource = new FileSystemResource(magazine.getContentLink());
         return new MagazineDetailDto(magazine,resource);
     }
 
