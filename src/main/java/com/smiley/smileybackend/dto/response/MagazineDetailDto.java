@@ -6,20 +6,14 @@ import lombok.*;
 import org.springframework.core.io.Resource;
 
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 public class MagazineDetailDto {
 
     @ApiModelProperty( example = "인덱스/Integer")
     Integer id;
-
     @ApiModelProperty( example = "이미지")
     Resource resource;
-
-    @ApiModelProperty( example = "이미지 타입(.png / .jpg)")
-    String contentType;
-
     @ApiModelProperty( example = "제목")
     String title;
     @ApiModelProperty( example = "부제목")
@@ -36,10 +30,9 @@ public class MagazineDetailDto {
     String contentLink;
 
     @Builder
-    public MagazineDetailDto(Integer id, Resource resource, String contentType, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, String contentLink) {
+    public MagazineDetailDto(Integer id, Resource resource, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, String contentLink) {
         this.id = id;
         this.resource = resource;
-        this.contentType = contentType;
         this.title = title;
         this.subTitle = subTitle;
         this.author = author;
