@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "Medicine Controller :  의약품 정보")
 @Slf4j
 public class MedicineController {
-    private MedicineService medicineService;
+    private final MedicineService medicineService;
     public MedicineController(MedicineService medicineService){
         this.medicineService = medicineService;
     }

@@ -20,8 +20,8 @@ import javax.validation.Valid;
 @Api(tags = "User Controller : 회원정보 및 사용자 의료정보")
 @Slf4j
 public class UserController {
-    private UserService userService;
-    private UserMedicalInfoService userMedicalInfoService;
+    private final UserService userService;
+    private final UserMedicalInfoService userMedicalInfoService;
 
     public UserController(UserService userService, UserMedicalInfoService userMedicalInfoService){
         this.userService=userService;

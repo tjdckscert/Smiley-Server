@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "Magazine Controller : 매거진 정보")
 public class MagazineController {
-    private MagazineService magazineService;
+    private final MagazineService magazineService;
     public MagazineController(MagazineService magazineService){
         this.magazineService=magazineService;
     }
