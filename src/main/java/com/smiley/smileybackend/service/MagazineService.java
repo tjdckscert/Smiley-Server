@@ -1,8 +1,12 @@
 package com.smiley.smileybackend.service;
 
+import com.smiley.smileybackend.domain.Magazine;
+import com.smiley.smileybackend.dto.response.MagazineDetailDto;
 import com.smiley.smileybackend.dto.response.MagazineInfoDto;
 import com.smiley.smileybackend.dto.response.dtolist.MagazineInfoDtoList;
 import com.smiley.smileybackend.repository.MagazineRepository;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -34,6 +38,14 @@ public class MagazineService {
                 .stream()
                 .map(MagazineInfoDto::entityToDto)
                 .collect(Collectors.toList()));
+    }
+
+    public MagazineDetailDto getMagazineDetail(Integer number) {
+        Magazine magazine = magazineRepository.findById(number).orElseThrow(
+                ()->new IllegalArgumentException("메거진 정보를 찾을 수 없습니다.")
+        );
+        Resource resource = new FileSystemResource(magazine.getContentLink());
+        return new MagazineDetailDto(magazine,resource);
     }
 
 }

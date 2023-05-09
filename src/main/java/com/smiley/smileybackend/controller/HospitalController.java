@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "Hospital Controller : 병원 정보")
 public class HospitalController {
-        private HospitalService hospitalService;
+        private final HospitalService hospitalService;
         public HospitalController(HospitalService hospitalService){
             this.hospitalService=hospitalService;
         }
