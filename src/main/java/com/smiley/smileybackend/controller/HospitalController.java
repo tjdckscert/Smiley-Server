@@ -1,6 +1,7 @@
 package com.smiley.smileybackend.controller;
 
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
+import com.smiley.smileybackend.dto.response.dtolist.HospitalGeocodingDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.HospitalInfoDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoDtoList;
 import com.smiley.smileybackend.dto.user.UserGeocodingDto;
@@ -42,8 +43,8 @@ public class HospitalController {
         }
 
         @PostMapping("hospitals/nearhospitalinfos")
-        public ResponseEntity<SimpleHospitalInfoDtoList>  nearhospitalinfos(@Valid @RequestBody UserGeocodingDto userGeocodingDto){
-            SimpleHospitalInfoDtoList hospitals = hospitalService.getNearHospitalInfos(userGeocodingDto);
+        public ResponseEntity<HospitalGeocodingDtoList>  nearhospitalinfos(@Valid @RequestBody UserGeocodingDto userGeocodingDto){
+            HospitalGeocodingDtoList hospitals = hospitalService.getNearHospitalInfos(userGeocodingDto);
             return ResponseEntity.ok(hospitals);
         }
 }
