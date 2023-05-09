@@ -1,8 +1,10 @@
 package com.smiley.smileybackend.service;
 
 import com.smiley.smileybackend.domain.Hospital;
+import com.smiley.smileybackend.dto.response.HospitalGeocodingDto;
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
 import com.smiley.smileybackend.dto.response.SimpleHospitalInfoDto;
+import com.smiley.smileybackend.dto.response.dtolist.HospitalGeocodingDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.HospitalInfoDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoDtoList;
 import com.smiley.smileybackend.dto.user.UserGeocodingDto;
@@ -52,10 +54,10 @@ public class HospitalService {
                 .map(HospitalInfoDto::entityToDto)
                 .collect(Collectors.toList()));
     }
-    public SimpleHospitalInfoDtoList getNearHospitalInfos(UserGeocodingDto userGeocodingDto) {
-        return new SimpleHospitalInfoDtoList(hospitalRepository.findNearHospitals(userGeocodingDto.getDistance(),userGeocodingDto.getLatitude(),userGeocodingDto.getLongitude())
+    public HospitalGeocodingDtoList getNearHospitalInfos(UserGeocodingDto userGeocodingDto) {
+        return new HospitalGeocodingDtoList(hospitalRepository.findNearHospitals(userGeocodingDto.getDistance(),userGeocodingDto.getLatitude(),userGeocodingDto.getLongitude())
                 .stream()
-                .map(SimpleHospitalInfoDto::entityToDto)
+                .map(HospitalGeocodingDto::entityToDto)
                 .collect(Collectors.toList()));
     }
 }
