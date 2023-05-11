@@ -1,18 +1,24 @@
 package com.smiley.smileybackend.service;
 
 import com.smiley.smileybackend.domain.Magazine;
+import com.smiley.smileybackend.domain.enums.ContentType;
 import com.smiley.smileybackend.dto.response.MagazineDetailDto;
 import com.smiley.smileybackend.dto.response.MagazineInfoDto;
 import com.smiley.smileybackend.dto.response.dtolist.MagazineInfoDtoList;
+import com.smiley.smileybackend.dto.user.ContentImgJsonDto;
+import com.smiley.smileybackend.dto.user.ContentLinkJsonDto;
 import com.smiley.smileybackend.repository.MagazineRepository;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 @Service
+@Slf4j
 public class MagazineService {
     private final MagazineRepository magazineRepository;
     public MagazineService(MagazineRepository magazineRepository){
@@ -40,12 +46,36 @@ public class MagazineService {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * 선택한 매거진의 정보를 가져온다
+     * */
     public MagazineDetailDto getMagazineDetail(Integer number) {
         Magazine magazine = magazineRepository.findById(number).orElseThrow(
                 ()->new IllegalArgumentException("메거진 정보를 찾을 수 없습니다.")
         );
-        Resource resource = new FileSystemResource(magazine.getContentLink());
-        return new MagazineDetailDto(magazine,resource);
+        List<ContentImgJsonDto> list = new ArrayList<>();
+        for (ContentLinkJsonDto c : magazine.getMainContent()){
+            ContentImgJsonDto contentImgJsonDto = new ContentImgJsonDto();
+            if (c.getContentType()==ContentType.MAIN_CONTENT){
+                try {
+                    InputStream inputStream = new FileInputStream(c.getImgLink());
+                    long fileSize = new File(c.getImgLink()).length();
+                    contentImgJsonDto.setImg(new byte[(int) fileSize]);
+                    while (inputStream.read(contentImgJsonDto.getImg())>0);
+                    inputStream.close();
+                } catch (FileNotFoundException e) {
+                    log.info(e.toString());
+                    throw new RuntimeException("사진을 찾을 수 없습니다.");
+                } catch (IOException e) {
+                    log.info(e.toString());
+                    throw new RuntimeException("사진을 찾을 수 없습니다.");
+                }
+            }
+            contentImgJsonDto.setContentType(c.getContentType());
+            contentImgJsonDto.setContent(c.getContent());
+            list.add(contentImgJsonDto);
+        }
+        return new MagazineDetailDto(magazine,list);
     }
 
 }
