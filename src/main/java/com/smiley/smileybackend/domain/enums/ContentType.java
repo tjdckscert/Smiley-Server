@@ -1,15 +1,15 @@
-package com.example.deuproject.controller;
+package com.smiley.smileybackend.domain.enums;
 
 import lombok.Getter;
 
 @Getter
 public enum ContentType {
 
-    MAINCONTENT("MAINCONTENT"),
+    MAIN_CONTENT("MAIN_CONTENT"),
 
-    SUMMARYCONTENT("SUMMARYCONTENT"),
+    SUMMARY("SUMMARY"),
 
-    KEYCONTENT("KEYCONTENT");
+    KEY("KEY");
 
     private final String type;
 
