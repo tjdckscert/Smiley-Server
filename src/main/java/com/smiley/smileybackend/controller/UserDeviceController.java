@@ -24,7 +24,7 @@ public class UserDeviceController {
         this.userDeviceSerivce=userDeviceService;
     }
 
-    @PostMapping("/userdevices/adddevice")
+    @PostMapping("/userDevices")
     public ResponseEntity<UserDeviceInfoDto> adddevice(@Valid @RequestBody UserDeviceDto userDeviceDto){
         log.info(userDeviceDto.toString());
         UserDeviceInfoDto UserDeviceInfoDto= userDeviceSerivce.adddevice(userDeviceDto);
