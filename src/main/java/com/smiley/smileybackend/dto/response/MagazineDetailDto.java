@@ -1,9 +1,13 @@
 package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.Magazine;
+import com.smiley.smileybackend.dto.user.ContentImgJsonDto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.springframework.core.io.Resource;
+
+import java.security.SecureRandom;
+import java.util.List;
+import java.util.Random;
 
 @Getter
 @ToString
@@ -12,8 +16,6 @@ public class MagazineDetailDto {
 
     @ApiModelProperty( example = "인덱스/Integer")
     Integer id;
-    @ApiModelProperty( example = "이미지")
-    Resource resource;
     @ApiModelProperty( example = "제목")
     String title;
     @ApiModelProperty( example = "부제목")
@@ -26,24 +28,12 @@ public class MagazineDetailDto {
     Integer likes;
     @ApiModelProperty( example = "읽은수")
     Integer viewCount;
-    @ApiModelProperty( example = "연결주소")
-    String contentLink;
+
+    @ApiModelProperty( example = "메인컨텐트")
+    List<ContentImgJsonDto> mainContent;
 
     @Builder
-    public MagazineDetailDto(Integer id, Resource resource, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, String contentLink) {
-        this.id = id;
-        this.resource = resource;
-        this.title = title;
-        this.subTitle = subTitle;
-        this.author = author;
-        this.thumbnail = thumbnail;
-        this.likes = likes;
-        this.viewCount = viewCount;
-        this.contentLink = contentLink;
-    }
-
-    @Builder
-    public MagazineDetailDto(Integer id, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, String contentLink) {
+    public MagazineDetailDto(Integer id, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, List<ContentImgJsonDto> mainContent) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -51,32 +41,19 @@ public class MagazineDetailDto {
         this.thumbnail = thumbnail;
         this.likes = likes;
         this.viewCount = viewCount;
-        this.contentLink = contentLink;
+        this.mainContent = mainContent;
     }
 
     @Builder
-    public MagazineDetailDto(Magazine saved, Resource resource) {
+    public MagazineDetailDto(Magazine saved, List<ContentImgJsonDto> contentImgJsonDto) {
+        SecureRandom random = new SecureRandom ();
         this.id = saved.getId();
-        this.resource = resource;
         this.title = saved.getTitle();
         this.subTitle = saved.getSubTitle();
         this.author = saved.getAuthor();
         this.thumbnail = saved.getThumbnail();
-        this.likes = saved.getLikes();
-        this.viewCount = saved.getViewCount();
-        this.contentLink = saved.getContentLink();
-    }
-
-    @Builder
-    public static MagazineDetailDto entityToDto(Magazine magazine){
-        return new MagazineDetailDto(
-                magazine.getId(),
-                magazine.getTitle(),
-                magazine.getSubTitle(),
-                magazine.getAuthor(),
-                magazine.getThumbnail(),
-                magazine.getLikes(),
-                magazine.getViewCount(),
-                magazine.getContentLink());
+        this.likes = random.nextInt(4000)+5000;
+        this.viewCount = random.nextInt(10000)+20000;
+        this.mainContent = contentImgJsonDto;
     }
 }
