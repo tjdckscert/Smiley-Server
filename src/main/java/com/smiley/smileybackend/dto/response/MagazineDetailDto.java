@@ -5,6 +5,7 @@ import com.smiley.smileybackend.dto.user.ContentImgJsonDto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Random;
 
@@ -45,7 +46,7 @@ public class MagazineDetailDto {
 
     @Builder
     public MagazineDetailDto(Magazine saved, List<ContentImgJsonDto> contentImgJsonDto) {
-        Random random = new Random();
+        SecureRandom random = new SecureRandom ();
         this.id = saved.getId();
         this.title = saved.getTitle();
         this.subTitle = saved.getSubTitle();

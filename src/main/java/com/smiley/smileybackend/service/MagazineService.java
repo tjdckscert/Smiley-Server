@@ -63,12 +63,9 @@ public class MagazineService {
                     contentImgJsonDto.setImg(new byte[(int) fileSize]);
                     while (inputStream.read(contentImgJsonDto.getImg())>0);
                     inputStream.close();
-                } catch (FileNotFoundException e) {
-                    log.info(e.toString());
-                    throw new RuntimeException("사진을 찾을 수 없습니다.");
                 } catch (IOException e) {
                     log.info(e.toString());
-                    throw new RuntimeException("사진을 찾을 수 없습니다.");
+                    throw new IllegalArgumentException("사진을 찾을 수 없습니다.");
                 }
             }
             contentImgJsonDto.setContentType(c.getContentType());
