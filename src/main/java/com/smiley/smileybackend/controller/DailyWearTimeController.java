@@ -31,7 +31,7 @@ public class DailyWearTimeController {
         this.totalExpStasticsService = totalExpStasticsService;
     }
 
-    @PostMapping("/dailyweartimes/todayweartime")
+    @PostMapping("/dailyWearTimes")
     public ResponseEntity<TotalExpStasticsInfoDto> todayweartime(@Valid @RequestBody DailyWearTimeDto dailyWearTimeDto){
         DailyWearTimeInfoDto dailyWearTimeInfoDto =  dailyWearTimeService.saveWearTime(dailyWearTimeDto);
         //경험치 저장 service 호출

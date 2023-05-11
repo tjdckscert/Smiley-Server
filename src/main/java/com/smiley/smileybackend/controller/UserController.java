@@ -35,14 +35,14 @@ public class UserController {
         return ResponseEntity.ok(userInfo);
     }
 
-    @PostMapping("/users/medicalinfo")
+    @PostMapping("/users/medicalInfo")
     @ApiOperation(value="의료 정보 저장" , notes = "사용자의 의료정보를 저장한다.")
     public ResponseEntity<UserMedicalInfoDto> medicalinfo(@Valid @RequestBody MedicalInfoDto medicalInfoDto) {
         UserMedicalInfoDto userMedicalInfoDto = userMedicalInfoService.savemedicalinfo(medicalInfoDto);
         return ResponseEntity.ok(userMedicalInfoDto);
     }
 
-    @PatchMapping("/users/userinfos")
+    @PatchMapping("/users/allInfo")
     @ApiOperation(value="사용자 정보 및 의료 정보" , notes = "사용자 정보 및 의료 정보를 한 번에 받아와서 저장한다.")
     public ResponseEntity<UserInfoAndMedicalInfoDto> userinfos(@Valid @RequestBody UserInfoUpdateDto userInfosDto) {
         UserInfoAndMedicalInfoDto userInfoAndMedicalInfoDto = userService.saveuserinfos(userInfosDto);
