@@ -24,7 +24,7 @@ public class UserDeviceService {
     }
 
     public UserDeviceInfoDto adddevice(UserDeviceDto userDeviceDto) {
-        User user = userRepository.findById(userDeviceDto.getUser_id())
+        User user = userRepository.findById(userDeviceDto.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
         UserDevice userDevice;
         try {
