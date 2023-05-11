@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,10 +27,10 @@ public class MagazineController {
         return ResponseEntity.ok(magazines);
     }
 
-    @GetMapping("/magazines/{number}") //쿼리 파라미터로 변경
+    @GetMapping("/magazines/") //쿼리 파라미터로 변경
     @ApiImplicitParam(name="number",value="가져올 매거진의 수량",example = "1")
     @ApiOperation(value="선택수량 매거진" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
-    public ResponseEntity<MagazineInfoDtoList> numberOfMagazines(@PathVariable Integer number){
+    public ResponseEntity<MagazineInfoDtoList> numberOfMagazines(@RequestParam("number") Integer number){
         MagazineInfoDtoList magazines = magazineService.getListOfNumber(number);
         return ResponseEntity.ok(magazines);
     }
