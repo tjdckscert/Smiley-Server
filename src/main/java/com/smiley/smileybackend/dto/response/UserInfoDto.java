@@ -26,7 +26,7 @@ public class UserInfoDto {
     private String name;
 
     @ApiModelProperty( example = "사용자 생일")
-    private LocalDate bitrhDate;
+    private LocalDate birthDate;
 
     @Builder
     public UserInfoDto(User saved) {
@@ -34,6 +34,6 @@ public class UserInfoDto {
         this.email = saved.getEmail();
         this.phoneToken = saved.getPhoneToken();
         this.name = saved.getName();
-        this.bitrhDate = saved.getBirthDate();
+        this.birthDate = saved.getBirthDate();
     }
 }
