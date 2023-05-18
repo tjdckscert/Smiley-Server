@@ -22,11 +22,9 @@ public class MagazineInfoDto {
     Integer likes;
     @ApiModelProperty( example = "읽은수")
     Integer viewCount;
-    @ApiModelProperty( example = "연결주소")
-    String contentLink;
     
     @Builder
-    public MagazineInfoDto(Integer id, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, String contentLink) {
+    public MagazineInfoDto(Integer id, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -34,7 +32,6 @@ public class MagazineInfoDto {
         this.thumbnail = thumbnail;
         this.likes = likes;
         this.viewCount = viewCount;
-        this.contentLink = contentLink;
     }
 
     @Builder
@@ -46,7 +43,6 @@ public class MagazineInfoDto {
                 magazine.getAuthor(),
                 magazine.getThumbnail(),
                 magazine.getLikes(),
-                magazine.getViewCount(),
-                magazine.getContentLink());
+                magazine.getViewCount());
     }
 }
