@@ -4,6 +4,8 @@ import com.smiley.smileybackend.domain.Magazine;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import java.io.*;
+
 @Getter
 @ToString
 @NoArgsConstructor
@@ -17,14 +19,14 @@ public class MagazineInfoDto {
     @ApiModelProperty( example = "작성자")
     String author;
     @ApiModelProperty( example = "썸네일")
-    String thumbnail;
+    byte[] thumbnail;
     @ApiModelProperty( example = "좋아요")
     Integer likes;
     @ApiModelProperty( example = "읽은수")
     Integer viewCount;
-    
+
     @Builder
-    public MagazineInfoDto(Integer id, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount) {
+    public MagazineInfoDto(Integer id, String title, String subTitle, String author, byte[] thumbnail, Integer likes, Integer viewCount) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -35,13 +37,24 @@ public class MagazineInfoDto {
     }
 
     @Builder
-    public static MagazineInfoDto entityToDto(Magazine magazine){
+    public static MagazineInfoDto entityToDto(Magazine magazine)  {
+        InputStream inputStream = null;
+        byte[] img;
+        try {
+            inputStream = new FileInputStream(magazine.getThumbnail());
+            long fileSize = new File(magazine.getThumbnail()).length();
+            img = new byte[(int) fileSize];
+            while (inputStream.read(img)>0);
+            inputStream.close();
+        } catch ( IOException e) {
+            throw new RuntimeException(e);
+        }
         return new MagazineInfoDto(
                 magazine.getId(),
                 magazine.getTitle(),
                 magazine.getSubTitle(),
                 magazine.getAuthor(),
-                magazine.getThumbnail(),
+                img,
                 magazine.getLikes(),
                 magazine.getViewCount());
     }
