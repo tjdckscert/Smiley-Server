@@ -39,12 +39,12 @@ public class MagazineInfoDto {
     @Builder
     public static MagazineInfoDto entityToDto(Magazine magazine)  {
         InputStream inputStream = null;
-        byte[] img;
+        byte[] thumbnailImg;
         try {
             inputStream = new FileInputStream(magazine.getThumbnail());
             long fileSize = new File(magazine.getThumbnail()).length();
-            img = new byte[(int) fileSize];
-            while (inputStream.read(img)>0);
+            thumbnailImg = new byte[(int) fileSize];
+            while (inputStream.read(thumbnailImg)>0);
             inputStream.close();
         } catch ( IOException e) {
             throw new RuntimeException(e);
@@ -54,7 +54,7 @@ public class MagazineInfoDto {
                 magazine.getTitle(),
                 magazine.getSubTitle(),
                 magazine.getAuthor(),
-                img,
+                thumbnailImg,
                 magazine.getLikes(),
                 magazine.getViewCount());
     }
