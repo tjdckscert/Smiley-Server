@@ -15,10 +15,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLoginDto {
-    @NotBlank(message = "이메일을 입력해주세요, 공백 X")
-    @Email(message = "이메일 형식이 아닙니다.")
-    @ApiModelProperty(value = "사용자입력이 Email 형식인지 확인. 공백 X")
-    private String email;
+    @NotBlank(message = "회원번호를 확인할 수 없습니다.")
+    @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
+    private String userNumber;
 
     @ApiModelProperty(value = "사용자 휴대폰 토큰값. 공백 X")
     private String phoneToken;
@@ -34,7 +33,7 @@ public class UserLoginDto {
 
     public User toEntity() {
         return User.builder()
-                .email(email)
+                .userNumber(userNumber)
                 .phoneToken(phoneToken)
                 .name(name)
                 .birthDate(birthDate)

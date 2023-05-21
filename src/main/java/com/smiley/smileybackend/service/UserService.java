@@ -5,7 +5,6 @@ import com.smiley.smileybackend.domain.User;
 import com.smiley.smileybackend.domain.UserMedicalInfo;
 import com.smiley.smileybackend.dto.response.UserInfoAndMedicalInfoDto;
 import com.smiley.smileybackend.dto.response.UserInfoDto;
-import com.smiley.smileybackend.dto.response.UserMedicalInfoDto;
 import com.smiley.smileybackend.dto.user.UserInfoUpdateDto;
 import com.smiley.smileybackend.dto.user.UserLoginDto;
 import com.smiley.smileybackend.repository.HospitalRepository;
@@ -34,7 +33,7 @@ public class UserService {
 
 
     public UserInfoDto login(@Valid UserLoginDto userLoginDto) {
-        Optional<User> user = userRepository.findByEmail(userLoginDto.getEmail());
+        Optional<User> user = userRepository.findByUserNumber(userLoginDto.getUserNumber());
         if (user.isEmpty()) user = Optional.of(userRepository.save(userLoginDto.toEntity()));
         return new UserInfoDto(user.get());
     }
@@ -42,7 +41,7 @@ public class UserService {
     /**사용자 정보 및 의료정보를 입력받아 의료정보는 저장하고 사용자 정보는 이미 존재하는 사용자는 업데이트하고 존재하지 않는 사용자는 저장한다.
      **/
     public UserInfoAndMedicalInfoDto saveuserinfos(UserInfoUpdateDto userInfoUpdateDto) {
-        Optional<User> user = userRepository.findByEmail(userInfoUpdateDto.getEmail());
+        Optional<User> user = userRepository.findByUserNumber(userInfoUpdateDto.getUserNumber());
         //존재하지 않는 사용자인경우 추가
         if (user.isEmpty()){
             user = Optional.of(userRepository.save(userInfoUpdateDto.toUserEntity()));

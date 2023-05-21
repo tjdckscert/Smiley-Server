@@ -40,7 +40,7 @@ public class UserInfoAndMedicalInfoDto {
     @Builder
     public UserInfoAndMedicalInfoDto(UserInfoUpdateDto saved) {
         this.id = saved.getId();
-        this.email = saved.getEmail();
+        this.email = saved.getUserNumber();
         this.phoneToken = saved.getPhoneToken();
         this.name = saved.getName();
         this.bitrhDate = saved.getBirthDate();

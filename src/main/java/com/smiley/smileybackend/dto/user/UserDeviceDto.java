@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class UserDeviceDto{
 
-        @ApiModelProperty(value = "사용자 id")
+        @ApiModelProperty(value = "사용자 id(index)")
         private Integer userId;
         @NotBlank(message = "장치이름은 빈 칸일 수 없습니다.")
         @ApiModelProperty(value = "장치 이름")

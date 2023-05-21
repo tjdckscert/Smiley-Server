@@ -6,7 +6,6 @@ import com.smiley.smileybackend.domain.UserMedicalInfo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -23,10 +22,9 @@ public class UserInfoUpdateDto {
     @ApiModelProperty(value = "업데이트시 사용자 Id(index) 확인용으로 사용.")
     private Integer id;
 
-    @NotBlank(message = "이메일을 입력해주세요, 공백 X")
-    @Email(message = "이메일 형식이 아닙니다.")
-    @ApiModelProperty(value = "사용자입력이 Email 형식인지 확인. 공백 X")
-    private String email;
+    @NotBlank(message = "회원번호를 확인할 수 없습니다.")
+    @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
+    private String userNumber;
 
     @ApiModelProperty(value = "사용자 휴대폰 토큰값. 공백 X")
     private String phoneToken;
@@ -57,7 +55,7 @@ public class UserInfoUpdateDto {
     public User toUserEntity() {
         return User.builder()
                 .id(id)
-                .email(email)
+                .userNumber(userNumber)
                 .phoneToken(phoneToken)
                 .name(name)
                 .birthDate(birthDate)
