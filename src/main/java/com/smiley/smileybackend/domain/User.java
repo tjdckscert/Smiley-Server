@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.List;
 
 
 @Entity
@@ -21,7 +20,7 @@ public class User {
     private Integer id;
 
     @Column(length = 50,unique = true)
-    private String email;
+    private String userNumber;
 
     @Column(nullable = false, length = 200)
     private String phoneToken;
@@ -65,9 +64,9 @@ public class User {
     private List<TotalExpStastics> userTotalExpStasticss;
 
     @Builder
-    public User(Integer id, String email, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
+    public User(Integer id, String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
         this.id = id;
-        this.email = email;
+        this.userNumber = userNumber;
         this.phoneToken = phoneToken;
         this.name = name;
         this.birthDate = birthDate;
