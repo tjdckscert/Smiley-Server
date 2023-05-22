@@ -1,6 +1,7 @@
 package com.smiley.smileybackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,11 @@ public class Booking {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_booking_user"))
+    @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumns({
             @JoinColumn(name = "hPid", foreignKey = @ForeignKey(name = "fk_booking_hospital")),
             @JoinColumn(name = "is_partner"),
