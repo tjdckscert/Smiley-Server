@@ -26,7 +26,6 @@ public class ToothbrushStatusController {
     public ToothbrushStatusController(ToothBrushStatusService toothBrushStatusService) { this.toothBrushStatusService = toothBrushStatusService; }
 
       @PostMapping("/ToothBrushStatus/{userId}")
-      @ApiImplicitParam(name="imageFile",value="이미지 파일",example = "test.png")
       @ApiOperation(value="칫솔 상태 검사" , notes = "칫솔 사진과 함께 요청하면 해당 이미지를 학습하여 그 결과 이미지를 반환한다.")
       public ResponseEntity<ToothBrushImageDto> uploadFile(@PathVariable("userId") String userId , @RequestPart MultipartFile imageFile) throws IOException{
           ToothBrushImageDto toothBrushImageDto = toothBrushStatusService.toothBrushStatusCheck(userId, imageFile);
