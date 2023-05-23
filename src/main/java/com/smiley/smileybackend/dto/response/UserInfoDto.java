@@ -17,7 +17,7 @@ public class UserInfoDto {
     private Integer id;
 
     @ApiModelProperty( example = "이메일")
-    private String email;
+    private String userNumber;
 
     @ApiModelProperty( example = "휴대폰 토큰")
     private String phoneToken;
@@ -26,14 +26,14 @@ public class UserInfoDto {
     private String name;
 
     @ApiModelProperty( example = "사용자 생일")
-    private LocalDate bitrhDate;
+    private LocalDate birthDate;
 
     @Builder
     public UserInfoDto(User saved) {
         this.id = saved.getId();
-        this.email = saved.getEmail();
+        this.userNumber = saved.getUserNumber();
         this.phoneToken = saved.getPhoneToken();
         this.name = saved.getName();
-        this.bitrhDate = saved.getBirthDate();
+        this.birthDate = saved.getBirthDate();
     }
 }

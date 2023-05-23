@@ -4,7 +4,6 @@ import com.smiley.smileybackend.domain.User;
 import com.smiley.smileybackend.domain.UserDevice;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.NotBlank;
 
@@ -14,8 +13,8 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class UserDeviceDto{
 
-        @ApiModelProperty(value = "사용자 id")
-        private Integer  user_id;
+        @ApiModelProperty(value = "사용자 id(index)")
+        private Integer userId;
         @NotBlank(message = "장치이름은 빈 칸일 수 없습니다.")
         @ApiModelProperty(value = "장치 이름")
         private String deviceName;
@@ -34,8 +33,8 @@ public class UserDeviceDto{
         private String cordY;
 
         @Builder
-        public UserDeviceDto(Integer user_id, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
-                this.user_id = user_id;
+        public UserDeviceDto(Integer userId, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
+                this.userId = userId;
                 this.deviceName = deviceName;
                 this.deviceType = deviceType;
                 this.deviceUuid = deviceUuid;

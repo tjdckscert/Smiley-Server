@@ -1,10 +1,13 @@
 package com.smiley.smileybackend.service;
 
 import com.smiley.smileybackend.domain.Hospital;
+import com.smiley.smileybackend.dto.response.HospitalGeocodingDto;
 import com.smiley.smileybackend.dto.response.HospitalInfoDto;
 import com.smiley.smileybackend.dto.response.SimpleHospitalInfoDto;
+import com.smiley.smileybackend.dto.response.dtolist.HospitalGeocodingDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.HospitalInfoDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoDtoList;
+import com.smiley.smileybackend.dto.user.UserGeocodingDto;
 import com.smiley.smileybackend.repository.HospitalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -49,6 +52,12 @@ public class HospitalService {
         return new HospitalInfoDtoList(hospitalRepository.findAll()
                 .stream()
                 .map(HospitalInfoDto::entityToDto)
+                .collect(Collectors.toList()));
+    }
+    public HospitalGeocodingDtoList getNearHospitalInfos(UserGeocodingDto userGeocodingDto) {
+        return new HospitalGeocodingDtoList(hospitalRepository.findNearHospitals(userGeocodingDto.getDistance(),userGeocodingDto.getLatitude(),userGeocodingDto.getLongitude())
+                .stream()
+                .map(HospitalGeocodingDto::entityToDto)
                 .collect(Collectors.toList()));
     }
 }

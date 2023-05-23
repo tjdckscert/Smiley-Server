@@ -34,7 +34,7 @@ public class UserMedicalInfoService {
         return new UserMedicalInfoDto(userMedicalInfo);
     }
 
-    /**사용자의 ID로 부터 정보를 사져온다.
+    /**사용자의 ID로 부터 정보를 가져온다.
      * */
     public User getUser(Integer id){
         return userRepository.findById(id).orElseThrow(
@@ -42,7 +42,7 @@ public class UserMedicalInfoService {
         );
     }
 
-    /**사용자의 ID로 부터 정보를 사져온다.
+    /**사용자의 ID로 부터 정보를 가져온다.
      * */
     public Hospital getHospital(String hPid){
         return hospitalRepository.findByHPid(hPid).orElseThrow(
