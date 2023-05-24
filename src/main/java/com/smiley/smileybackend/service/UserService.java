@@ -38,7 +38,7 @@ public class UserService {
             userRepository.save(userLoginDto.toEntity());
             return new UserInfoDto();
         }
-        return new UserInfoDto().entityToDto(user.get());
+        return new UserInfoDto(user.get());
     }
 
     /**사용자 정보 및 의료정보를 입력받아 의료정보는 저장하고 사용자 정보는 이미 존재하는 사용자는 업데이트하고 존재하지 않는 사용자는 저장한다.
