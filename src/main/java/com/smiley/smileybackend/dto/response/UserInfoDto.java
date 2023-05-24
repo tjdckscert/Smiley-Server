@@ -44,15 +44,12 @@ public class UserInfoDto {
         this.userMedicalInfos = userMedicalInfos;
     }
 
-    public UserInfoDto entityToDto(User user) {
-        return new UserInfoDto(
-                user.getId(),
-                user.getUserNumber(),
-                user.getPhoneToken(),
-                user.getName(),
-                user.getBirthDate(),
-                user.getUserUserMedicalInfos()
-        );
-
+    public UserInfoDto(User user) {
+        this.id = user.getId();
+        this.userNumber = user.getUserNumber();
+        this.phoneToken = user.getPhoneToken();
+        this.name = user.getName();
+        this.birthDate = user.getBirthDate();
+        this.userMedicalInfos = user.getUserUserMedicalInfos();
     }
 }

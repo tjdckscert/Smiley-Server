@@ -3,10 +3,16 @@ package com.smiley.smileybackend.service;
 import com.smiley.smileybackend.domain.DailyWearTime;
 import com.smiley.smileybackend.domain.User;
 import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
+import com.smiley.smileybackend.dto.response.LastSevenDaysWearTimeDto;
+import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
 import com.smiley.smileybackend.repository.DailyWearTimeRepository;
 import com.smiley.smileybackend.repository.UserRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 public class DailyWearTimeService {
@@ -24,5 +30,14 @@ public class DailyWearTimeService {
         );
         DailyWearTime dailyWearTime = dailyWearTimeRepository.save(dailyWearTimeDto.toEntity(user));
         return new DailyWearTimeInfoDto(dailyWearTime);
+    }
+
+    public LastSevenDaysWearTimeDtoList getLastSevenDayWearTime(Integer id) {
+        Pageable pageable = PageRequest.of(0,7);
+        return new LastSevenDaysWearTimeDtoList(dailyWearTimeRepository.findByUserIdOrderByIdDesc(id, pageable)
+                .stream()
+                .map(LastSevenDaysWearTimeDto::entitytoDto)
+                .collect(Collectors.toList()));
+
     }
 }
