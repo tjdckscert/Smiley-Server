@@ -19,7 +19,6 @@ import java.util.List;
 public class TotalExpStasticsService {
     private final TotalExpStasticsRepository totalExpStasticsRepository;
     private final UserRepository userRepository;
-
     private final TierRepositoory tierRepositoory;
 
     public TotalExpStasticsService(TotalExpStasticsRepository totalExpStasticsRepository, UserRepository userRepository, TierRepositoory tierRepositoory) {
@@ -34,7 +33,7 @@ public class TotalExpStasticsService {
         List<ExpJsonDto> totalExps = new ArrayList<>();
         totalExps.add(new ExpJsonDto("일일 착용 경험치",dailyWearTimeDto.getTotalWearTime()*10));
         TotalExpStastics totalExpStastics= totalExpStasticsRepository.findById(dailyWearTimeDto.getUserId()).orElse(
-                new TotalExpStastics(null,dailyWearTimeDto.getTotalWearTime()*10,null, "Gold",user)
+                new TotalExpStastics(null,dailyWearTimeDto.getTotalWearTime()*10,null, "BRONZE",user)
         );
         if (totalExpStastics.getTotalExpStastics() != null) {
             totalExps.addAll(totalExpStastics.getTotalExpStastics());

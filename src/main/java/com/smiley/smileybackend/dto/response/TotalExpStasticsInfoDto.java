@@ -35,7 +35,7 @@ public class TotalExpStasticsInfoDto {
         this.id= saved.getId();
         this.userId=saved.getUser().getId();
         this.totalExp=saved.getTotalExp();
-        this.totalExpStastics=getTotalExpStastics();
+        this.totalExpStastics=saved.getTotalExpStastics();
         this.userTier=saved.getUserTier();
     }
 }
