@@ -3,6 +3,7 @@ package com.smiley.smileybackend.controller;
 import com.smiley.smileybackend.dto.response.DailyExpStasticsInfoDto;
 import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
 import com.smiley.smileybackend.dto.response.TotalExpStasticsInfoDto;
+import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
 import com.smiley.smileybackend.repository.TotalExpStasticsRepository;
 import com.smiley.smileybackend.service.DailyExpStasticsService;
@@ -10,9 +11,7 @@ import com.smiley.smileybackend.service.DailyWearTimeService;
 import com.smiley.smileybackend.service.TotalExpStasticsService;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -39,6 +38,12 @@ public class DailyWearTimeController {
         //총 경험치 저장 service 호출
         TotalExpStasticsInfoDto totalExpStasticsInfoDto = totalExpStasticsService.saveTotalExp(dailyWearTimeDto);
         return ResponseEntity.ok(totalExpStasticsInfoDto);
+    }
+
+    @GetMapping("/dailyWearTimes/lastSevenDays/{id}")
+    public ResponseEntity<LastSevenDaysWearTimeDtoList> lastSevenDays(@PathVariable Integer id){
+        LastSevenDaysWearTimeDtoList lastSevenDaysWearTimeDtoList =  dailyWearTimeService.getLastSevenDayWearTime(id);
+        return ResponseEntity.ok(lastSevenDaysWearTimeDtoList);
     }
 }
 
