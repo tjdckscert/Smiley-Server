@@ -6,6 +6,7 @@ import com.vladmihalcea.hibernate.type.json.JsonType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@ToString(exclude = {"user","hospital"})
 @NoArgsConstructor
 @TypeDef(name = "json", typeClass = JsonType.class)
 public class UserMedicalInfo implements Serializable {
