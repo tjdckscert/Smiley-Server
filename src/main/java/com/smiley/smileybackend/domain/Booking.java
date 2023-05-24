@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 
 @Entity
 @Getter
+@ToString(exclude = {"user","hospital"})
 @NoArgsConstructor
 public class Booking {
 
