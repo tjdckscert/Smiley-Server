@@ -5,7 +5,6 @@ import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
 import com.smiley.smileybackend.dto.response.TotalExpStasticsInfoDto;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
-import com.smiley.smileybackend.repository.TotalExpStasticsRepository;
 import com.smiley.smileybackend.service.DailyExpStasticsService;
 import com.smiley.smileybackend.service.DailyWearTimeService;
 import com.smiley.smileybackend.service.TotalExpStasticsService;
