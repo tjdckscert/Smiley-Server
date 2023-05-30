@@ -5,6 +5,8 @@ import com.smiley.smileybackend.domain.User;
 import com.smiley.smileybackend.dto.response.DailyExpStasticsInfoDto;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
 import com.smiley.smileybackend.dto.user.ExpJsonDto;
+import com.smiley.smileybackend.exception.ErrorCode;
+import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.DailyExpStasticsRepository;
 import com.smiley.smileybackend.repository.UserRepository;
 import lombok.Getter;
@@ -30,7 +32,7 @@ public class DailyExpStasticsService {
 
     public DailyExpStasticsInfoDto saveExp(DailyWearTimeDto dailyWearTimeDto) {
         User user  = userRepository.findById(dailyWearTimeDto.getUserId()).orElseThrow(
-                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
         List<ExpJsonDto> todayExps = new ArrayList<>();
         todayExps.add(new ExpJsonDto("일일 착용 경험치",dailyWearTimeDto.getTotalWearTime()*10));
