@@ -67,8 +67,6 @@ public class MagazineService {
                     while (inputStream.read(contentImgJsonDto.getImg())>0);
                     inputStream.close();
                 } catch (IOException e) {
-                    log.info(e.toString());
-                    log.info(e.getCause().toString());
                     throw new ErrorException(ErrorCode.PICTURE_NOT_FOUND);
                 }
             }
