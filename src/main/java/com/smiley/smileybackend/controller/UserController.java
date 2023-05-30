@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping("/users/login")
     @ApiOperation(value="로그인" , notes = "사용자는 로그인한다.")
-    public ResponseEntity<UserInfoDto> login(@Valid @RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<UserInfoDto> signup(@Valid @RequestBody UserLoginDto userLoginDto) {
         UserInfoDto userInfo = userService.signUp(userLoginDto);
         return ResponseEntity.ok(userInfo);
     }
