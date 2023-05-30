@@ -6,6 +6,8 @@ import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
 import com.smiley.smileybackend.dto.response.LastSevenDaysWearTimeDto;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
+import com.smiley.smileybackend.exception.ErrorCode;
+import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.DailyWearTimeRepository;
 import com.smiley.smileybackend.repository.UserRepository;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +28,7 @@ public class DailyWearTimeService {
 
     public DailyWearTimeInfoDto saveWearTime(DailyWearTimeDto dailyWearTimeDto) {
         User user  = userRepository.findById(dailyWearTimeDto.getUserId()).orElseThrow(
-                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
         DailyWearTime dailyWearTime = dailyWearTimeRepository.save(dailyWearTimeDto.toEntity(user));
         return new DailyWearTimeInfoDto(dailyWearTime);
