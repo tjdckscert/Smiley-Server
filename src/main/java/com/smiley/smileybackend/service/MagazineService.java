@@ -8,7 +8,7 @@ import com.smiley.smileybackend.dto.response.dtolist.MagazineInfoDtoList;
 import com.smiley.smileybackend.dto.user.ContentImgJsonDto;
 import com.smiley.smileybackend.dto.user.ContentLinkJsonDto;
 import com.smiley.smileybackend.exception.ErrorCode;
-import com.smiley.smileybackend.exception.SmileyErrorException;
+import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.MagazineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -54,7 +54,7 @@ public class MagazineService {
      * */
     public MagazineDetailDto getMagazineDetail(Integer number) {
         Magazine magazine = magazineRepository.findById(number).orElseThrow(
-                ()->new SmileyErrorException(ErrorCode.MAGAZINE_NOT_FOUND)
+                ()->new ErrorException(ErrorCode.MAGAZINE_NOT_FOUND)
         );
         List<ContentImgJsonDto> list = new ArrayList<>();
         for (ContentLinkJsonDto c : magazine.getMainContent()){
@@ -69,7 +69,7 @@ public class MagazineService {
                 } catch (IOException e) {
                     log.info(e.toString());
                     log.info(e.getCause().toString());
-                    throw new SmileyErrorException(ErrorCode.PICTURE_NOT_FOUND);
+                    throw new ErrorException(ErrorCode.PICTURE_NOT_FOUND);
                 }
             }
             contentImgJsonDto.setContentType(c.getContentType());
