@@ -3,6 +3,8 @@ package com.smiley.smileybackend.service;
 import com.smiley.smileybackend.domain.Medicine;
 import com.smiley.smileybackend.dto.response.MedicineInfoDto;
 import com.smiley.smileybackend.dto.response.dtolist.MedicineInfoDtoList;
+import com.smiley.smileybackend.exception.ErrorCode;
+import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.MedicineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ public class MedicineService {
      * */
     public MedicineInfoDto findMedicine(String itemCode) {
         Medicine medicine = medicineRepository.findById(itemCode).orElseThrow(
-                () -> new IllegalArgumentException("의약품을 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.MEDICINE_NOT_FOUND)
         );
         return new MedicineInfoDto(medicine);
     }

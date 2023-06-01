@@ -5,6 +5,8 @@ import com.smiley.smileybackend.domain.User;
 import com.smiley.smileybackend.domain.UserMedicalInfo;
 import com.smiley.smileybackend.dto.response.UserMedicalInfoDto;
 import com.smiley.smileybackend.dto.user.MedicalInfoDto;
+import com.smiley.smileybackend.exception.ErrorCode;
+import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.HospitalRepository;
 import com.smiley.smileybackend.repository.UserMedicalInfoRepository;
 import com.smiley.smileybackend.repository.UserRepository;
@@ -38,15 +40,15 @@ public class UserMedicalInfoService {
      * */
     public User getUser(Integer id){
         return userRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
     }
 
-    /**사용자의 ID로 부터 정보를 가져온다.
+    /**병원 ID로 부터 정보를 가져온다.
      * */
     public Hospital getHospital(String hPid){
         return hospitalRepository.findByHPid(hPid).orElseThrow(
-                () -> new IllegalArgumentException("병원을 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.HOSPITAL_NOT_FOUND)
         );
     }
 }

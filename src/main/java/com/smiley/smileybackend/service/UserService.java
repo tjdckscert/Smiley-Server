@@ -7,6 +7,8 @@ import com.smiley.smileybackend.dto.response.UserInfoAndMedicalInfoDto;
 import com.smiley.smileybackend.dto.response.UserInfoDto;
 import com.smiley.smileybackend.dto.user.UserInfoUpdateDto;
 import com.smiley.smileybackend.dto.user.UserLoginDto;
+import com.smiley.smileybackend.exception.ErrorCode;
+import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.HospitalRepository;
 import com.smiley.smileybackend.repository.UserMedicalInfoRepository;
 import com.smiley.smileybackend.repository.UserRepository;
@@ -64,7 +66,7 @@ public class UserService {
 
     public User getUser(Integer id){
         return userRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
     }
 
@@ -72,7 +74,7 @@ public class UserService {
      * */
     public Hospital getHospital(String hPid){
         return hospitalRepository.findByHPid(hPid).orElseThrow(
-                () -> new IllegalArgumentException("병원을 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.HOSPITAL_NOT_FOUND)
         );
     }
 

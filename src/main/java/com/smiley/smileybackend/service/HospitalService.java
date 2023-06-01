@@ -8,6 +8,8 @@ import com.smiley.smileybackend.dto.response.dtolist.HospitalGeocodingDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.HospitalInfoDtoList;
 import com.smiley.smileybackend.dto.response.dtolist.SimpleHospitalInfoDtoList;
 import com.smiley.smileybackend.dto.user.UserGeocodingDto;
+import com.smiley.smileybackend.exception.ErrorCode;
+import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.HospitalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,7 @@ public class HospitalService {
      * */
     public HospitalInfoDto findHospital(String hPid) {
         Hospital hospital = hospitalRepository.findByHPid(hPid).orElseThrow(
-                () -> new IllegalArgumentException("병원을 찾을 수 없습니다")
+                () -> new ErrorException(ErrorCode.HOSPITAL_NOT_FOUND)
         );
         return  new HospitalInfoDto(hospital);
     }
