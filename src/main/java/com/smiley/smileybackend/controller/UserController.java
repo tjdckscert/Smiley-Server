@@ -30,6 +30,12 @@ public class UserController {
 
     @PostMapping("/users/login")
     @ApiOperation(value="로그인" , notes = "사용자는 로그인한다.")
+    public ResponseEntity<UserInfoDto> login(@Valid @RequestParam String userNumber) {
+        UserInfoDto userInfo = userService.login(userNumber);
+        return ResponseEntity.ok(userInfo);
+    }
+    @PostMapping("/users/signup")
+    @ApiOperation(value="회원가입" , notes = "사용자는 회원가입한다.")
     public ResponseEntity<UserInfoDto> signup(@Valid @RequestBody UserLoginDto userLoginDto) {
         UserInfoDto userInfo = userService.signUp(userLoginDto);
         return ResponseEntity.ok(userInfo);
