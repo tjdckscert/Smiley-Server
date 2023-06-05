@@ -41,10 +41,10 @@ public class UserInfoUpdateDto {
     private LocalDate startDate;
 
     @ApiModelProperty(value = "이용중인 병원 hPId 공백 O")
-    private String hospitalhPid;
+    private String hPId;
 
     @NotNull
-    @ApiModelProperty(value = "사용자 설무조사 결과. 공백 X.")
+    @ApiModelProperty(value = "사용자 설문 조사 결과. 공백 X.")
     private List<SurveyJsonDto> surveyResult;
 
     @NotNull(message = "생년월일 입력해주세요, 공백 X")
@@ -54,7 +54,6 @@ public class UserInfoUpdateDto {
 
     public User toUserEntity() {
         return User.builder()
-                .id(id)
                 .userNumber(userNumber)
                 .phoneToken(phoneToken)
                 .name(name)

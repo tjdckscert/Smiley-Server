@@ -33,14 +33,22 @@ public class UserService {
         this.userMedicalInfoRepository = userMedicalInfoRepository;
     }
 
-
-    public UserInfoDto signUp(@Valid UserLoginDto userLoginDto) {
-        Optional<User> user = userRepository.findByUserNumber(userLoginDto.getUserNumber());
+    /**
+     * 사용자 정보를 DB에 저장한다.
+     * @param userNumber
+     * @return UserInfoDto
+     */
+    public UserInfoDto login(@Valid String userNumber) {
+        Optional<User> user = userRepository.findByUserNumber(userNumber);
         if (user.isEmpty()){
-            userRepository.save(userLoginDto.toEntity());
-            return new UserInfoDto();
+            throw new ErrorException(ErrorCode.NEW_USER);
         }
         return new UserInfoDto(user.get());
+    }
+
+    public UserInfoDto signUp(@Valid UserLoginDto userLoginDto) {
+        User newUser = userRepository.save(userLoginDto.toEntity());
+        return new UserInfoDto(newUser);
     }
 
     /**사용자 정보 및 의료정보를 입력받아 의료정보는 저장하고 사용자 정보는 이미 존재하는 사용자는 업데이트하고 존재하지 않는 사용자는 저장한다.
@@ -60,7 +68,7 @@ public class UserService {
             userRepository.save(user1);
         }
         //의료정보는 어차피 여러개 저장할 수 있으니까 그냥 저장
-        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(userInfoUpdateDto.toUserMedicalInfoEntity(getUser(userInfoUpdateDto.getId()), getHospital(userInfoUpdateDto.getHospitalhPid())));
+        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(userInfoUpdateDto.toUserMedicalInfoEntity(getUser(userInfoUpdateDto.getId()), getHospital(userInfoUpdateDto.getHPId())));
         return new UserInfoAndMedicalInfoDto(userInfoUpdateDto);
     }
 
