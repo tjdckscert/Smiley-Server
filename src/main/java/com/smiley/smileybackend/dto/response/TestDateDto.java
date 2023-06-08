@@ -50,11 +50,11 @@ public class TestDateDto {
         SecureRandom random = new SecureRandom ();
         this.wearTime = random.nextInt(760)+200;
         this.readMagazineNumber = random.nextInt(3);
-        this.totalWearTimeExp = random.nextInt(16000)*5;
+        this.totalWearTimeExp = random.nextInt(11000);
         this.targetWearTimeEXP = random.nextInt(11000);
-        this.magazineExp = random.nextInt(12)*100;
-        this.badgeExp = random.nextInt(14)*1000;
-        this.commentExp=random.nextInt(20)*500;
+        this.magazineExp = random.nextInt(11000);
+        this.badgeExp = random.nextInt(11000);
+        this.commentExp=random.nextInt(11000);
         this.totalExp = this.totalWearTimeExp+this.targetWearTimeEXP+this.magazineExp+this.badgeExp;
     }
 }
