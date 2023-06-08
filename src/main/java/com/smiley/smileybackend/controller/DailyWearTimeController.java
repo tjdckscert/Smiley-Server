@@ -1,9 +1,6 @@
 package com.smiley.smileybackend.controller;
 
-import com.smiley.smileybackend.dto.response.DailyExpStasticsInfoDto;
-import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
-import com.smiley.smileybackend.dto.response.TotalExpStasticsInfoDto;
-import com.smiley.smileybackend.dto.response.UserSpecificDateWearTimeDto;
+import com.smiley.smileybackend.dto.response.*;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.SpecificDateWearTimeDto;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
@@ -11,6 +8,7 @@ import com.smiley.smileybackend.service.DailyExpStasticsService;
 import com.smiley.smileybackend.service.DailyWearTimeService;
 import com.smiley.smileybackend.service.TotalExpStasticsService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +49,16 @@ public class DailyWearTimeController {
     public ResponseEntity<UserSpecificDateWearTimeDto> anydayweartime(@Valid@RequestBody SpecificDateWearTimeDto specificDateWearTimeDto){
         UserSpecificDateWearTimeDto userSpecificDateWearTimeDto =  dailyWearTimeService.getAnyDayWearTime(specificDateWearTimeDto);
         return ResponseEntity.ok(userSpecificDateWearTimeDto);
+    }
+
+    /**
+    *Testing Open(#96)
+    * */
+    @GetMapping("/dailyWearTimes/dayInformation")
+    @ApiOperation(value="날짜를 입력" , notes = "입력한 날짜의 데이트를 반환")
+    public ResponseEntity<TestDateDto> anydayweartime(@RequestParam String day){
+        TestDateDto testDateDto = dailyWearTimeService.getTodayInfor(day);
+        return ResponseEntity.ok(testDateDto);
     }
 }
 
