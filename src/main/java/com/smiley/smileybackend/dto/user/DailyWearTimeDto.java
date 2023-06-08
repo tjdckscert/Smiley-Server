@@ -36,7 +36,7 @@ public class DailyWearTimeDto {
         return DailyWearTime.builder()
                 .user(user)
                 .wearDate(wearDate)
-                .totalWeartime(totalWearTime)
+                .totalWearTime(totalWearTime)
                 .build();
     }
     public DailyExpStastics toDailyExpEntity(User user) {
