@@ -46,13 +46,4 @@ public class DailyWearTimeService {
 
     }
 
-    public UserSpecificDateWearTimeDto getAnyDayWearTime(SpecificDateWearTimeDto specificDateWearTimeDto) {
-        DailyWearTime dailyWearTime = dailyWearTimeRepository.
-                findByUserIdAndWearDate(specificDateWearTimeDto.getUserId(), specificDateWearTimeDto.getWearDate());
-        return new UserSpecificDateWearTimeDto(dailyWearTime);
-    }
-
-    public TestDateDto getTodayInfor(String day) {
-        return new TestDateDto();
-    }
 }
