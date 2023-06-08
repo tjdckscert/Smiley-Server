@@ -28,9 +28,9 @@ public class UserController {
         this.userMedicalInfoService=userMedicalInfoService;
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/users/loginBackup")
     @ApiOperation(value="로그인" , notes = "사용자는 로그인한다.")
-    public ResponseEntity<UserInfoDto> login(@Valid @RequestParam String userNumber) {
+    public ResponseEntity<UserInfoDto> loginbackup(@Valid @RequestParam String userNumber) {
         UserInfoDto userInfo = userService.login(userNumber);
         return ResponseEntity.ok(userInfo);
     }
@@ -38,6 +38,13 @@ public class UserController {
     @ApiOperation(value="회원가입" , notes = "사용자는 회원가입한다.")
     public ResponseEntity<UserInfoDto> signup(@Valid @RequestBody UserLoginDto userLoginDto) {
         UserInfoDto userInfo = userService.signUp(userLoginDto);
+        return ResponseEntity.ok(userInfo);
+    }
+
+    @PostMapping("/users/login")
+    @ApiOperation(value="회원가입" , notes = "사용자는 로그인한다(Test).")
+    public ResponseEntity<UserInfoDto> login(@Valid @RequestBody UserLoginDto userLoginDto) {
+        UserInfoDto userInfo = userService.signUptest(userLoginDto);
         return ResponseEntity.ok(userInfo);
     }
 
