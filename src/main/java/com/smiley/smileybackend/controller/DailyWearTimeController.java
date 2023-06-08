@@ -3,7 +3,9 @@ package com.smiley.smileybackend.controller;
 import com.smiley.smileybackend.dto.response.DailyExpStasticsInfoDto;
 import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
 import com.smiley.smileybackend.dto.response.TotalExpStasticsInfoDto;
+import com.smiley.smileybackend.dto.response.UserSpecificDateWearTimeDto;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
+import com.smiley.smileybackend.dto.user.SpecificDateWearTimeDto;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
 import com.smiley.smileybackend.service.DailyExpStasticsService;
 import com.smiley.smileybackend.service.DailyWearTimeService;
@@ -43,6 +45,12 @@ public class DailyWearTimeController {
     public ResponseEntity<LastSevenDaysWearTimeDtoList> lastSevenDays(@PathVariable Integer id){
         LastSevenDaysWearTimeDtoList lastSevenDaysWearTimeDtoList =  dailyWearTimeService.getLastSevenDayWearTime(id);
         return ResponseEntity.ok(lastSevenDaysWearTimeDtoList);
+    }
+
+    @PostMapping("/dailyWearTimes/day")
+    public ResponseEntity<UserSpecificDateWearTimeDto> anydayweartime(@Valid@RequestBody SpecificDateWearTimeDto specificDateWearTimeDto){
+        UserSpecificDateWearTimeDto userSpecificDateWearTimeDto =  dailyWearTimeService.getAnyDayWearTime(specificDateWearTimeDto);
+        return ResponseEntity.ok(userSpecificDateWearTimeDto);
     }
 }
 

@@ -4,7 +4,9 @@ import com.smiley.smileybackend.domain.DailyWearTime;
 import com.smiley.smileybackend.domain.User;
 import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
 import com.smiley.smileybackend.dto.response.LastSevenDaysWearTimeDto;
+import com.smiley.smileybackend.dto.response.UserSpecificDateWearTimeDto;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
+import com.smiley.smileybackend.dto.user.SpecificDateWearTimeDto;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
 import com.smiley.smileybackend.exception.ErrorCode;
 import com.smiley.smileybackend.exception.ErrorException;
@@ -38,8 +40,14 @@ public class DailyWearTimeService {
         Pageable pageable = PageRequest.of(0,7);
         return new LastSevenDaysWearTimeDtoList(dailyWearTimeRepository.findByUserIdOrderByIdDesc(id, pageable)
                 .stream()
-                .map(LastSevenDaysWearTimeDto::entitytoDto)
+                .map(LastSevenDaysWearTimeDto::entityToDto)
                 .collect(Collectors.toList()));
 
+    }
+
+    public UserSpecificDateWearTimeDto getAnyDayWearTime(SpecificDateWearTimeDto specificDateWearTimeDto) {
+        DailyWearTime dailyWearTime = dailyWearTimeRepository.
+                findByUserIdAndWearDate(specificDateWearTimeDto.getUserId(), specificDateWearTimeDto.getWearDate());
+        return new UserSpecificDateWearTimeDto(dailyWearTime);
     }
 }

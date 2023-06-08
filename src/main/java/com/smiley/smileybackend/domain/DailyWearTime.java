@@ -22,17 +22,17 @@ public class DailyWearTime {
     private LocalDate wearDate;
 
     @Column
-    private Integer totalWeartime;
+    private Integer totalWearTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_dailyweartime_user"))
     private User user;
 
     @Builder
-    public DailyWearTime(Integer id, LocalDate wearDate, Integer totalWeartime, User user) {
+    public DailyWearTime(Integer id, LocalDate wearDate, Integer totalWearTime, User user) {
         this.id = id;
         this.wearDate = wearDate;
-        this.totalWeartime = totalWeartime;
+        this.totalWearTime = totalWearTime;
         this.user = user;
     }
 }

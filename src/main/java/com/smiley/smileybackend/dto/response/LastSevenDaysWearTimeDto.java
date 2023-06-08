@@ -25,15 +25,13 @@ public class LastSevenDaysWearTimeDto {
 
     public LastSevenDaysWearTimeDto(DailyWearTime saved) {
         this.wearDate = saved.getWearDate();
-        this.totalWeartime = saved.getTotalWeartime();
+        this.totalWeartime = saved.getTotalWearTime();
     }
 
-    public static LastSevenDaysWearTimeDto entitytoDto(DailyWearTime saved) {
+    public static LastSevenDaysWearTimeDto entityToDto(DailyWearTime saved) {
         return new LastSevenDaysWearTimeDto(
                 saved.getWearDate(),
-                saved.getTotalWeartime()
+                saved.getTotalWearTime()
         );
-
     }
-
 }

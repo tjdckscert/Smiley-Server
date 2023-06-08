@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class DailyWearTimeInfoDto {
 
     private Integer id;
+
     private Integer userId;
 
     private LocalDate wearDate;
@@ -25,7 +26,7 @@ public class DailyWearTimeInfoDto {
         this.id = saved.getId();
         this.userId=saved.getId();
         this.wearDate = saved.getWearDate();
-        this.totalWearTime=saved.getTotalWeartime();
+        this.totalWearTime=saved.getTotalWearTime();
     }
 
     @Builder
