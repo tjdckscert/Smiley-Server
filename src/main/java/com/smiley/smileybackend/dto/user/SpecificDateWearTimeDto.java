@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @NoArgsConstructor
-public class AnyDayWearTimeDto {
+public class SpecificDateWearTimeDto {
 
     @NotNull
     @ApiModelProperty(value = "사용자 ID(user의 index번호). 공백 X")
@@ -19,4 +19,10 @@ public class AnyDayWearTimeDto {
     @NotNull(message = "날짜를 선택해 주세요")
     @ApiModelProperty(value = "착용 시간을 찾기 원하는 날짜")
     private LocalDate wearDate;
+
+    @Builder
+    public SpecificDateWearTimeDto(Integer userId, LocalDate wearDate) {
+        this.userId = userId;
+        this.wearDate = wearDate;
+    }
 }
