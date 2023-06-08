@@ -30,6 +30,7 @@ public class DailyWearTimeController {
     }
 
     @PostMapping("/dailyWearTimes")
+    @ApiOperation(value="착용 시간 저장" , notes = "사용자의 일일 착용 시간 정보를 저장한다.")
     public ResponseEntity<TotalExpStasticsInfoDto> todayweartime(@Valid @RequestBody DailyWearTimeDto dailyWearTimeDto){
         DailyWearTimeInfoDto dailyWearTimeInfoDto =  dailyWearTimeService.saveWearTime(dailyWearTimeDto);
         //경험치 저장 service 호출
@@ -40,25 +41,11 @@ public class DailyWearTimeController {
     }
 
     @GetMapping("/dailyWearTimes/lastSevenDays/{id}")
+    @ApiOperation(value="최근 일주일 착용정보" , notes = "사용자의 최근 1주일 착용 정보를 가져 와서 반환 한다.")
     public ResponseEntity<LastSevenDaysWearTimeDtoList> lastSevenDays(@PathVariable Integer id){
         LastSevenDaysWearTimeDtoList lastSevenDaysWearTimeDtoList =  dailyWearTimeService.getLastSevenDayWearTime(id);
         return ResponseEntity.ok(lastSevenDaysWearTimeDtoList);
     }
 
-    @PostMapping("/dailyWearTimes/day")
-    public ResponseEntity<UserSpecificDateWearTimeDto> anydayweartime(@Valid@RequestBody SpecificDateWearTimeDto specificDateWearTimeDto){
-        UserSpecificDateWearTimeDto userSpecificDateWearTimeDto =  dailyWearTimeService.getAnyDayWearTime(specificDateWearTimeDto);
-        return ResponseEntity.ok(userSpecificDateWearTimeDto);
-    }
-
-    /**
-    *Testing Open(#96)
-    * */
-    @GetMapping("/dailyWearTimes/dayInformation")
-    @ApiOperation(value="날짜를 입력" , notes = "입력한 날짜의 데이트를 반환")
-    public ResponseEntity<TestDateDto> anydayweartime(@RequestParam String day){
-        TestDateDto testDateDto = dailyWearTimeService.getTodayInfor(day);
-        return ResponseEntity.ok(testDateDto);
-    }
 }
 
