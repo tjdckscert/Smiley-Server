@@ -40,7 +40,7 @@ public class DailyWearTimeService {
         Pageable pageable = PageRequest.of(0,7);
         return new LastSevenDaysWearTimeDtoList(dailyWearTimeRepository.findByUserIdOrderByIdDesc(id, pageable)
                 .stream()
-                .map(LastSevenDaysWearTimeDto::entitytoDto)
+                .map(LastSevenDaysWearTimeDto::entityToDto)
                 .collect(Collectors.toList()));
 
     }

@@ -25,23 +25,13 @@ public class LastSevenDaysWearTimeDto {
 
     public LastSevenDaysWearTimeDto(DailyWearTime saved) {
         this.wearDate = saved.getWearDate();
-<<<<<<< HEAD
         this.totalWeartime = saved.getTotalWearTime();
-=======
-        this.totalWeartime = saved.getTotalWeartime();
->>>>>>> c7c4e1faf2834a8d81733cf6df300e9cdf52711c
     }
 
-    public static LastSevenDaysWearTimeDto entitytoDto(DailyWearTime saved) {
+    public static LastSevenDaysWearTimeDto entityToDto(DailyWearTime saved) {
         return new LastSevenDaysWearTimeDto(
                 saved.getWearDate(),
-<<<<<<< HEAD
                 saved.getTotalWearTime()
-=======
-                saved.getTotalWeartime()
->>>>>>> c7c4e1faf2834a8d81733cf6df300e9cdf52711c
         );
-
     }
-
 }
