@@ -4,6 +4,7 @@ import com.smiley.smileybackend.domain.DailyWearTime;
 import com.smiley.smileybackend.domain.User;
 import com.smiley.smileybackend.dto.response.DailyWearTimeInfoDto;
 import com.smiley.smileybackend.dto.response.LastSevenDaysWearTimeDto;
+import com.smiley.smileybackend.dto.response.TestDateDto;
 import com.smiley.smileybackend.dto.response.UserSpecificDateWearTimeDto;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.SpecificDateWearTimeDto;
@@ -49,5 +50,9 @@ public class DailyWearTimeService {
         DailyWearTime dailyWearTime = dailyWearTimeRepository.
                 findByUserIdAndWearDate(specificDateWearTimeDto.getUserId(), specificDateWearTimeDto.getWearDate());
         return new UserSpecificDateWearTimeDto(dailyWearTime);
+    }
+
+    public TestDateDto getTodayInfor(String day) {
+        return new TestDateDto();
     }
 }
