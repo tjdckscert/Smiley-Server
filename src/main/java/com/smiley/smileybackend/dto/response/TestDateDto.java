@@ -55,6 +55,6 @@ public class TestDateDto {
         this.magazineExp = random.nextInt(11000);
         this.badgeExp = random.nextInt(11000);
         this.commentExp=random.nextInt(11000);
-        this.totalExp = this.totalWearTimeExp+this.targetWearTimeEXP+this.magazineExp+this.badgeExp;
+        this.totalExp = this.totalWearTimeExp+this.targetWearTimeEXP+this.magazineExp+this.badgeExp+this.commentExp;
     }
 }
