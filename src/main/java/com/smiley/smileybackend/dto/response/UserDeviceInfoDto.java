@@ -2,7 +2,6 @@ package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.UserDevice;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 
 @NoArgsConstructor
 @Getter

@@ -7,7 +7,6 @@ package com.smiley.smileybackend.controller;
 import com.smiley.smileybackend.dto.response.ToothBrushImageDto;
 import com.smiley.smileybackend.service.ToothBrushStatusService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
