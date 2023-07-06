@@ -26,6 +26,13 @@ public class DailyWearTimeService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * 일일 착용 시간 저장
+     *
+     * @author : 김성찬
+     * @param : 착용 시간,착용 날짜등이 담긴 DailyWearTimeDto Class
+     * @return :
+     */
     public DailyWearTimeInfoDto saveWearTime(DailyWearTimeDto dailyWearTimeDto) {
         User user  = userRepository.findById(dailyWearTimeDto.getUserId()).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
@@ -34,6 +41,13 @@ public class DailyWearTimeService {
         return new DailyWearTimeInfoDto(dailyWearTime);
     }
 
+    /**
+     * 최근 7일 착용 시간 정보 가져오기
+     *
+     * @author : 김성찬
+     * @param : 사용자 Index
+     * @return : 사용자 7일 착용 시간 정보
+     */
     public LastSevenDaysWearTimeDtoList getLastSevenDayWearTime(Integer id) {
         Pageable pageable = PageRequest.of(0,7);
         return new LastSevenDaysWearTimeDtoList(dailyWearTimeRepository.findByUserIdOrderByIdDesc(id, pageable)

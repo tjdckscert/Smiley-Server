@@ -29,23 +29,41 @@ public class UserMedicalInfoService {
         this.hospitalRepository=hospitalRepository;
     }
 
-    /**사용자의 ID 와 병원 ID를 가져와서 검색 후 사용자의 의료정보와 함께 UserMedicalInfo에 등록한다.
-     * */
+    /**
+     * 사용자의 ID 와 병원 ID를 가져와서 검색 후 사용자의 의료정보와 함께 UserMedicalInfo에 등록한다.
+     *
+     * @author : 김성찬
+     * @param : 사용자 의료 정보 
+     * @return : 저장된 사용자 의료 정보
+     */
     public UserMedicalInfoDto savemedicalinfo(MedicalInfoDto medicalInfoDto) {
         UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(medicalInfoDto.toEntity(getUser(medicalInfoDto.getUserId()), getHospital(medicalInfoDto.getHospitalhPid())));
         return new UserMedicalInfoDto(userMedicalInfo);
     }
 
-    /**사용자의 ID로 부터 정보를 가져온다.
-     * */
+
+    /**
+     * 사용자의 ID(Index)로 정보를 가져온다.
+     *
+     * @author : 김성찬
+     * @param : 사용자 Index
+     * @return : 사용자 정보
+     * @throws : 사용자 Index가 존재 하진 않는 경우 USER_NOT_FOUND
+     */
     public User getUser(Integer id){
         return userRepository.findById(id).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
     }
 
-    /**병원 ID로 부터 정보를 가져온다.
-     * */
+    /**
+     * 병원 ID로 정보를 가져온다.
+     *
+     * @author : 김성찬
+     * @param : 병원 고유 ID
+     * @return : 병원 정보
+     * @throws : 병원 ID가 존재 하지 않으면 HOSPITAL_NOT_FOUND
+     */
     public Hospital getHospital(String hPid){
         return hospitalRepository.findByHPid(hPid).orElseThrow(
                 () -> new ErrorException(ErrorCode.HOSPITAL_NOT_FOUND)

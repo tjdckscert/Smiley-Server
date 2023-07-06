@@ -34,9 +34,12 @@ public class UserService {
     }
 
     /**
-     * 사용자 정보를 DB에 저장한다.
-     * @param userNumber
-     * @return UserInfoDto
+     * 로그인
+     *
+     * @author : 김성찬
+     * @param : 사용자 고유 번호
+     * @return : 사용자 정보
+     * @throws : 사용자 고유 번호 존재 하지 않으면 NEW_USER
      */
     public UserInfoDto login(@Valid String userNumber) {
         Optional<User> user = userRepository.findByUserNumber(userNumber);
@@ -46,6 +49,13 @@ public class UserService {
         return new UserInfoDto(user.get());
     }
 
+    /**
+     * 회원가입
+     *
+     * @author : 김성찬
+     * @param : 회원 가입 정보를 담은 UserLoginDto Class
+     * @return : 사용자 정보
+     */
     public UserInfoDto signUp(@Valid UserLoginDto userLoginDto) {
         User newUser = userRepository.save(userLoginDto.toEntity());
         return new UserInfoDto(newUser);
@@ -60,8 +70,13 @@ public class UserService {
         return new UserInfoDto(user.get());
     }
 
-    /**사용자 정보 및 의료정보를 입력받아 의료정보는 저장하고 사용자 정보는 이미 존재하는 사용자는 업데이트하고 존재하지 않는 사용자는 저장한다.
-     **/
+    /**
+     * 사용자 정보 및 의료정보를 입력받아 의료정보는 저장하고 사용자 정보는 이미 존재하는 사용자는 업데이트하고 존재하지 않는 사용자는 저장한다.
+     *
+     * @author : 김성찬
+     * @param : 사용자 정보를 담은 UserInfoUpdateDto Class
+     * @return : 사용자 정보 및 의료 정보
+     */
     public UserInfoAndMedicalInfoDto saveuserinfos(UserInfoUpdateDto userInfoUpdateDto) {
         Optional<User> user = userRepository.findByUserNumber(userInfoUpdateDto.getUserNumber());
         //존재하지 않는 사용자인경우 추가
@@ -81,14 +96,28 @@ public class UserService {
         return new UserInfoAndMedicalInfoDto(userInfoUpdateDto);
     }
 
+    /**
+     * DB에서 사용자 정보를 가져온다
+     *
+     * @author : 김성찬
+     * @param : 사용자 Index
+     * @return : 사용자 정보
+     * @throws : 사용자 Index가 존재 하지 않으면 HOSPITAL_NOT_FOUND
+     */
     public User getUser(Integer id){
         return userRepository.findById(id).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
     }
 
-    /**사용자의 ID로 부터 정보를 가져온다.
-     * */
+    /**
+     * DB에서 병원 정보를 가져온다
+     *
+     * @author : 김성찬
+     * @param : 병원 고유 ID
+     * @return : 병원 정보
+     * @throws : 병원 ID가 존재 하지 않으면 HOSPITAL_NOT_FOUND
+     */
     public Hospital getHospital(String hPid){
         return hospitalRepository.findByHPid(hPid).orElseThrow(
                 () -> new ErrorException(ErrorCode.HOSPITAL_NOT_FOUND)

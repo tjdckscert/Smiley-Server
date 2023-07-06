@@ -30,7 +30,10 @@ public class MagazineService {
 
     /**
      * 모든 매거진 정보를 가져온다
-     * */
+     *
+     * @author : 김성찬
+     * @return : 모든 매거진 정보
+     */
     public MagazineInfoDtoList getAll() {
         return new MagazineInfoDtoList(magazineRepository.findAll()
                 .stream()
@@ -39,7 +42,14 @@ public class MagazineService {
     }
 
     /**
-     * 선택한 수량만큼의 매거진 정보를 가져온다
+     * 선택한 수량(number)만큼의 매거진 정보를 가져온다
+     *
+     * @author : 김성찬
+     * @param : 매거진 수량
+     * @return : 선택 수량 만큼의 매거진
+     */
+    /**
+     *
      * */
     public MagazineInfoDtoList getListOfNumber(Integer number) {
         Pageable pageable = PageRequest.of(0,number);
@@ -50,8 +60,14 @@ public class MagazineService {
     }
 
     /**
-     * 선택한 매거진의 정보를 가져온다
-     * */
+     * 선택한 매거진(index)의 정보를 가져온다 
+     *
+     * @author : 김성찬
+     * @param : 매거진 번호(index)
+     * @return : 선택한 매거진 정보
+     * @throws : 매거진이 존재 하지 않으면 MAGAZINE_NOT_FOUND
+     * @throws : 사진이 존재 하지 않으면 PICTURE_NOT_FOUND
+     */
     public MagazineDetailDto getMagazineDetail(Integer number) {
         Magazine magazine = magazineRepository.findById(number).orElseThrow(
                 ()->new ErrorException(ErrorCode.MAGAZINE_NOT_FOUND)
