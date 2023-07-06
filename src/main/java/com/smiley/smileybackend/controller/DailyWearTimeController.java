@@ -2,7 +2,6 @@ package com.smiley.smileybackend.controller;
 
 import com.smiley.smileybackend.dto.response.*;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
-import com.smiley.smileybackend.dto.user.SpecificDateWearTimeDto;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
 import com.smiley.smileybackend.service.DailyExpStasticsService;
 import com.smiley.smileybackend.service.DailyWearTimeService;

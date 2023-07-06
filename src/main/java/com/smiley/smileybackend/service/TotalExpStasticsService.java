@@ -28,6 +28,15 @@ public class TotalExpStasticsService {
         this.userRepository = userRepository;
         this.tierRepositoory = tierRepositoory;
     }
+
+    /**
+     * 일일 총 경험치량 저장
+     *
+     * @author : 김성찬
+     * @param : 일일 착용 정보를 가지고 있는 DailyWearTimeDto Class
+     * @return : 저장된 총 경험치량
+     * @throws : 사용자 Index가 존재 하지 않으면 HOSPITAL_NOT_FOUND
+     */
     public TotalExpStasticsInfoDto saveTotalExp(DailyWearTimeDto dailyWearTimeDto) {
         User user = userRepository.findById(dailyWearTimeDto.getUserId()).orElseThrow(
                 ()-> new ErrorException(ErrorCode.USER_NOT_FOUND)

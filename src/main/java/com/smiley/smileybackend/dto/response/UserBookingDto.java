@@ -1,8 +1,6 @@
 package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.Booking;
-import com.smiley.smileybackend.domain.Hospital;
-import com.smiley.smileybackend.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

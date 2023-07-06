@@ -20,9 +20,15 @@ public class BookingService {
         this.bookingRepository = bookingRepository;
     }
 
+    /**
+     * 사용자의 예약 정보를 가져온다.
+     *
+     * @author : 김성찬
+     * @param : 사용자 Index번호
+     * @return : 예약 정보
+     */    
     public UserBookingDtoList getBookings(Integer id){
         List<Booking> bookingDtos = bookingRepository.findByUser_Id(id);
-        log.info((bookingRepository.findByUser_Id(id).get(0)).toString());
         return new UserBookingDtoList(bookingRepository.findByUser_Id(id)
                 .stream()
                 .map(UserBookingDto::entityToDto)

@@ -1,10 +1,7 @@
 package com.smiley.smileybackend.dto.user;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -24,4 +21,11 @@ public class UserGeocodingDto {
     @NotNull(message = "검색할 거리를 입력해 주세요")
     @ApiModelProperty(value = "원하는 반경 거리. 공백 X")
     private Double distance;
+
+    @Builder
+    public UserGeocodingDto(Double latitude, Double longitude, Double distance) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.distance = distance;
+    }
 }

@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
 public class UserInfoUpdateDto {
     
@@ -51,6 +50,19 @@ public class UserInfoUpdateDto {
     @PastOrPresent
     @ApiModelProperty(value = "사용자 생년월일 확인 / 입력 양식은 'yyyy-mm-dd' . 공백 X. NOW보다 과거의 날짜만 가능하다.")
     private LocalDate birthDate;
+
+    @Builder
+    public UserInfoUpdateDto(Integer id, String userNumber, String phoneToken, String name, Integer calibrationStatus, LocalDate startDate, String hPId, List<SurveyJsonDto> surveyResult, LocalDate birthDate) {
+        this.id = id;
+        this.userNumber = userNumber;
+        this.phoneToken = phoneToken;
+        this.name = name;
+        this.calibrationStatus = calibrationStatus;
+        this.startDate = startDate;
+        this.hPId = hPId;
+        this.surveyResult = surveyResult;
+        this.birthDate = birthDate;
+    }
 
     public User toUserEntity() {
         return User.builder()

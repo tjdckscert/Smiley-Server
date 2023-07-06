@@ -25,6 +25,15 @@ public class UserDeviceService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * 사용자 장치 정보 저장
+     *
+     * @author : 김성찬
+     * @param : 장치 이름, 장치 타입 등이 저장된 UserDeviceDto Class
+     * @return : 저장된 사용자 장치 정보
+     * @throws : 이미 등록된 장치인 경우 DEVICE_ALREADY_REGISTER
+     * @throws : 사용자 Index가 존재 하지 않으면 HOSPITAL_NOT_FOUND
+     */
     public UserDeviceInfoDto adddevice(UserDeviceDto userDeviceDto) {
         User user = userRepository.findById(userDeviceDto.getUserId())
                 .orElseThrow(() -> new ErrorException(ErrorCode.USER_NOT_FOUND));

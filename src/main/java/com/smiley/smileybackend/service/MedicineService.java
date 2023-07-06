@@ -19,9 +19,15 @@ public class MedicineService {
     public MedicineService(MedicineRepository medicineRepository){
         this.medicineRepository = medicineRepository;
     }
+
     /**
-     * ID 값을 통해 단일 의약품 정보를 가져온다
-     * */
+     * itemCode로 의약품 정보를 가져온다
+     *
+     * @author : 김성찬
+     * @param : 의약품 코드(itemCode)
+     * @return : 선택 의약품 정보
+     * @throws : 의약품이 존재 하지 않으면 MEDICINE_NOT_FOUND
+     */
     public MedicineInfoDto findMedicine(String itemCode) {
         Medicine medicine = medicineRepository.findById(itemCode).orElseThrow(
                 () -> new ErrorException(ErrorCode.MEDICINE_NOT_FOUND)
@@ -30,8 +36,11 @@ public class MedicineService {
     }
 
     /**
-     * 모든 의약품 정보를 가져온다
-     * */
+     * 모든 의약품 정보 반환
+     *
+     * @author : 김성찬
+     * @return : MedicineInfoDto를 List<> 객체로 가지는 MedicineInfoDtoList Class 반환
+     */
     public MedicineInfoDtoList getAll() {
         return new  MedicineInfoDtoList(medicineRepository.findAll()
                 .stream()
@@ -40,8 +49,11 @@ public class MedicineService {
     }
 
     /**
-     * List 의약품 정보 저장
-     * */
+     * 의약품 정보를 모두 저장한다. (공공 API의 정보를 저장할 때 사용)
+     *
+     * @author : 김성찬
+     * @param  : 저장할 의약품 정보 List
+     */
     public void saveAll(List<Medicine> medicines) {medicineRepository.saveAll(medicines);
     }
 }
