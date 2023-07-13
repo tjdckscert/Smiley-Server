@@ -53,7 +53,7 @@ public class Hospital {
     private String dutyEryn;
 
     /*비고*/
-    @Column(length = 25000)
+    @Column(length = 600)
     private String dutyEtc;
 
     /*기관설명상세*/
