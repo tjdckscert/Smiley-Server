@@ -1,12 +1,10 @@
 package com.smiley.smileybackend.dto.response;
 
 import com.smiley.smileybackend.domain.Magazine;
-import com.smiley.smileybackend.dto.user.ContentImgJsonDto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.security.SecureRandom;
-import java.util.List;
 
 @Getter
 @ToString
@@ -22,17 +20,17 @@ public class MagazineDetailDto {
     @ApiModelProperty( example = "작성자")
     String author;
     @ApiModelProperty( example = "썸네일")
-    String thumbnail;
+    byte[] thumbnail;
     @ApiModelProperty( example = "좋아요")
     Integer likes;
     @ApiModelProperty( example = "읽은수")
     Integer viewCount;
 
-    @ApiModelProperty( example = "메인컨텐트")
-    List<ContentImgJsonDto> mainContent;
+    @ApiModelProperty( example = "링크주소")
+    String urlLink;
 
     @Builder
-    public MagazineDetailDto(Integer id, String title, String subTitle, String author, String thumbnail, Integer likes, Integer viewCount, List<ContentImgJsonDto> mainContent) {
+    public MagazineDetailDto(Integer id, String title, String subTitle, String author, byte[] thumbnail, Integer likes, Integer viewCount, String urlLink) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -40,19 +38,19 @@ public class MagazineDetailDto {
         this.thumbnail = thumbnail;
         this.likes = likes;
         this.viewCount = viewCount;
-        this.mainContent = mainContent;
+        this.urlLink = urlLink;
     }
 
     @Builder
-    public MagazineDetailDto(Magazine saved, List<ContentImgJsonDto> contentImgJsonDto) {
+    public MagazineDetailDto(Magazine saved, byte[] img) {
         SecureRandom random = new SecureRandom ();
         this.id = saved.getId();
         this.title = saved.getTitle();
         this.subTitle = saved.getSubTitle();
         this.author = saved.getAuthor();
-        this.thumbnail = saved.getThumbnail();
+        this.thumbnail = img;
         this.likes = random.nextInt(4000)+5000;
         this.viewCount = random.nextInt(10000)+20000;
-        this.mainContent = contentImgJsonDto;
+        this.urlLink = saved.getUrlLink();
     }
 }
