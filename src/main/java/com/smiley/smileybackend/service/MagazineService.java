@@ -8,6 +8,7 @@ import com.smiley.smileybackend.exception.ErrorCode;
 import com.smiley.smileybackend.exception.ErrorException;
 import com.smiley.smileybackend.repository.MagazineRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,9 @@ public class MagazineService {
      * @author : 김성찬
      * @return : 모든 매거진 정보
      */
-    public MagazineInfoDtoList getAll() {
-        return new MagazineInfoDtoList(magazineRepository.findAll()
+    public MagazineInfoDtoList getAll(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page,size);
+        return new MagazineInfoDtoList(magazineRepository.findAll(pageable)
                 .stream()
                 .map(MagazineInfoDto::entityToDto)
                 .collect(Collectors.toList()));
@@ -43,11 +45,9 @@ public class MagazineService {
      * @param : 매거진 수량
      * @return : 선택 수량 만큼의 매거진
      */
-    /**
-     *
-     * */
     public MagazineInfoDtoList getListOfNumber(Integer number) {
         Pageable pageable = PageRequest.of(0,number);
+        Page<Magazine> magazinePage = magazineRepository.findAllByOrderByIdDesc(pageable);
         return new MagazineInfoDtoList(magazineRepository.findAllByOrderByIdDesc(pageable)
                 .stream()
                 .map(MagazineInfoDto::entityToDto)
