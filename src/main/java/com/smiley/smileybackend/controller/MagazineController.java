@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @Api(tags = "Magazine Controller : 매거진 정보")
 public class MagazineController {
@@ -22,9 +23,10 @@ public class MagazineController {
 
     @GetMapping("/magazines")
     @ApiOperation(value="모든 매거진" , notes = "모든 매거진 정보를 반환한다.")
-    public ResponseEntity<MagazineInfoDtoList> magazines(){
-        MagazineInfoDtoList magazines = magazineService.getAll();
+    public ResponseEntity<MagazineInfoDtoList> magazines(@RequestParam(value = "page",defaultValue = "0") Integer page, @RequestParam(value = "size",defaultValue = "5") Integer size){
+        MagazineInfoDtoList magazines = magazineService.getAll(page,size);
         return ResponseEntity.ok(magazines);
+
     }
 
     @GetMapping("/magazines/") //쿼리 파라미터로 변경
