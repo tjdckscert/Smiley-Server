@@ -14,7 +14,7 @@ import java.io.*;
 @Service
 @Transactional
 @Slf4j
-@PropertySource("classpath:application-path"+".properties")
+@PropertySource("classpath:application-path.properties")
 public class ToothBrushStatusService {
 
     @Value("${property.toothbrush.image.request-path}")
