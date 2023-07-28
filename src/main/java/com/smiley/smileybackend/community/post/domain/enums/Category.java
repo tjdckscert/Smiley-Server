@@ -8,8 +8,9 @@ import lombok.Getter;
 @Getter
 public enum Category {
 
+    ALL("ALL"),
     USER("USER"),
-    AMDIN("ADMIN");
+    ADMIN("ADMIN");
 
     private final String category;
     Category(String category) {

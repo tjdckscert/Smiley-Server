@@ -1,20 +1,23 @@
 package com.smiley.smileybackend.community.post.domain;
 
 import com.smiley.smileybackend.community.post.domain.enums.Category;
-import lombok.Getter;
-import lombok.Setter;
+import com.smiley.smileybackend.domain.User;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
-@Getter @Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(length = 255, nullable = false)
     private String title;
@@ -22,13 +25,16 @@ public class Post {
     @Column
     private String content;
 
-    @Temporal(TemporalType.TIMESTAMP)
+
+    @Column(name = "created_post", nullable = false, updatable = false)
     private Date createdPost;
 
-    @Column(name = "user_id")
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "users") // 이름 변경하기
+    private UserTest user;
 
-    @Enumerated(EnumType.STRING)
-    private Category category;
+//    @Enumerated(EnumType.STRING) // 하는 법 찾아보기
+    @Column(nullable = false)
+    private String category;
 
 }
