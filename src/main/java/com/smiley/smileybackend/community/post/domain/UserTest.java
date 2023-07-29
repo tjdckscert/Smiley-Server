@@ -1,8 +1,7 @@
 package com.smiley.smileybackend.community.post.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,8 +10,10 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UserTest {
 
     @Id
@@ -32,6 +33,7 @@ public class UserTest {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 }
