@@ -39,7 +39,7 @@ public class PostApiController {
         return postApiService.show(id);
     }
 
-    @PostMapping("/community/posts/create")
+    @PostMapping("/community/posts")
     @ApiOperation(value = "커뮤니티 글 작성", notes = "커뮤니티에 게시글을 작성한다.")
     public ResponseEntity<Post> create(@RequestBody PostDto dto) {
         log.info("들어옴");
@@ -61,14 +61,14 @@ public class PostApiController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-//    @DeleteMapping("/community/posts/{id}")
-//    public ResponseEntity<Post> delete(@PathVariable Integer id) {
-//        Post deleted = postApiService.delete(id);
-//
-//        return (deleted != null) ?
-//                ResponseEntity.status(HttpStatus.OK).body(deleted) :
-//                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-//    }
+    @DeleteMapping("/community/posts/{id}")
+    public ResponseEntity<Post> delete(@PathVariable Integer id) {
+        Post deleted = postApiService.delete(id);
+
+        return (deleted != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(deleted) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 
 
     public PostApiController(PostApiService postApiService) {

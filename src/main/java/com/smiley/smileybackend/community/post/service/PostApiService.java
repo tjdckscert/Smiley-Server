@@ -83,6 +83,17 @@ public class PostApiService {
         return updated;
     }
 
-//    public Post delete(Integer id) {
-//    }
+    public Post delete(Integer id) {
+        // 1. 삭제할 대상 게시물 찾기
+        Post target = repository.findById(id).orElse(null);
+
+        // 2. 잘못된 요청 처리
+        if (target == null)
+            return null;
+
+        // 3. DB에 저장된 게시물 삭제
+        repository.delete(target);
+
+        return target;
+    }
 }
