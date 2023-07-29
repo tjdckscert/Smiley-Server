@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -56,9 +57,32 @@ public class PostApiService {
                 null;
     }
 
-//    public Post update(Integer id, PostDto dto) {
-//    }
-//
+    /**
+     * 커뮤니티에서 특정 게시글을 수정하는 기능
+     * @param id 게시글에 할당된 고유 인덱스
+     * @param dto 수정할 게시글 객체
+     * @return 
+     */
+    public Post update(Integer id, PostDto dto) {
+        // 1. 변경할 내용의 게시물 entity 생성
+        Post post = dto.toEntity();
+        
+        // 2. 변경할 대상 게시물 찾기
+        Post target = repository.findById(id).orElse(null);
+
+        // 3. 잘못된 요청 처리
+        if(target == null || post.getUser().getId() == null) {
+            log.info("잘못된 요청 id: {}, 게시물: {}", id, post.toString());
+            return null;
+        }
+
+        // 4. 잘못된 요청이 없을 경우 게시물 업데이트
+        target.patch(post);
+        Post updated = repository.save(target);
+
+        return updated;
+    }
+
 //    public Post delete(Integer id) {
 //    }
 }

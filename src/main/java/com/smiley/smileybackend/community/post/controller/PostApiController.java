@@ -51,15 +51,16 @@ public class PostApiController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-//    @PatchMapping("/community/posts/{id}")
-//    public ResponseEntity<Post> update(@PathVariable Integer id, @RequestBody PostDto dto) {
-//        Post updated = postApiService.update(id, dto);
-//
-//        return (updated != null) ?
-//                ResponseEntity.status(HttpStatus.OK).body(updated) :
-//                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-//    }
-//
+    @PatchMapping("/community/posts/{id}")
+    @ApiOperation(value = "커뮤니티 게시물 수정", notes = "커뮤니티 특정 게시물을 수정한다.")
+    public ResponseEntity<Post> update(@PathVariable Integer id, @RequestBody PostDto dto) {
+        Post updated = postApiService.update(id, dto);
+
+        return (updated != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(updated) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
 //    @DeleteMapping("/community/posts/{id}")
 //    public ResponseEntity<Post> delete(@PathVariable Integer id) {
 //        Post deleted = postApiService.delete(id);

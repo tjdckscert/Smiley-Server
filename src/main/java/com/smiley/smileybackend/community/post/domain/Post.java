@@ -11,8 +11,10 @@ import java.util.List;
 @Entity
 @Table(name = "post")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Post {
 
     @Id
@@ -36,5 +38,12 @@ public class Post {
 //    @Enumerated(EnumType.STRING) // 하는 법 찾아보기
     @Column(nullable = false)
     private String category;
+
+    public void patch(Post updated) {
+        if (updated.title != null)
+            this.title = updated.getTitle();
+        if (updated.content != null)
+            this.content = updated.getContent();
+    }
 
 }
