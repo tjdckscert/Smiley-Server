@@ -58,7 +58,7 @@ public class PostApiService {
     }
 
     /**
-     * 커뮤니티에서 특정 게시글을 수정하는 기능
+     * 커뮤니티에서 특정 게시물을 수정하는 기능
      * @param id 게시글에 할당된 고유 인덱스
      * @param dto 수정할 게시글 객체
      * @return 
@@ -83,6 +83,11 @@ public class PostApiService {
         return updated;
     }
 
+    /**
+     * 커뮤니티에서 특정 게시물을 삭제하는 기능
+     * @param id 게시물에 해당하는 고유 인덱스
+     * @return 삭제한 게시물 객체
+     */
     public Post delete(Integer id) {
         // 1. 삭제할 대상 게시물 찾기
         Post target = repository.findById(id).orElse(null);

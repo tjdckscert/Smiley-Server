@@ -62,6 +62,7 @@ public class PostApiController {
     }
 
     @DeleteMapping("/community/posts/{id}")
+    @ApiOperation(value = "커뮤니티 게시물 삭제", notes = "커뮤니티에 게시물을 삭제한다.")
     public ResponseEntity<Post> delete(@PathVariable Integer id) {
         Post deleted = postApiService.delete(id);
 
