@@ -1,5 +1,7 @@
 package com.smiley.smileybackend.controller;
 
+import com.smiley.smileybackend.annotation.AchievementsAnnotation;
+import com.smiley.smileybackend.annotation.WearTimeAchievementsAnnotation;
 import com.smiley.smileybackend.dto.response.*;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
@@ -29,6 +31,8 @@ public class DailyWearTimeController {
     }
 
     @PostMapping("/dailyWearTimes")
+    @AchievementsAnnotation(badgeName = {"exp","time","day"})
+    @WearTimeAchievementsAnnotation
     @ApiOperation(value="착용 시간 저장" , notes = "사용자의 일일 착용 시간 정보를 저장한다.")
     public ResponseEntity<TotalExpStasticsInfoDto> todayweartime(@Valid @RequestBody DailyWearTimeDto dailyWearTimeDto){
         DailyWearTimeInfoDto dailyWearTimeInfoDto =  dailyWearTimeService.saveWearTime(dailyWearTimeDto);

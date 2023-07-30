@@ -52,10 +52,6 @@ public class TotalExpStasticsService {
         }
         totalExpStastics.setTotalExpStastics(totalExps);
         totalExpStasticsRepository.save(totalExpStastics);
-        log.info(getTire(totalExpStastics.getTotalExp()));
         return new TotalExpStasticsInfoDto(totalExpStastics);
-    }
-    public String getTire(Integer exp){
-        return tierRepositoory.findByExpStartAfterBefore(exp).toString();
     }
 }

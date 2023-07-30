@@ -16,6 +16,7 @@ public class UserSpecificDateWearTimeDto {
     private LocalDate wearDate;
 
     private Integer totalWearTime;
+    //경험치량추가하기
 
     @Builder
     public UserSpecificDateWearTimeDto(DailyWearTime saved) {
