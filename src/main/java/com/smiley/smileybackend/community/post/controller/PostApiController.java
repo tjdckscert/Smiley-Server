@@ -29,7 +29,6 @@ public class PostApiController {
     @GetMapping("/community/{category}/posts")
     @ApiOperation(value = "커뮤니티 카테고리 선택", notes = "커뮤니티 카테고리 선택에 따른 게시글을 조회한다.")
     public List<Post> categorySelectIndex(@PathVariable String category) {
-        log.info(category.toString());
         return postApiService.categorySelectIndex(category);
     }
 
@@ -42,8 +41,6 @@ public class PostApiController {
     @PostMapping("/community/posts")
     @ApiOperation(value = "커뮤니티 글 작성", notes = "커뮤니티에 게시글을 작성한다.")
     public ResponseEntity<Post> create(@RequestBody PostDto dto) {
-        log.info("들어옴");
-        log.info("dto = " + dto.toString());
         Post created = postApiService.create(dto);
 
         return (created != null) ?

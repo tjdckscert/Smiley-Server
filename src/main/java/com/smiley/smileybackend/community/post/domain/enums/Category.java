@@ -12,8 +12,8 @@ public enum Category {
     USER("USER"),
     ADMIN("ADMIN");
 
-    private final String category;
-    Category(String category) {
-        this.category = category;
+    private final String categoryType;
+    Category(String categoryType) {
+        this.categoryType = categoryType;
     }
 }

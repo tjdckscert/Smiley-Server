@@ -33,7 +33,6 @@ public class PostApiService {
      * @return 특정 카테고리에 해당하는 게시글 데이터
      */
     public List<Post> categorySelectIndex(String category) {
-        System.out.println("테스트 중");
         return repository.findByCategory(category);
     }
 
@@ -48,10 +47,8 @@ public class PostApiService {
 
 
     public Post create(PostDto dto) {
-        log.info("create 또 들어옴");
         Post post = dto.toEntity();
 
-        System.out.println("post.getUser().getId() = " + post.getUser().getId());
         return (post.getUser().getId() != null) ?
                 repository.save(post) :
                 null;
@@ -61,7 +58,7 @@ public class PostApiService {
      * 커뮤니티에서 특정 게시물을 수정하는 기능
      * @param id 게시글에 할당된 고유 인덱스
      * @param dto 수정할 게시글 객체
-     * @return 
+     * @return 잘못된 요청이 아닐 경우 업데이트 된 게시물 반환
      */
     public Post update(Integer id, PostDto dto) {
         // 1. 변경할 내용의 게시물 entity 생성
@@ -72,15 +69,14 @@ public class PostApiService {
 
         // 3. 잘못된 요청 처리
         if(target == null || post.getUser().getId() == null) {
-            log.info("잘못된 요청 id: {}, 게시물: {}", id, post.toString());
+            log.info("잘못된 요청 id: {}, 게시물: {}", id, post);
             return null;
         }
 
         // 4. 잘못된 요청이 없을 경우 게시물 업데이트
         target.patch(post);
-        Post updated = repository.save(target);
 
-        return updated;
+        return repository.save(target);
     }
 
     /**
