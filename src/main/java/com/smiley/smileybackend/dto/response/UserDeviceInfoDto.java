@@ -23,7 +23,6 @@ public class UserDeviceInfoDto {
 
     private String cordY;
 
-
     @Builder
     public UserDeviceInfoDto(Integer id, Integer userId, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
         this.id = id;
@@ -34,9 +33,6 @@ public class UserDeviceInfoDto {
         this.cordX = cordX;
         this.cordY = cordY;
     }
-
-
-
     @Builder
     public UserDeviceInfoDto(UserDevice saved) {
         this.id=saved.getId();

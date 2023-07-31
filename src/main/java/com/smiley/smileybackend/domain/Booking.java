@@ -2,16 +2,14 @@ package com.smiley.smileybackend.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
 @ToString(exclude = {"user","hospital"})
 @NoArgsConstructor
 public class Booking {
@@ -21,7 +19,7 @@ public class Booking {
     private Integer id;
 
     @Column
-    private OffsetDateTime reservDate;
+    private LocalDateTime reservDate;
 
     @Column(length = 500)
     private String memo;
@@ -40,7 +38,7 @@ public class Booking {
     private Hospital hospital;
 
     @Builder
-    public Booking(Integer id, OffsetDateTime reservDate, String memo, User user, Hospital hospital) {
+    public Booking(Integer id, LocalDateTime  reservDate, String memo, User user, Hospital hospital) {
         this.id = id;
         this.reservDate = reservDate;
         this.memo = memo;
