@@ -39,10 +39,11 @@ public class ToothBrushStatusService {
     // 1. 요청 들어온 사진 서버에 저장하기
     public void saveFile(String userId, MultipartFile imageFile) throws IOException {
 
-        log.info("들어온 사진 이름 확인: " + imageFile.getOriginalFilename());
+        log.info("input image name: " + imageFile.getOriginalFilename());
 
         // 해당 경로에 USER ID를 이름으로 이미지 저장
         String saveFileName = requestPath + userId + ".jpg";
+        log.info(saveFileName);
         imageFile.transferTo(new File(saveFileName));   // 사진 저장
 
     }
@@ -76,12 +77,13 @@ public class ToothBrushStatusService {
 
         String imagePath = requestPath + userId + ".jpg";
 
-        String command = String.format("python %s --weights %s --img 320 --conf 0.5 --project %s --source %s --name %s",
+        String command = String.format("python3 %s --weights %s --img 320 --conf 0.5 --project %s --source %s --name %s",
                 learningFile, learningModel, responsePath, imagePath, userId).replace("\\","/");
 
         log.info("실행 명령어 : "+command);
         try {
-            Process process = Runtime.getRuntime().exec("cmd /c " + command);
+            //Process process = Runtime.getRuntime().exec("cmd /c " + command);
+            Process process = Runtime.getRuntime().exec(command);
             process.getErrorStream().close();
             process.getInputStream().close();
             process.getOutputStream().close();
@@ -97,7 +99,8 @@ public class ToothBrushStatusService {
 
     // 4. 학습된 파일 가져오기
     public ToothBrushImageDto loadTrainedFile(String userId){
-        String imagePath = String.format("%s\\%s.jpg", responsePath+userId, userId);
+        //String imagePath = String.format("%s\\%s.jpg", responsePath+userId, userId);
+        String imagePath = String.format("%s/%s.jpg", responsePath+userId, userId);
 
         ToothBrushImageDto toothBrushImageDto = new ToothBrushImageDto();
 
