@@ -7,6 +7,7 @@ import com.smiley.smileybackend.dto.response.UserBookingDto;
 import com.smiley.smileybackend.dto.response.dtolist.UserBookingDtoList;
 import com.smiley.smileybackend.dto.user.BookingCancelInfoDto;
 import com.smiley.smileybackend.dto.user.BookingInfoDto;
+import com.smiley.smileybackend.dto.user.EditBookingDto;
 import com.smiley.smileybackend.dto.user.UserMemoDto;
 import com.smiley.smileybackend.exception.ErrorCode;
 import com.smiley.smileybackend.exception.ErrorException;
@@ -95,6 +96,15 @@ public class BookingService {
         );
         if (booking.getUser().getUserNumber().equals(bookingCancelInfoDto.getUserNumber())) bookingRepository.delete(booking);
         else throw new ErrorException(ErrorCode.BOOKING_INFORMATION_NOT_MATCH);
+        return UserBookingDto.entityToDto(booking);
+    }
+
+    public UserBookingDto bookingEdit(EditBookingDto editBookingDto) {
+        Booking booking = bookingRepository.findById(editBookingDto.getId()).orElseThrow(
+                ()->new ErrorException(ErrorCode.BOOKING_NOT_FOUND)
+        );
+        booking.editBooking(editBookingDto,getHospital(editBookingDto.getHPid()));
+        bookingRepository.save(booking);
         return UserBookingDto.entityToDto(booking);
     }
 

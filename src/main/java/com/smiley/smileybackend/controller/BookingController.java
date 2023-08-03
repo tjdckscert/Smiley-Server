@@ -4,6 +4,7 @@ import com.smiley.smileybackend.dto.response.UserBookingDto;
 import com.smiley.smileybackend.dto.response.dtolist.UserBookingDtoList;
 import com.smiley.smileybackend.dto.user.BookingCancelInfoDto;
 import com.smiley.smileybackend.dto.user.BookingInfoDto;
+import com.smiley.smileybackend.dto.user.EditBookingDto;
 import com.smiley.smileybackend.dto.user.UserMemoDto;
 import com.smiley.smileybackend.service.BookingService;
 import io.swagger.annotations.Api;
@@ -43,6 +44,13 @@ public class BookingController {
     @ApiOperation(value="사용자 예약" , notes = "사용자의 예약 정보를 저장한다.")
     public ResponseEntity<UserBookingDto> booking(@Valid @RequestBody BookingInfoDto bookingInfoDto){
         UserBookingDto userBookingInfoDto = bookingService.booking(bookingInfoDto);
+        return ResponseEntity.ok(userBookingInfoDto);
+    }
+
+    @PostMapping("/bookings/edit")
+    @ApiOperation(value="사용자 예약 수정" , notes = "사용자의 예약 정보를 수정한다.")
+    public ResponseEntity<UserBookingDto> bookingEdit(@Valid @RequestBody EditBookingDto editBookingDto){
+        UserBookingDto userBookingInfoDto = bookingService.bookingEdit(editBookingDto);
         return ResponseEntity.ok(userBookingInfoDto);
     }
 
