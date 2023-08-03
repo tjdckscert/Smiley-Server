@@ -39,7 +39,7 @@ public class UserMedicalInfo implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_usermedicalinfo_user"))
+    @JoinColumn(name = "user_number", foreignKey = @ForeignKey(name = "fk_usermedicalinfo_user"))
     @JsonIgnore
     private User user;
 

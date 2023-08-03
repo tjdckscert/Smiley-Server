@@ -35,7 +35,7 @@ public class UserDevice {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_userdevice_user"))
+    @JoinColumn(name = "user_number", foreignKey = @ForeignKey(name = "fk_userdevice_user"))
     private User user;
 
     @Builder

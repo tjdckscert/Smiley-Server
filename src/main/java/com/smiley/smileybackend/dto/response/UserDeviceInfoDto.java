@@ -11,7 +11,7 @@ public class UserDeviceInfoDto {
 
     private Integer id;
 
-    private Integer userId;
+    private String userNumber;
 
     private String deviceName;
 
@@ -24,9 +24,9 @@ public class UserDeviceInfoDto {
     private String cordY;
 
     @Builder
-    public UserDeviceInfoDto(Integer id, Integer userId, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
+    public UserDeviceInfoDto(Integer id, String userNumber, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
         this.id = id;
-        this.userId = userId;
+        this.userNumber = userNumber;
         this.deviceName = deviceName;
         this.deviceType = deviceType;
         this.deviceUuid = deviceUuid;
@@ -36,7 +36,7 @@ public class UserDeviceInfoDto {
     @Builder
     public UserDeviceInfoDto(UserDevice saved) {
         this.id=saved.getId();
-        this.userId= saved.getUser().getId();
+        this.userNumber= saved.getUser().getUserNumber();
         this.deviceName = saved.getDeviceName();
         this.deviceType= saved.getDeviceType();
         this.deviceUuid= saved.getDeviceUuid();

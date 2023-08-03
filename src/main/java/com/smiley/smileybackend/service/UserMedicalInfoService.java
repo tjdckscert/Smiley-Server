@@ -37,7 +37,7 @@ public class UserMedicalInfoService {
      * @return : 저장된 사용자 의료 정보
      */
     public UserMedicalInfoDto savemedicalinfo(MedicalInfoDto medicalInfoDto) {
-        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(medicalInfoDto.toEntity(getUser(medicalInfoDto.getUserId()), getHospital(medicalInfoDto.getHospitalhPid())));
+        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(medicalInfoDto.toEntity(getUser(medicalInfoDto.getUserNumber()), getHospital(medicalInfoDto.getHospitalhPid())));
         return new UserMedicalInfoDto(userMedicalInfo);
     }
 
@@ -50,8 +50,8 @@ public class UserMedicalInfoService {
      * @return : 사용자 정보
      * @throws : 사용자 Index가 존재 하진 않는 경우 USER_NOT_FOUND
      */
-    public User getUser(Integer id){
-        return userRepository.findById(id).orElseThrow(
+    public User getUser(String userNumber){
+        return userRepository.findById(userNumber).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
     }

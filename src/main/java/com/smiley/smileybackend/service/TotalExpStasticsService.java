@@ -38,12 +38,12 @@ public class TotalExpStasticsService {
      * @throws : 사용자 Index가 존재 하지 않으면 HOSPITAL_NOT_FOUND
      */
     public TotalExpStasticsInfoDto saveTotalExp(DailyWearTimeDto dailyWearTimeDto) {
-        User user = userRepository.findById(dailyWearTimeDto.getUserId()).orElseThrow(
+        User user = userRepository.findById(dailyWearTimeDto.getUserNumber()).orElseThrow(
                 ()-> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
         List<ExpJsonDto> totalExps = new ArrayList<>();
         totalExps.add(new ExpJsonDto("일일 착용 경험치",dailyWearTimeDto.getTotalWearTime()*10));
-        TotalExpStastics totalExpStastics= totalExpStasticsRepository.findById(dailyWearTimeDto.getUserId()).orElse(
+        TotalExpStastics totalExpStastics= totalExpStasticsRepository.findById(dailyWearTimeDto.getTotalWearTime()).orElse(
                 new TotalExpStastics(null,dailyWearTimeDto.getTotalWearTime()*10,null, "BRONZE",user)
         );
         if (totalExpStastics.getTotalExpStastics() != null) {
@@ -52,7 +52,6 @@ public class TotalExpStasticsService {
         }
         totalExpStastics.setTotalExpStastics(totalExps);
         totalExpStasticsRepository.save(totalExpStastics);
-        log.info(getTire(totalExpStastics.getTotalExp()));
         return new TotalExpStasticsInfoDto(totalExpStastics);
     }
     public String getTire(Integer exp){

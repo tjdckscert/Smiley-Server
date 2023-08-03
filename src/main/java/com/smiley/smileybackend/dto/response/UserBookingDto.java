@@ -17,7 +17,7 @@ public class UserBookingDto {
 
     private String memo;
 
-    private String userId;
+    private String userNumber;
 
     private String hPid;
 
@@ -34,11 +34,11 @@ public class UserBookingDto {
     private String wgs84Lat;
 
     @Builder
-    public UserBookingDto(Integer id, LocalDateTime reserveDate, String memo, String userId, String hPid, String dutyAddr, String dutyName, String dutyTel, String wgs84Lon, String wgs84Lat) {
+    public UserBookingDto(Integer id, LocalDateTime reserveDate, String memo, String userNumber, String hPid, String dutyAddr, String dutyName, String dutyTel, String wgs84Lon, String wgs84Lat) {
         this.id = id;
         this.reserveDate = reserveDate;
         this.memo = memo;
-        this.userId = userId;
+        this.userNumber = userNumber;
         this.hPid = hPid;
         this.dutyAddr = dutyAddr;
         this.dutyName = dutyName;
@@ -52,7 +52,7 @@ public class UserBookingDto {
                 booking.getId(),
                 booking.getReservDate(),
                 booking.getMemo(),
-                booking.getUser().getId().toString(),
+                booking.getUser().getUserNumber(),
                 booking.getHospital().getHPid(),
                 booking.getHospital().getDutyAddr(),
                 booking.getHospital().getDutyName(),

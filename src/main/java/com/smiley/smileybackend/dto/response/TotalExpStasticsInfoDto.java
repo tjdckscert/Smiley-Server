@@ -14,7 +14,7 @@ public class TotalExpStasticsInfoDto {
 
     private Integer id;
 
-    private Integer userId;
+    private String userNumber;
 
     private Integer totalExp;
 
@@ -23,9 +23,9 @@ public class TotalExpStasticsInfoDto {
     private String userTier;
 
     @Builder
-    public TotalExpStasticsInfoDto(Integer id, Integer userId, Integer totalExp, List<ExpJsonDto> totalExpStastics, String userTier) {
+    public TotalExpStasticsInfoDto(Integer id, String userNumber, Integer totalExp, List<ExpJsonDto> totalExpStastics, String userTier) {
         this.id = id;
-        this.userId = userId;
+        this.userNumber = userNumber;
         this.totalExp = totalExp;
         this.totalExpStastics = totalExpStastics;
         this.userTier = userTier;
@@ -33,7 +33,7 @@ public class TotalExpStasticsInfoDto {
 
     public TotalExpStasticsInfoDto(TotalExpStastics saved) {
         this.id= saved.getId();
-        this.userId=saved.getUser().getId();
+        this.userNumber=saved.getUser().getUserNumber();
         this.totalExp=saved.getTotalExp();
         this.totalExpStastics=saved.getTotalExpStastics();
         this.userTier=saved.getUserTier();

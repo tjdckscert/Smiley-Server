@@ -35,7 +35,7 @@ public class UserDeviceService {
      * @throws : 사용자 Index가 존재 하지 않으면 HOSPITAL_NOT_FOUND
      */
     public UserDeviceInfoDto adddevice(UserDeviceDto userDeviceDto) {
-        User user = userRepository.findById(userDeviceDto.getUserId())
+        User user = userRepository.findById(userDeviceDto.getUserNumber())
                 .orElseThrow(() -> new ErrorException(ErrorCode.USER_NOT_FOUND));
         UserDevice userDevice;
         try {

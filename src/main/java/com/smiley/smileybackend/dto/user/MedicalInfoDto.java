@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,9 +19,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MedicalInfoDto {
-    @NotNull
-    @ApiModelProperty(value = "사용자 ID(user의 index번호). 공백 X")
-    private Integer userId;
+
+    @NotBlank(message = "회원번호를 확인할 수 없습니다.")
+    @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
+    private String userNumber;
 
     @NotNull(message = "교정여부를 입력해주세요")
     @ApiModelProperty(value = "사용자 교정 여부(0 or 1). 공백 X")

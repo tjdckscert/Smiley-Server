@@ -15,8 +15,6 @@ import java.util.List;
 @Slf4j
 @NoArgsConstructor
 public class UserInfoDto {
-    @ApiModelProperty( example = "인덱스/Integer")
-    private Integer id;
 
     @ApiModelProperty( example = "이메일")
     private String userNumber;
@@ -35,8 +33,7 @@ public class UserInfoDto {
 
 
     @Builder
-    public UserInfoDto(Integer id, String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserMedicalInfo> userMedicalInfos) {
-        this.id = id;
+    public UserInfoDto(String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserMedicalInfo> userMedicalInfos) {
         this.userNumber = userNumber;
         this.phoneToken = phoneToken;
         this.name = name;
@@ -45,7 +42,6 @@ public class UserInfoDto {
     }
 
     public UserInfoDto(User user) {
-        this.id = user.getId();
         this.userNumber = user.getUserNumber();
         this.phoneToken = user.getPhoneToken();
         this.name = user.getName();

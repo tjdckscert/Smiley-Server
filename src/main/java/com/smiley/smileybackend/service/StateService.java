@@ -20,7 +20,7 @@ public class StateService {
 
     public UserSpecificDateWearTimeDto getAnyDayWearTime(SpecificDateWearTimeDto specificDateWearTimeDto) {
         DailyWearTime dailyWearTime = dailyWearTimeRepository.
-                findByUserIdAndWearDate(specificDateWearTimeDto.getUserId(), specificDateWearTimeDto.getWearDate());
+                findByUserUserNumberAndWearDate(specificDateWearTimeDto.getUserNumber(), specificDateWearTimeDto.getWearDate());
         return new UserSpecificDateWearTimeDto(dailyWearTime);
     }
 
