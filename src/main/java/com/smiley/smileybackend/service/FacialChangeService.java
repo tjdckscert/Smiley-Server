@@ -101,19 +101,26 @@ public class FacialChangeService {
         return facialChangeImageDto;
     }
 
-    public boolean deleteTrainedFile(String userId, String date){
+    public boolean deleteTrainedFile(String userId, String date) {
         //파일 경로 지정
-        String imagePath = String.format("%s/%s.jpg", responsePath+userId, date);
-
+        String imagePath = String.format("%s/%s.jpg", responsePath + userId, date);
+        boolean status = false;
         //현재 게시판에 존재하는 파일객체를 만듬
         File file = new File(imagePath);
 
-        if(file.exists()) { // 파일이 존재하면
-            file.delete(); // 파일 삭제
-            return true;
+
+        if (file.exists()) {
+            if (file.delete()) {
+                log.info("파일삭제 성공");
+                status = true;
+
+            } else {
+                log.info("파일삭제 실패");
+            }
+        } else {
+            log.info("파일이 존재하지 않습니다.");
         }
-        else
-            return false;
+        return status;
     }
 
 }
