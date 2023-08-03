@@ -58,7 +58,6 @@ public class FacialChangeService {
 
         log.info("실행 명령어 : "+command);
         try {
-            //Process process = Runtime.getRuntime().exec("cmd /c " + command);
             Process process = Runtime.getRuntime().exec(command);
             process.getErrorStream().close();
             process.getInputStream().close();
@@ -76,7 +75,6 @@ public class FacialChangeService {
     // 3. 학습된 파일 가져오기
     public FacialChangeImageDto getTrainedFile(String userId, String date){
 
-        //String imagePath = String.format("%s\\%s.jpg", responsePath+userId, userId);
         String imagePath = String.format("%s/%s.jpg", responsePath+userId, date);
 
 
