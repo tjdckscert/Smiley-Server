@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -19,9 +20,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class DailyWearTimeDto {
 
-    @NotNull
-    @ApiModelProperty(value = "사용자 ID(user의 index번호). 공백 X")
-    private Integer userId;
+    @NotBlank(message = "회원번호를 확인할 수 없습니다.")
+    @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
+    private String userNumber;
 
     @NotNull
     @ApiModelProperty(value = "착용날짜 / 입력 양식은 'yyyy-mm-dd")

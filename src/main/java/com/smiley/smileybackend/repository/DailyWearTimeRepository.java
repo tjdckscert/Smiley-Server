@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface DailyWearTimeRepository extends JpaRepository<DailyWearTime,Integer> {
-    List<DailyWearTime> findByUserIdOrderByIdDesc(Integer id, Pageable pageable);
+    List<DailyWearTime> findByUserUserNumberOrderByIdDesc(String userNumber, Pageable pageable);
 
-    DailyWearTime findByUserIdAndWearDate(Integer id, LocalDate wearDate);
+    DailyWearTime findByUserUserNumberAndWearDate(String userNumber, LocalDate wearDate);
 }

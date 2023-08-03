@@ -33,7 +33,7 @@ public class DailyExpStastics {
     private List<ExpJsonDto> expStastics;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_dailyexpstastics_user"))
+    @JoinColumn(name = "user_number", foreignKey = @ForeignKey(name = "fk_dailyexpstastics_user"))
     private User user;
 
 

@@ -37,12 +37,12 @@ public class DailyExpStasticsService {
      * @return : 저장한 정보 반환
      */
     public DailyExpStasticsInfoDto saveExp(DailyWearTimeDto dailyWearTimeDto) {
-        User user  = userRepository.findById(dailyWearTimeDto.getUserId()).orElseThrow(
+        User user  = userRepository.findById(dailyWearTimeDto.getUserNumber()).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
         List<ExpJsonDto> dailyExp = new ArrayList<>();
         dailyExp.add(new ExpJsonDto("일일 착용 경험치",dailyWearTimeDto.getTotalWearTime()*10));
-        DailyExpStastics dailyExpStastics = dailyExpStasticsRepository.findByUser_IdAndDate(dailyWearTimeDto.getUserId(),dailyWearTimeDto.getWearDate()).orElse(
+        DailyExpStastics dailyExpStastics = dailyExpStasticsRepository.findByUserUserNumberAndDate(dailyWearTimeDto.getUserNumber(),dailyWearTimeDto.getWearDate()).orElse(
                 dailyWearTimeDto.toDailyExpEntity(user)
         );
         if (dailyExpStastics.getExpStastics() != null) {

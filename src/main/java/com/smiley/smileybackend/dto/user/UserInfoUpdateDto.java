@@ -17,9 +17,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 public class UserInfoUpdateDto {
-    
-    @ApiModelProperty(value = "업데이트시 사용자 Id(index) 확인용으로 사용.")
-    private Integer id;
 
     @NotBlank(message = "회원번호를 확인할 수 없습니다.")
     @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
@@ -52,8 +49,7 @@ public class UserInfoUpdateDto {
     private LocalDate birthDate;
 
     @Builder
-    public UserInfoUpdateDto(Integer id, String userNumber, String phoneToken, String name, Integer calibrationStatus, LocalDate startDate, String hPId, List<SurveyJsonDto> surveyResult, LocalDate birthDate) {
-        this.id = id;
+    public UserInfoUpdateDto(String userNumber, String phoneToken, String name, Integer calibrationStatus, LocalDate startDate, String hPId, List<SurveyJsonDto> surveyResult, LocalDate birthDate) {
         this.userNumber = userNumber;
         this.phoneToken = phoneToken;
         this.name = name;

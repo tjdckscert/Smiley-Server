@@ -5,12 +5,9 @@ import com.smiley.smileybackend.domain.Booking;
 import com.smiley.smileybackend.domain.Hospital;
 import com.smiley.smileybackend.domain.User;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,9 +16,9 @@ import java.time.LocalDateTime;
 @ToString
 public class BookingInfoDto {
 
-    @NotNull
-    @ApiModelProperty(value = "사용자 ID(user의 index번호). 공백 X")
-    private Integer userId;
+    @NotBlank(message = "회원번호를 확인할 수 없습니다.")
+    @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
+    private String userNumber;
 
     @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
     @ApiModelProperty(value = "예약 날짜 및 시간, 공백 X")
@@ -33,8 +30,9 @@ public class BookingInfoDto {
     @ApiModelProperty(value = "예약한 병원 hPid, 공백 X")
     private String hPid;
 
-    public BookingInfoDto(Integer userId, LocalDateTime reservDate, String memo, String hPid) {
-        this.userId = userId;
+    @Builder
+    public BookingInfoDto(String userNumber, LocalDateTime reservDate, String memo, String hPid) {
+        this.userNumber = userNumber;
         this.reservDate = reservDate;
         this.memo = memo;
         this.hPid = hPid;
