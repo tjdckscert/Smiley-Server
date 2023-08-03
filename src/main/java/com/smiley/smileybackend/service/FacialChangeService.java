@@ -54,9 +54,6 @@ public class FacialChangeService {
     public void runPython(String userId){
 
         log.info("주걱턱 - 파이썬 실행");
-
-        String imagePath = requestPath + userId + ".jpg";
-
         String command = String.format("python3 %s %s", learningFile, userId);
 
         log.info("실행 명령어 : "+command);
