@@ -31,17 +31,6 @@ public class ToothbrushStatusController {
           return ResponseEntity.ok(toothBrushImageDto);
       }
 
-/*
-    {
-
-        toothBrushService.uploadFile(userId, file);
-        byte[] data = toothBrushService.readFile();
-        log.info("칫솔 - 사진응답완료");
-
-
-
-        return data;
-*/
 
 
 }
