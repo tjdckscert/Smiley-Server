@@ -7,13 +7,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ToothBrushImageDto {
-
+public class ToothBrushImageDto{
     @ApiModelProperty( example = "이미지파일")
     private byte[] image;
 
-    public ToothBrushImageDto(){
-        this.image= new byte[0];
-    }
 
 }

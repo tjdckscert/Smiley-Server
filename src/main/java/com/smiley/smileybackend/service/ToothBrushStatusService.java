@@ -15,7 +15,7 @@ import java.io.*;
 @Transactional
 @Slf4j
 @PropertySource("classpath:application-path.properties")
-public class ToothBrushStatusService {
+public class ToothBrushStatusService extends RunPythonService{
 
     @Value("${property.toothbrush.image.request-path}")
     private String requestPath;
@@ -26,26 +26,15 @@ public class ToothBrushStatusService {
     @Value("${property.toothbrush.python.learning-file}")
     private String learningFile;
 
-    // 5. 1~4까지 실행
+
+
     public ToothBrushImageDto toothBrushStatusCheck(String userId, MultipartFile imageFile) throws IOException {
 
-        saveFile(userId, imageFile);
+        saveFile(userId, imageFile, requestPath);
         deleteOriginalFile(userId);
         runPython(userId);
 
-        return loadTrainedFile(userId);
-    }
-
-    // 1. 요청 들어온 사진 서버에 저장하기
-    public void saveFile(String userId, MultipartFile imageFile) throws IOException {
-
-        log.info("input image name: " + imageFile.getOriginalFilename());
-
-        // 해당 경로에 USER ID를 이름으로 이미지 저장
-        String saveFileName = requestPath + userId + ".jpg";
-        log.info(saveFileName);
-        imageFile.transferTo(new File(saveFileName));   // 사진 저장
-
+        return getTrainedFile(userId);
     }
 
     // 2. 기존에 저장되어 있는 파일 삭제 ( 폴더가 아이디 이름으로 되어 있음 ) -> YOLO가 동일 이름으로 들어오면 이름을 바꿔버림
@@ -74,31 +63,15 @@ public class ToothBrushStatusService {
     public void runPython(String userId){
 
         log.info("칫솔 - 파이썬 실행");
-
         String imagePath = requestPath + userId + ".jpg";
-
         String command = String.format("python3 %s --weights %s --img 320 --conf 0.5 --project %s --source %s --name %s",
                 learningFile, learningModel, responsePath, imagePath, userId).replace("\\","/");
 
-        log.info("실행 명령어 : "+command);
-        try {
-            //Process process = Runtime.getRuntime().exec("cmd /c " + command);
-            Process process = Runtime.getRuntime().exec(command);
-            process.getErrorStream().close();
-            process.getInputStream().close();
-            process.getOutputStream().close();
-            process.waitFor();
-        } catch (InterruptedException e) {
-            log.info("InterruptedException",e);
-            Thread.currentThread().interrupt();
-            
-        } catch (Exception e) {
-            log.info("Exception",e);
-        }
+        run(command);
     }
 
     // 4. 학습된 파일 가져오기
-    public ToothBrushImageDto loadTrainedFile(String userId){
+    public ToothBrushImageDto getTrainedFile(String userId){
         //String imagePath = String.format("%s\\%s.jpg", responsePath+userId, userId);
         String imagePath = String.format("%s/%s.jpg", responsePath+userId, userId);
 
