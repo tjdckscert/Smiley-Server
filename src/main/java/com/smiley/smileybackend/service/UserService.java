@@ -61,13 +61,19 @@ public class UserService {
         return new UserInfoDto(newUser);
     }
 
-    public UserInfoDto signUptest(@Valid UserLoginDto userLoginDto) {
-        Optional<User> user = userRepository.findByUserNumber(userLoginDto.getUserNumber());
-        if (user.isEmpty()){
-            userRepository.save(userLoginDto.toEntity());
-            return new UserInfoDto();
-        }
-        return new UserInfoDto(user.get());
+    /**
+     * 회원탈퇴
+     *
+     * @author : 김성찬
+     * @param : 사용자의 회원 정보를 삭제한다.
+     * @return : 삭제 완료 여부
+     */
+    public UserInfoDto withdrawal(String userNumber) {
+        User user = userRepository.findById(userNumber).orElseThrow(
+                ()-> new ErrorException(ErrorCode.USER_NOT_FOUND)
+        );
+        userRepository.delete(user);
+        return new UserInfoDto(user);
     }
 
     /**
@@ -123,5 +129,4 @@ public class UserService {
                 () -> new ErrorException(ErrorCode.HOSPITAL_NOT_FOUND)
         );
     }
-
 }
