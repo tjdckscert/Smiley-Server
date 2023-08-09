@@ -1,8 +1,6 @@
 package com.smiley.smileybackend.community.post.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smiley.smileybackend.community.post.domain.Post;
-import com.smiley.smileybackend.community.post.domain.UserTest;
 import com.smiley.smileybackend.community.post.domain.enums.Category;
 import com.smiley.smileybackend.domain.User;
 import lombok.*;
@@ -25,6 +23,8 @@ public class PostDto {
     private Category category;
 
     public Post toEntity() {
+        log.info("toEntity user = {}", user);
+        log.info("toEntity user.getUserNumber() = {}", user.getUserNumber());
         return new Post(id, title, content, createdPost, user, category);
     }
 

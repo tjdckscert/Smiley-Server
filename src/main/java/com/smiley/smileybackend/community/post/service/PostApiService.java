@@ -49,7 +49,10 @@ public class PostApiService {
     public Post create(PostDto dto) {
         Post post = dto.toEntity();
 
-        return (post.getUser().getUserNumber().isBlank()) ?
+        log.info("post.getUser() = {}", post.getUser());
+        log.info("post.getUser().getUserNumber() = {}", post.getUser().getUserNumber());
+
+        return !(post.getUser().getUserNumber().isBlank()) ?
                 repository.save(post) :
                 null;
     }
