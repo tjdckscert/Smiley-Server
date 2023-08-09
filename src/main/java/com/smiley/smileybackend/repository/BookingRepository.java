@@ -12,9 +12,9 @@ import java.util.List;
 public interface BookingRepository extends JpaRepository<Booking,Integer> {
 
 
-    @Query("select b from Booking b where b.reservDate < CURRENT_DATE and User_ID = :userid")
-    List<Booking> findPastBooking (@Param(value = "userid") Integer userID);
+    @Query("select b from Booking b where b.reservDate < CURRENT_DATE and User_User_Number = :userNumber")
+    List<Booking> findPastBooking (@Param(value = "userNumber") String  userNumber);
 
-    @Query("select b from Booking b where b.reservDate > CURRENT_DATE and User_ID = :userid")
-    Booking findPresentBooking (@Param(value = "userid") Integer userID);
+    @Query("select b from Booking b where b.reservDate > CURRENT_DATE and User_User_Number = :userNumber")
+    Booking findPresentBooking (@Param(value = "userNumber") String  userNumber);
 }

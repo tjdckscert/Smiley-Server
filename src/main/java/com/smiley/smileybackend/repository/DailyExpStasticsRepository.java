@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface DailyExpStasticsRepository extends JpaRepository<DailyExpStastics,Integer> {
 
-    Optional<DailyExpStastics> findByUser_IdAndDate(Integer user_id, LocalDate date);
+    Optional<DailyExpStastics> findByUserUserNumberAndDate(String user_number, LocalDate date);
 }

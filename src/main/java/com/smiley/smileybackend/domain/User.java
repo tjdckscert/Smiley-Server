@@ -17,10 +17,6 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(length = 50,unique = true)
     private String userNumber;
 
     @Column(nullable = false, length = 200)
@@ -51,7 +47,7 @@ public class User {
     @ManyToMany()
     @JoinTable(
             name = "user_badge",
-            joinColumns = @JoinColumn(name = "user_id"),
+            joinColumns = @JoinColumn(name = "user_number"),
             inverseJoinColumns = @JoinColumn(name = "badge_id")
     )
     private List<Badge> userBadges;
@@ -70,8 +66,7 @@ public class User {
     private List<Post> posts;
 
     @Builder
-    public User(Integer id, String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
-        this.id = id;
+    public User(String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
         this.userNumber = userNumber;
         this.phoneToken = phoneToken;
         this.name = name;

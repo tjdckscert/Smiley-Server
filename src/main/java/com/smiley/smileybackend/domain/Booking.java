@@ -2,6 +2,7 @@ package com.smiley.smileybackend.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.smiley.smileybackend.dto.user.EditBookingDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Booking {
     private String memo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_booking_user"))
+    @JoinColumn(name = "user_user_number", foreignKey = @ForeignKey(name = "fk_booking_user"))
     @JsonIgnore
     private User user;
 
@@ -44,5 +45,11 @@ public class Booking {
         this.memo = memo;
         this.user = user;
         this.hospital = hospital;
+    }
+
+    public void editBooking(EditBookingDto editBookingDto, Hospital hospital) {
+        this.reservDate = editBookingDto.getReservDate();
+        this.memo = editBookingDto.getMemo();
+        this.hospital=hospital;
     }
 }

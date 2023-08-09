@@ -7,6 +7,7 @@ import com.smiley.smileybackend.dto.response.UserBookingDto;
 import com.smiley.smileybackend.dto.response.dtolist.UserBookingDtoList;
 import com.smiley.smileybackend.dto.user.BookingCancelInfoDto;
 import com.smiley.smileybackend.dto.user.BookingInfoDto;
+import com.smiley.smileybackend.dto.user.EditBookingDto;
 import com.smiley.smileybackend.dto.user.UserMemoDto;
 import com.smiley.smileybackend.exception.ErrorCode;
 import com.smiley.smileybackend.exception.ErrorException;
@@ -41,8 +42,8 @@ public class BookingService {
      * @param : 사용자 Index번호
      * @return : 예약 정보
      */    
-    public UserBookingDtoList getPastBookings(Integer id){
-        return new UserBookingDtoList(bookingRepository.findPastBooking(id)
+    public UserBookingDtoList getPastBookings(String userNumber){
+        return new UserBookingDtoList(bookingRepository.findPastBooking(userNumber)
                 .stream()
                 .map(UserBookingDto::entityToDto)
                 .collect(Collectors.toList())) ;
@@ -55,10 +56,10 @@ public class BookingService {
      * @param : 사용자 Index번호
      * @return : 예약 정보
      */
-    public UserBookingDto getPresentBookings(Integer id) {
-        Booking booking = bookingRepository.findPresentBooking(id);
+    public UserBookingDto getPresentBookings(String userNumber) {
+        Booking booking = bookingRepository.findPresentBooking(userNumber);
         log.info(booking.toString());
-        return UserBookingDto.entityToDto(bookingRepository.findPresentBooking(id));
+        return UserBookingDto.entityToDto(bookingRepository.findPresentBooking(userNumber));
     }
 
     /**
@@ -69,7 +70,7 @@ public class BookingService {
      * @return : 예약 정보
      */
     public UserBookingDto booking(BookingInfoDto bookingInfoDto) {
-        Booking booking = bookingRepository.save(bookingInfoDto.toEntity(getUser(bookingInfoDto.getUserId()),getHospital(bookingInfoDto.getHPid())));
+        Booking booking = bookingRepository.save(bookingInfoDto.toEntity(getUser(bookingInfoDto.getUserNumber()),getHospital(bookingInfoDto.getHPid())));
         return UserBookingDto.entityToDto(booking);
     }
 
@@ -93,13 +94,22 @@ public class BookingService {
         Booking booking = bookingRepository.findById(bookingCancelInfoDto.getId()).orElseThrow(
                 () -> new ErrorException(ErrorCode.BOOKING_NOT_FOUND)
         );
-        if (booking.getUser().getId().equals(bookingCancelInfoDto.getUserId())) bookingRepository.delete(booking);
+        if (booking.getUser().getUserNumber().equals(bookingCancelInfoDto.getUserNumber())) bookingRepository.delete(booking);
         else throw new ErrorException(ErrorCode.BOOKING_INFORMATION_NOT_MATCH);
         return UserBookingDto.entityToDto(booking);
     }
 
-    public User getUser(Integer id){
-        return userRepository.findById(id).orElseThrow(
+    public UserBookingDto bookingEdit(EditBookingDto editBookingDto) {
+        Booking booking = bookingRepository.findById(editBookingDto.getId()).orElseThrow(
+                ()->new ErrorException(ErrorCode.BOOKING_NOT_FOUND)
+        );
+        booking.editBooking(editBookingDto,getHospital(editBookingDto.getHPid()));
+        bookingRepository.save(booking);
+        return UserBookingDto.entityToDto(booking);
+    }
+
+    public User getUser(String userNumber){
+        return userRepository.findById(userNumber).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
     }

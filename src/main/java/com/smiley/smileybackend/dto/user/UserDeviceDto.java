@@ -13,8 +13,9 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class UserDeviceDto{
 
-        @ApiModelProperty(value = "사용자 id(index)")
-        private Integer userId;
+        @NotBlank(message = "회원번호를 확인할 수 없습니다.")
+        @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
+        private String userNumber;
         @NotBlank(message = "장치이름은 빈 칸일 수 없습니다.")
         @ApiModelProperty(value = "장치 이름")
         private String deviceName;
@@ -33,8 +34,8 @@ public class UserDeviceDto{
         private String cordY;
 
         @Builder
-        public UserDeviceDto(Integer userId, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
-                this.userId = userId;
+        public UserDeviceDto(String userNumber, String deviceName, String deviceType, String deviceUuid, String cordX, String cordY) {
+                this.userNumber = userNumber;
                 this.deviceName = deviceName;
                 this.deviceType = deviceType;
                 this.deviceUuid = deviceUuid;

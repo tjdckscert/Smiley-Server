@@ -34,7 +34,7 @@ public class DailyWearTimeService {
      * @return :
      */
     public DailyWearTimeInfoDto saveWearTime(DailyWearTimeDto dailyWearTimeDto) {
-        User user  = userRepository.findById(dailyWearTimeDto.getUserId()).orElseThrow(
+        User user  = userRepository.findById(dailyWearTimeDto.getUserNumber()).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
         DailyWearTime dailyWearTime = dailyWearTimeRepository.save(dailyWearTimeDto.toEntity(user));
@@ -50,7 +50,7 @@ public class DailyWearTimeService {
      */
     public LastSevenDaysWearTimeDtoList getLastSevenDayWearTime(Integer id) {
         Pageable pageable = PageRequest.of(0,7);
-        return new LastSevenDaysWearTimeDtoList(dailyWearTimeRepository.findByUserIdOrderByIdDesc(id, pageable)
+        return new LastSevenDaysWearTimeDtoList(dailyWearTimeRepository.findByUserUserNumberOrderByIdDesc("7", pageable)
                 .stream()
                 .map(LastSevenDaysWearTimeDto::entityToDto)
                 .collect(Collectors.toList()));

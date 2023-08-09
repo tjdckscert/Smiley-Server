@@ -2,19 +2,20 @@ package com.smiley.smileybackend.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smiley.smileybackend.domain.Booking;
-import com.smiley.smileybackend.domain.Hospital;
-import com.smiley.smileybackend.domain.User;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @NoArgsConstructor
-@ToString
-public class BookingInfoDto {
+public class EditBookingDto {
+
+    @ApiModelProperty(value = "예약번호. 공백 X")
+    private Integer id;
 
     @NotBlank(message = "회원번호를 확인할 수 없습니다.")
     @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
@@ -31,17 +32,12 @@ public class BookingInfoDto {
     private String hPid;
 
     @Builder
-    public BookingInfoDto(String userNumber, LocalDateTime reservDate, String memo, String hPid) {
+    public EditBookingDto(Integer id, String userNumber, LocalDateTime reservDate, String memo, String hPid) {
+        this.id = id;
         this.userNumber = userNumber;
         this.reservDate = reservDate;
         this.memo = memo;
         this.hPid = hPid;
     }
 
-    public Booking toEntity(User user, Hospital hospital){
-        return Booking.builder()
-                .reservDate(reservDate)
-                .user(user)
-                .hospital(hospital).build();
-    }
 }

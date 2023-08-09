@@ -34,11 +34,19 @@ public class UserController {
         UserInfoDto userInfo = userService.login(userNumber);
         return ResponseEntity.ok(userInfo);
     }
+
     @PostMapping("/users/signup")
     @ApiOperation(value="회원가입" , notes = "사용자는 회원가입한다.")
     public ResponseEntity<UserInfoDto> signup(@Valid @RequestBody UserLoginDto userLoginDto) {
         UserInfoDto userInfo = userService.signUp(userLoginDto);
         return ResponseEntity.ok(userInfo);
+    }
+
+    @PostMapping("/users/withdrawal/{userNumber}")
+    @ApiOperation(value="회원탈퇴" , notes = "사용자의 회원 정보를 삭제한다.")
+    public ResponseEntity<UserInfoDto> withdrawal(@PathVariable String userNumber) {
+        UserInfoDto userInfoDto = userService.withdrawal(userNumber);
+        return ResponseEntity.ok(userInfoDto);
     }
 
     @PostMapping("/users/medicalInfo")

@@ -61,13 +61,19 @@ public class UserService {
         return new UserInfoDto(newUser);
     }
 
-    public UserInfoDto signUptest(@Valid UserLoginDto userLoginDto) {
-        Optional<User> user = userRepository.findByUserNumber(userLoginDto.getUserNumber());
-        if (user.isEmpty()){
-            userRepository.save(userLoginDto.toEntity());
-            return new UserInfoDto();
-        }
-        return new UserInfoDto(user.get());
+    /**
+     * 회원탈퇴
+     *
+     * @author : 김성찬
+     * @param : 사용자의 회원 정보를 삭제한다.
+     * @return : 삭제 완료 여부
+     */
+    public UserInfoDto withdrawal(String userNumber) {
+        User user = userRepository.findById(userNumber).orElseThrow(
+                ()-> new ErrorException(ErrorCode.USER_NOT_FOUND)
+        );
+        userRepository.delete(user);
+        return new UserInfoDto(user);
     }
 
     /**
@@ -82,17 +88,17 @@ public class UserService {
         //존재하지 않는 사용자인경우 추가
         if (user.isEmpty()){
             user = Optional.of(userRepository.save(userInfoUpdateDto.toUserEntity()));
-            userInfoUpdateDto.setId(user.get().getId());
+            userInfoUpdateDto.setUserNumber(user.get().getUserNumber());
         }
         else{
         //존재하는 사용자인경우 업데이트
-            userInfoUpdateDto.setId(user.get().getId());
+            userInfoUpdateDto.setUserNumber(user.get().getUserNumber());
             User user1 = userInfoUpdateDto.toUserEntity();
-            user1.setId(user.get().getId());
+            user1.setUserNumber(user.get().getUserNumber());
             userRepository.save(user1);
         }
         //의료정보는 어차피 여러개 저장할 수 있으니까 그냥 저장
-        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(userInfoUpdateDto.toUserMedicalInfoEntity(getUser(userInfoUpdateDto.getId()), getHospital(userInfoUpdateDto.getHPId())));
+        UserMedicalInfo userMedicalInfo = userMedicalInfoRepository.save(userInfoUpdateDto.toUserMedicalInfoEntity(getUser(userInfoUpdateDto.getUserNumber()), getHospital(userInfoUpdateDto.getHPId())));
         return new UserInfoAndMedicalInfoDto(userInfoUpdateDto);
     }
 
@@ -104,8 +110,8 @@ public class UserService {
      * @return : 사용자 정보
      * @throws : 사용자 Index가 존재 하지 않으면 HOSPITAL_NOT_FOUND
      */
-    public User getUser(Integer id){
-        return userRepository.findById(id).orElseThrow(
+    public User getUser(String userNumber){
+        return userRepository.findById(userNumber).orElseThrow(
                 () -> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
     }
@@ -123,5 +129,4 @@ public class UserService {
                 () -> new ErrorException(ErrorCode.HOSPITAL_NOT_FOUND)
         );
     }
-
 }

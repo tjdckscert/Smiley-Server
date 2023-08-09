@@ -13,8 +13,8 @@ import java.util.List;
 @Setter
 public class UserInfoAndMedicalInfoDto {
 
-    @ApiModelProperty( example = "인덱스/Integer")
-    private Integer id;
+    @ApiModelProperty( example = "사용자 ID")
+    private String userNumber;
 
     @ApiModelProperty( example = "이메일")
     private String email;
@@ -39,7 +39,7 @@ public class UserInfoAndMedicalInfoDto {
 
     @Builder
     public UserInfoAndMedicalInfoDto(UserInfoUpdateDto saved) {
-        this.id = saved.getId();
+        this.userNumber = saved.getUserNumber();
         this.email = saved.getUserNumber();
         this.phoneToken = saved.getPhoneToken();
         this.name = saved.getName();

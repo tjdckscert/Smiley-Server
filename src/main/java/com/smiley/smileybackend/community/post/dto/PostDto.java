@@ -25,9 +25,6 @@ public class PostDto {
     private Category category;
 
     public Post toEntity() {
-        log.info("toEntity 들어옴");
-        log.info("user.getId() = " + user.getId());
-        log.info("후");
         return new Post(id, title, content, createdPost, user, category);
     }
 

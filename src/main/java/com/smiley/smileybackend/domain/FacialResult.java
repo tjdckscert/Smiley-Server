@@ -22,7 +22,7 @@ public class FacialResult {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_facialresult_user"))
+    @JoinColumn(name = "user_user_number", foreignKey = @ForeignKey(name = "fk_facialresult_user"))
     private User user;
 
     @Column

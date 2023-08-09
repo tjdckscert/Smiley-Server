@@ -1,9 +1,11 @@
 package com.smiley.smileybackend.domain;
 
 
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +13,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @NoArgsConstructor
+@TypeDef(name = "json", typeClass = JsonType.class)
 public class DailyWearTime {
 
     @Id
@@ -24,7 +27,7 @@ public class DailyWearTime {
     private Integer totalWearTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_dailyweartime_user"))
+    @JoinColumn(name = "user_number", foreignKey = @ForeignKey(name = "fk_dailyweartime_user"))
     private User user;
 
     @Builder
