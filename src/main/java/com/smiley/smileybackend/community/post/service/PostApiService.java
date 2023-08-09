@@ -49,7 +49,10 @@ public class PostApiService {
     public Post create(PostDto dto) {
         Post post = dto.toEntity();
 
-        return (post.getUser().getId() != null) ?
+        log.info("post.getUser() = {}", post.getUser());
+        log.info("post.getUser().getUserNumber() = {}", post.getUser().getUserNumber());
+
+        return !(post.getUser().getUserNumber().isBlank()) ?
                 repository.save(post) :
                 null;
     }
@@ -68,7 +71,7 @@ public class PostApiService {
         Post target = repository.findById(id).orElse(null);
 
         // 3. 잘못된 요청 처리
-        if(target == null || post.getUser().getId() == null) {
+        if(target == null || post.getUser().getUserNumber().isBlank()) {
             log.info("잘못된 요청 id: {}, 게시물: {}", id, post);
             return null;
         }

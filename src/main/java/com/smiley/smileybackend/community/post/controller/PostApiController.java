@@ -41,6 +41,7 @@ public class PostApiController {
     @PostMapping("/community/posts")
     @ApiOperation(value = "커뮤니티 글 작성", notes = "커뮤니티에 게시글을 작성한다.")
     public ResponseEntity<Post> create(@RequestBody PostDto dto) {
+        log.info("dto.getUser() = {}", dto.getUser());
         Post created = postApiService.create(dto);
 
         return (created != null) ?

@@ -1,6 +1,8 @@
 package com.smiley.smileybackend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.smiley.smileybackend.community.post.domain.Post;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "user")
 @Getter
 @Setter
 @ToString
@@ -16,15 +18,16 @@ import java.util.List;
 public class User {
 
     @Id
+    @Column(name = "user_number")
     private String userNumber;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, length = 200, name = "phone_token")
     private String phoneToken;
 
     @Column(length = 45)
     private String name;
 
-    @Column
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user")
@@ -60,8 +63,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<TotalExpStastics> userTotalExpStasticss;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
     @Builder
-    public User(String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {
+    public User(String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss, List<Post> posts) {
         this.userNumber = userNumber;
         this.phoneToken = phoneToken;
         this.name = name;
@@ -75,5 +82,6 @@ public class User {
         this.userFacialResults = userFacialResults;
         this.userUserMedicalInfos = userUserMedicalInfos;
         this.userTotalExpStasticss = userTotalExpStasticss;
+        this.posts = posts;
     }
 }
