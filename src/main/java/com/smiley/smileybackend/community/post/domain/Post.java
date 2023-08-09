@@ -32,12 +32,12 @@ public class Post {
     private Date createdPost;
 
     @ManyToOne
-    @JoinColumn(name = "users") // 이름 변경하기
-    private UserTest user;
+    @JoinColumn(name = "user")
+    private User user;
 
-//    @Enumerated(EnumType.STRING) // 하는 법 찾아보기
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String category;
+    private Category category;
 
     public void patch(Post updated) {
         if (updated.title != null)

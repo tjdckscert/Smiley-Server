@@ -1,6 +1,7 @@
 package com.smiley.smileybackend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.smiley.smileybackend.community.post.domain.Post;
 import lombok.*;
 
 import javax.persistence.*;
@@ -63,6 +64,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<TotalExpStastics> userTotalExpStasticss;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
     @Builder
     public User(Integer id, String userNumber, String phoneToken, String name, LocalDate birthDate, List<UserDevice> userUserDevices, List<DailyWearTime> userDailyWearTimes, List<Booking> userBookings, List<DailyExpStastics> userDailyExpStasticss, List<Checklist> userChecklists, List<Badge> userBadges, List<FacialResult> userFacialResults, List<UserMedicalInfo> userUserMedicalInfos, List<TotalExpStastics> userTotalExpStasticss) {

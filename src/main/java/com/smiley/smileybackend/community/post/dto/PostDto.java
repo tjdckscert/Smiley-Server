@@ -21,8 +21,8 @@ public class PostDto {
     private String content;
     private Date createdPost;
 
-    private UserTest user;
-    private String category;
+    private User user;
+    private Category category;
 
     public Post toEntity() {
         log.info("toEntity 들어옴");
