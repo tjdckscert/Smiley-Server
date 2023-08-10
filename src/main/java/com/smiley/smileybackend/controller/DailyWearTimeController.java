@@ -3,11 +3,13 @@ package com.smiley.smileybackend.controller;
 import com.smiley.smileybackend.dto.response.*;
 import com.smiley.smileybackend.dto.response.dtolist.LastSevenDaysWearTimeDtoList;
 import com.smiley.smileybackend.dto.user.DailyWearTimeDto;
+import com.smiley.smileybackend.exception.ErrorCode;
 import com.smiley.smileybackend.service.DailyExpStasticsService;
 import com.smiley.smileybackend.service.DailyWearTimeService;
 import com.smiley.smileybackend.service.TotalExpStasticsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,7 @@ public class DailyWearTimeController {
 
     @PostMapping("/dailyWearTimes")
     @ApiOperation(value="착용 시간 저장" , notes = "사용자의 일일 착용 시간 정보를 저장한다.")
+    @ApiResponse(response = ErrorCode.class, message = "사용자 번호를 찾을 수 없습니다.", code = 423)
     public ResponseEntity<TotalExpStasticsInfoDto> todayweartime(@Valid @RequestBody DailyWearTimeDto dailyWearTimeDto){
         DailyWearTimeInfoDto dailyWearTimeInfoDto =  dailyWearTimeService.saveWearTime(dailyWearTimeDto);
         //경험치 저장 service 호출

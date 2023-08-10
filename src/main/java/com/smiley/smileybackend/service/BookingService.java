@@ -7,7 +7,7 @@ import com.smiley.smileybackend.dto.response.UserBookingDto;
 import com.smiley.smileybackend.dto.response.dtolist.UserBookingDtoList;
 import com.smiley.smileybackend.dto.user.BookingCancelInfoDto;
 import com.smiley.smileybackend.dto.user.BookingInfoDto;
-import com.smiley.smileybackend.dto.user.EditBookingDto;
+import com.smiley.smileybackend.dto.user.PatchBookingDto;
 import com.smiley.smileybackend.dto.user.UserMemoDto;
 import com.smiley.smileybackend.exception.ErrorCode;
 import com.smiley.smileybackend.exception.ErrorException;
@@ -81,7 +81,7 @@ public class BookingService {
      * @param : 사용자 메모
      * @return : 메모 정보
      */
-    public UserBookingDto editMemo(UserMemoDto userMemoDto) {
+    public UserBookingDto patchMemo(UserMemoDto userMemoDto) {
         Booking booking = bookingRepository.findById(userMemoDto.getId()).orElseThrow(
                 () -> new ErrorException(ErrorCode.BOOKING_NOT_FOUND)
         );
@@ -99,11 +99,11 @@ public class BookingService {
         return UserBookingDto.entityToDto(booking);
     }
 
-    public UserBookingDto bookingEdit(EditBookingDto editBookingDto) {
-        Booking booking = bookingRepository.findById(editBookingDto.getId()).orElseThrow(
+    public UserBookingDto bookingPatch(PatchBookingDto patchBookingDto) {
+        Booking booking = bookingRepository.findById(patchBookingDto.getId()).orElseThrow(
                 ()->new ErrorException(ErrorCode.BOOKING_NOT_FOUND)
         );
-        booking.editBooking(editBookingDto,getHospital(editBookingDto.getHPid()));
+        booking.patchBooking(patchBookingDto,getHospital(patchBookingDto.getHPid()));
         bookingRepository.save(booking);
         return UserBookingDto.entityToDto(booking);
     }

@@ -1,7 +1,6 @@
 package com.smiley.smileybackend.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.smiley.smileybackend.domain.Booking;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class EditBookingDto {
+public class PatchBookingDto {
 
     @ApiModelProperty(value = "예약번호. 공백 X")
     private Integer id;
@@ -32,7 +31,7 @@ public class EditBookingDto {
     private String hPid;
 
     @Builder
-    public EditBookingDto(Integer id, String userNumber, LocalDateTime reservDate, String memo, String hPid) {
+    public PatchBookingDto(Integer id, String userNumber, LocalDateTime reservDate, String memo, String hPid) {
         this.id = id;
         this.userNumber = userNumber;
         this.reservDate = reservDate;

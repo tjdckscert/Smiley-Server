@@ -4,11 +4,13 @@ import com.smiley.smileybackend.dto.response.UserBookingDto;
 import com.smiley.smileybackend.dto.response.dtolist.UserBookingDtoList;
 import com.smiley.smileybackend.dto.user.BookingCancelInfoDto;
 import com.smiley.smileybackend.dto.user.BookingInfoDto;
-import com.smiley.smileybackend.dto.user.EditBookingDto;
+import com.smiley.smileybackend.dto.user.PatchBookingDto;
 import com.smiley.smileybackend.dto.user.UserMemoDto;
+import com.smiley.smileybackend.exception.ErrorCode;
 import com.smiley.smileybackend.service.BookingService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,20 +44,23 @@ public class BookingController {
 
     @PostMapping("/booking")
     @ApiOperation(value="사용자 예약" , notes = "사용자의 예약 정보를 저장한다.")
+    @ApiResponse(response = ErrorCode.class, message = "1. 병원 ID를 확인할 수 없습니다. \n 2. 사용자 번호를 확인할 수 없습니다.", code = 423)
     public ResponseEntity<UserBookingDto> booking(@Valid @RequestBody BookingInfoDto bookingInfoDto){
         UserBookingDto userBookingInfoDto = bookingService.booking(bookingInfoDto);
         return ResponseEntity.ok(userBookingInfoDto);
     }
 
-    @PostMapping("/bookings/edit")
+    @PostMapping("/bookings/patch")
     @ApiOperation(value="사용자 예약 수정" , notes = "사용자의 예약 정보를 수정한다.")
-    public ResponseEntity<UserBookingDto> bookingEdit(@Valid @RequestBody EditBookingDto editBookingDto){
-        UserBookingDto userBookingInfoDto = bookingService.bookingEdit(editBookingDto);
+    @ApiResponse(response = ErrorCode.class, message = "예약정보를 찾을 수 없습니다.", code = 423)
+    public ResponseEntity<UserBookingDto> patchBooking(@Valid @RequestBody PatchBookingDto patchBookingDto){
+        UserBookingDto userBookingInfoDto = bookingService.bookingPatch(patchBookingDto);
         return ResponseEntity.ok(userBookingInfoDto);
     }
 
     @PostMapping("/bookings/cancel")
     @ApiOperation(value="사용자 예약 취소" , notes = "사용자의 예약을 취소한다.")
+    @ApiResponse(message = "1.예약정보를 찾을 수 없습니다.\t\n 2.예약정보가 일치하지 않습니다.", code = 403)
     public ResponseEntity<UserBookingDto> cancelBooking(@Valid@RequestBody BookingCancelInfoDto bookingCancelInfoDto){
         UserBookingDto userBookingInfoDto = bookingService.cancelBooking(bookingCancelInfoDto);
         return ResponseEntity.ok(userBookingInfoDto);
@@ -63,9 +68,10 @@ public class BookingController {
 
     @PostMapping("/bookings/memo")
     @ApiOperation(value="메모 수정/저장" , notes = "사용자의 예약에 대한 메모를 수정/저장한다.")
-    public ResponseEntity<UserBookingDto> editMeno(@Valid @RequestBody UserMemoDto userMemoDto){
+    @ApiResponse(response = ErrorCode.class, message = "예약정보를 찾을 수 없습니다.", code = 423)
+    public ResponseEntity<UserBookingDto> patchMeno(@Valid @RequestBody UserMemoDto userMemoDto){
         log.info(userMemoDto.toString());
-        UserBookingDto userBookingInfoDto = bookingService.editMemo(userMemoDto);
+        UserBookingDto userBookingInfoDto = bookingService.patchMemo(userMemoDto);
         return ResponseEntity.ok(userBookingInfoDto);
     }
 }
