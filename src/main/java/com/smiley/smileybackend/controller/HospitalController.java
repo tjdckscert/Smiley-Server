@@ -8,6 +8,7 @@ import com.smiley.smileybackend.dto.user.UserGeocodingDto;
 import com.smiley.smileybackend.service.HospitalService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ public class HospitalController {
 
         @GetMapping("/hospitals/{hPid}")
         @ApiOperation(value="단일 병원 정보" , notes = "단일 병원 정보를 반환한다")
+        @ApiResponse(message = "병원 정보를 찾을 수 없습니다",code=400)
         public ResponseEntity<HospitalInfoDto> hospital(@PathVariable String hPid){
             HospitalInfoDto hospitalInfoDto = hospitalService.findHospital(hPid);
             return ResponseEntity.ok(hospitalInfoDto);
