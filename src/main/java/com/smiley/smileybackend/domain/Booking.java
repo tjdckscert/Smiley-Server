@@ -2,7 +2,7 @@ package com.smiley.smileybackend.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.smiley.smileybackend.dto.user.EditBookingDto;
+import com.smiley.smileybackend.dto.user.PatchBookingDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,9 +47,9 @@ public class Booking {
         this.hospital = hospital;
     }
 
-    public void editBooking(EditBookingDto editBookingDto, Hospital hospital) {
-        this.reservDate = editBookingDto.getReservDate();
-        this.memo = editBookingDto.getMemo();
+    public void patchBooking(PatchBookingDto patchBookingDto, Hospital hospital) {
+        this.reservDate = patchBookingDto.getReservDate();
+        this.memo = patchBookingDto.getMemo();
         this.hospital=hospital;
     }
 }
