@@ -17,6 +17,7 @@ import com.smiley.smileybackend.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -70,9 +71,12 @@ public class BookingService {
      * @return : 예약 정보
      */
     public UserBookingDto booking(BookingInfoDto bookingInfoDto) {
-        Booking booking = bookingRepository.save(bookingInfoDto.toEntity(getUser(bookingInfoDto.getUserNumber()),getHospital(bookingInfoDto.getHPid())));
+        Booking booking = bookingRepository.save(bookingInfoDto.toEntity(getUser(bookingInfoDto.getUserNumber()),
+                                                                         getHospital(bookingInfoDto.getHPid()),
+                                                                         bookingNumber()));
         return UserBookingDto.entityToDto(booking);
     }
+
 
     /**
      * 사용자의 예약에 대한 메모를 저장한다.
@@ -120,5 +124,11 @@ public class BookingService {
         );
     }
 
+    public String bookingNumber() {
+        String uuid = UUID.randomUUID().toString().replace("-","");
+        if (uuid.hashCode()<0) uuid = "S"+Math.abs(uuid.hashCode());
+        else uuid = "M"+Math.abs(uuid.hashCode());
+        return uuid;
+    }
 
 }

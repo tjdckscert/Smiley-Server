@@ -33,8 +33,10 @@ public class UserBookingDto {
     /*병원위도*/
     private String wgs84Lat;
 
+    private String bookingNumber;
+
     @Builder
-    public UserBookingDto(Integer id, LocalDateTime reserveDate, String memo, String userNumber, String hPid, String dutyAddr, String dutyName, String dutyTel, String wgs84Lon, String wgs84Lat) {
+    public UserBookingDto(Integer id, LocalDateTime reserveDate, String memo, String userNumber, String hPid, String dutyAddr, String dutyName, String dutyTel, String wgs84Lon, String wgs84Lat, String bookingNumber) {
         this.id = id;
         this.reserveDate = reserveDate;
         this.memo = memo;
@@ -45,6 +47,7 @@ public class UserBookingDto {
         this.dutyTel = dutyTel;
         this.wgs84Lon = wgs84Lon;
         this.wgs84Lat = wgs84Lat;
+        this.bookingNumber=bookingNumber;
     }
 
     public static UserBookingDto entityToDto(Booking booking){
@@ -58,7 +61,8 @@ public class UserBookingDto {
                 booking.getHospital().getDutyName(),
                 booking.getHospital().getDutyTel1(),
                 booking.getHospital().getWgs84Lon(),
-                booking.getHospital().getWgs84Lat()
+                booking.getHospital().getWgs84Lat(),
+                booking.getBookingNumber()
         );
     }
 }

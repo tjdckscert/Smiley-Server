@@ -9,6 +9,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -38,8 +39,9 @@ public class BookingInfoDto {
         this.hPid = hPid;
     }
 
-    public Booking toEntity(User user, Hospital hospital){
+    public Booking toEntity(User user, Hospital hospital,String bookingNumber){
         return Booking.builder()
+                .bookingNumber(bookingNumber)
                 .reservDate(reservDate)
                 .user(user)
                 .hospital(hospital).build();
