@@ -1,6 +1,6 @@
-package com.smiley.smileybackend.dto.response;
+package com.smiley.smileybackend.drug.dto;
 
-import com.smiley.smileybackend.domain.Drug;
+import com.smiley.smileybackend.drug.domain.Drug;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;

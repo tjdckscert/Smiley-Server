@@ -1,5 +1,6 @@
-package com.smiley.smileybackend.domain;
+package com.smiley.smileybackend.drug.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -17,21 +18,31 @@ public class ContraindicatedDrug {
     private Integer id;
 
     /**
-     * 제품명_영문
+     * 성분명_한글
      */
     @Column
     private String itemNameKor;
 
     /**
-     * 제품명_영문
+     * 성분명_영문
      */
     @Column
     private String itemNameEng;
 
     /**
-     * 주성문_한글
+     * 설명
      */
     @Column(columnDefinition = "TEXT")
     private String itemDescription;
+
+
+    @Builder
+    public ContraindicatedDrug(String itemNameKor, String itemNameEng, String itemDescription) {
+        this.itemNameKor = itemNameKor;
+        this.itemNameEng = itemNameEng;
+        this.itemDescription = itemDescription;
+
+
+    }
 
 }

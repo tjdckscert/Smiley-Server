@@ -1,8 +1,11 @@
-package com.smiley.smileybackend.controller;
+package com.smiley.smileybackend.drug.controller;
 
-import com.smiley.smileybackend.dto.response.DrugInfoDto;
-import com.smiley.smileybackend.dto.response.dtolist.DrugInfoDtoList;
-import com.smiley.smileybackend.service.DrugService;
+
+import com.smiley.smileybackend.drug.domain.ContraindicatedDrug;
+import com.smiley.smileybackend.drug.dto.ContraindicatedDrugDto;
+import com.smiley.smileybackend.drug.dto.DrugInfoDto;
+import com.smiley.smileybackend.drug.dto.DrugInfoDtoList;
+import com.smiley.smileybackend.drug.service.DrugService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,5 +54,26 @@ public class DrugController {
 
 
 
+    @PostMapping("/contraindicatedDrug")
+    @ApiOperation(value="금지성분 추가" , notes = "Id ")
+    public void addContraindicatedDrug(@RequestBody ContraindicatedDrugDto subtance) {
+        drugService.addContraindicatedDrug(subtance);
+    }
+
+    @GetMapping("/contraindicatedDrug/{itemName}")
+    @ApiOperation(value="금지성분 상세 정보 가져오기" , notes = "Id ")
+    public ResponseEntity<ContraindicatedDrugDto> getContraindicatedDrug(@PathVariable String itemName) {
+
+        ContraindicatedDrugDto drug = drugService.getContraindicatedDrug(itemName);
+        return ResponseEntity.ok(drug);
+    }
+
+    @GetMapping("/contraindicatedDrug2")
+    @ApiOperation(value="금지성분 이름만 가져오기" , notes = "Id ")
+    public ResponseEntity<List<String>> getContraindicatedDrug2() {
+
+        List<String> drugList = drugService.getContraindicatedDrug2();
+        return  ResponseEntity.ok(drugList);
+    }
 }
 

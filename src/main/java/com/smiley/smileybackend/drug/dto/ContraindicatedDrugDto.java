@@ -1,6 +1,7 @@
 package com.smiley.smileybackend.drug.dto;
 
-import com.smiley.smileybackend.drug.domain.Drug;
+import com.smiley.smileybackend.domain.User;
+import com.smiley.smileybackend.drug.domain.ContraindicatedDrug;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,60 +11,51 @@ import lombok.ToString;
 @ToString
 @Getter
 @NoArgsConstructor
-public class DrugInfoDto {
+public class ContraindicatedDrugDto {
 
-    @ApiModelProperty( example = "품목기준코드")
-    private String itemCode;
-
-    @ApiModelProperty( example = "제품명_한글")
+    @ApiModelProperty( example = "성분명_한글")
     private String itemNameKor;
 
-    @ApiModelProperty( example = "제품명_영문")
+    @ApiModelProperty( example = "성분명_영문")
     private String itemNameEng;
 
-    @ApiModelProperty( example = "주성분_한글")
-    private String itemSubstanceKor;
-
-    @ApiModelProperty( example = "주성분_영문")
-    private String itemSubstanceEng;
-
-    @ApiModelProperty( example = "전문성")
-    private String professionalism;
-
-    @ApiModelProperty( example = "복용_가능_여부")
-    private boolean isSafeForConsumption;
+    @ApiModelProperty( example = "설명")
+    private String itemDescription;
 
     @Builder
-    public static DrugInfoDto entityToDto(Drug drug){
-        return new DrugInfoDto(
-                drug.getItemCode(),
-                drug.getItemNameKor(),
-                drug.getItemNameEng(),
-                drug.getItemSubstanceKor(),
-                drug.getItemSubstanceEng(),
-                drug.getProfessionalism(),
-                drug.isSafeForConsumption()
+    public static ContraindicatedDrugDto entityToDto(ContraindicatedDrug contraindicatedDrug){
+        return new ContraindicatedDrugDto(
+
+                contraindicatedDrug.getItemNameKor(),
+                contraindicatedDrug.getItemNameEng(),
+                contraindicatedDrug.getItemDescription()
         );
     }
     @Builder
-    public DrugInfoDto(Drug saved) {
-        this.itemCode = saved.getItemCode();
+    public ContraindicatedDrugDto(ContraindicatedDrug saved) {
+
         this.itemNameKor =saved.getItemNameKor();
         this.itemNameEng =saved.getItemNameEng();
-        this.itemSubstanceKor = saved.getItemSubstanceKor();
-        this.itemSubstanceEng = saved.getItemSubstanceEng();
-        this.professionalism = saved.getProfessionalism();
-        this.isSafeForConsumption = saved.isSafeForConsumption();
+        this.itemDescription = saved.getItemDescription();
+
     }
 
     @Builder
-    public DrugInfoDto(String itemCode, String itemNameKor, String itemNameEng, String itemSubstanceKor, String itemSubstanceEng, String professionalism, boolean isSafeForConsumption) {
-        this.itemCode = this.itemCode;
+    public ContraindicatedDrugDto(String itemNameKor, String itemNameEng, String itemSubstanceKor) {
         this.itemNameKor = this.itemNameKor;
         this.itemNameEng = this.itemNameEng;
-        this.itemSubstanceKor = this.itemSubstanceKor;
-        this.itemSubstanceEng = this.itemSubstanceEng;
-        this.professionalism = this.professionalism;
-        this.isSafeForConsumption = this.isSafeForConsumption;
+        this.itemDescription = this.itemDescription;
+
     }
+
+
+    public ContraindicatedDrug toEntity() {
+        return ContraindicatedDrug.builder()
+                .itemNameKor(itemNameKor)
+                .itemNameEng(itemNameEng)
+                .itemDescription(itemDescription)
+                .build();
+    }
+
+
 }

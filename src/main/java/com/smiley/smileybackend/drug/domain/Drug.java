@@ -1,4 +1,4 @@
-package com.smiley.smileybackend.domain;
+package com.smiley.smileybackend.drug.domain;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.smiley.smileybackend.repository;
+package com.smiley.smileybackend.drug.repository;
 
-import com.smiley.smileybackend.domain.Drug;
+import com.smiley.smileybackend.drug.domain.Drug;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

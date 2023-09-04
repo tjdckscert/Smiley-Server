@@ -1,4 +1,4 @@
-package com.smiley.smileybackend.dto.response.dtolist;
+package com.smiley.smileybackend.drug.dto;
 
 
 import com.smiley.smileybackend.drug.dto.DrugInfoDto;
