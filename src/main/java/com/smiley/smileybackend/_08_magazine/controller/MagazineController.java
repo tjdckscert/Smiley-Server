@@ -29,7 +29,7 @@ public class MagazineController {
     }
 
     @GetMapping("/magazines/")
-    @ApiOperation(value="선택수량 매거진" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
+    @ApiOperation(value="선택수량 매거진(필요?)" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
     public ResponseEntity<MagazineInfoDtoList> numberOfMagazines(@RequestParam("number") Integer number){
         MagazineInfoDtoList magazines = magazineService.getListOfNumber(number);
         return ResponseEntity.ok(magazines);
