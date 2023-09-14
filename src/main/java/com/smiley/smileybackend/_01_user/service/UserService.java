@@ -72,7 +72,9 @@ public class UserService {
         User user = userRepository.findById(userNumber).orElseThrow(
                 ()-> new ErrorException(ErrorCode.USER_NOT_FOUND)
         );
+
         userRepository.delete(user);
+
         return new UserInfoDto(user);
     }
 

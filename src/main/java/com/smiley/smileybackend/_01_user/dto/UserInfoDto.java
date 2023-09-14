@@ -3,15 +3,14 @@ package com.smiley.smileybackend._01_user.dto;
 import com.smiley.smileybackend._01_user.domain.User;
 import com.smiley.smileybackend._01_user.domain.UserMedicalInfo;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Slf4j
 @NoArgsConstructor
 public class UserInfoDto {

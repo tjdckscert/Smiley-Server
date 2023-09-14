@@ -103,7 +103,8 @@ public class BookingService {
         Booking booking = bookingRepository.findById(patchBookingDto.getId()).orElseThrow(
                 ()->new ErrorException(ErrorCode.BOOKING_NOT_FOUND)
         );
-        booking.patchBooking(patchBookingDto,getHospital(patchBookingDto.getHPid()));
+
+        booking.patchBooking(patchBookingDto,booking.getHospital());
         bookingRepository.save(booking);
         return UserBookingDto.entityToDto(booking);
     }

@@ -47,11 +47,13 @@ public class UserController {
         return ResponseEntity.ok(userInfo);
     }
 
-    @PostMapping("/users/withdrawal/{userNumber}")
+    @DeleteMapping("/users/withdrawal/{userNumber}")
     @ApiOperation(value="회원탈퇴" , notes = "사용자 번호를 회원 정보를 삭제한다.")
     @ApiResponse(response = ErrorCode.class, message = "사용자 번호를 확인할 수 없습니다.", code = 423)
     public ResponseEntity<UserInfoDto> withdrawal(@PathVariable String userNumber) {
         UserInfoDto userInfoDto = userService.withdrawal(userNumber);
+        log.info(userInfoDto.getUserNumber());
+        //영속성 오류 나서 고쳐야함
         return ResponseEntity.ok(userInfoDto);
     }
 
