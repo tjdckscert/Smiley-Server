@@ -28,12 +28,6 @@ public class MagazineController {
 
     }
 
-    @GetMapping("/magazines/")
-    @ApiOperation(value="선택수량 매거진(필요?)" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
-    public ResponseEntity<MagazineInfoDtoList> numberOfMagazines(@RequestParam("number") Integer number){
-        MagazineInfoDtoList magazines = magazineService.getListOfNumber(number);
-        return ResponseEntity.ok(magazines);
-    }
 
     @GetMapping("/magazines/{number}")
     @ApiOperation(value="선택한 메저긴 정보 불러오기" , notes = "선택한 메거진의 정보를 불러와서 반환한다. 사진은 서버에 저장된 사진을 반환.")
@@ -48,7 +42,7 @@ public class MagazineController {
 
 
     @GetMapping("/magazines/recent")
-    @ApiOperation(value="최근 메저긴 정보 불러오기" , notes = "가장 최근의 메거진의 정보를 불러와서 반환한다. 사진은 서버에 저장된 사진을 반환.")
+    @ApiOperation(value="최근 메거진 정보 1개 불러오기" , notes = "가장 최근의 메거진의 정보를 불러와서 반환한다. 사진은 서버에 저장된 사진을 반환.")
     @ApiResponses(value = {
             @ApiResponse(response = ErrorCode.class, message = "사진을 불러올 수 없습니다.", code = 500),
             @ApiResponse(response = ErrorCode.class, message = "등록되지 않은 메거진 번호입니다.", code = 423)
@@ -58,5 +52,11 @@ public class MagazineController {
         return ResponseEntity.ok(magazineDetailDto);
     }
 
+    @GetMapping("/magazines/recent/")
+    @ApiOperation(value="선택 수량의 가장 최근 매거진 불러오기" , notes = "선택한 수량만큼의 매거진 정보를 반환한다.")
+    public ResponseEntity<MagazineInfoDtoList> numberOfMagazines(@RequestParam("number") Integer number){
+        MagazineInfoDtoList magazines = magazineService.getListOfNumber(number);
+        return ResponseEntity.ok(magazines);
+    }
 
 }

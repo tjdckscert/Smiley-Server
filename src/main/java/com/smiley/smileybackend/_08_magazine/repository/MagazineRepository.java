@@ -14,4 +14,5 @@ public interface MagazineRepository extends JpaRepository<Magazine,Integer> {
 
     Magazine findTopByOrderByIdDesc();
 
+
 }

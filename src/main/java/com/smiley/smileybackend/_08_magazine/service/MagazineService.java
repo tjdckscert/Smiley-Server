@@ -37,23 +37,7 @@ public class MagazineService {
                 .map(MagazineInfoDto::entityToDto)
                 .collect(Collectors.toList()));
     }
-
-    /**
-     * 선택한 수량(number)만큼의 매거진 정보를 가져온다
-     *
-     * @author : 김성찬
-     * @param : 매거진 수량
-     * @return : 선택 수량 만큼의 매거진
-     */
-    public MagazineInfoDtoList getListOfNumber(Integer number) {
-        Pageable pageable = PageRequest.of(0,number);
-        Page<Magazine> magazinePage = magazineRepository.findAllByOrderByIdDesc(pageable);
-        return new MagazineInfoDtoList(magazineRepository.findAllByOrderByIdDesc(pageable)
-                .stream()
-                .map(MagazineInfoDto::entityToDto)
-                .collect(Collectors.toList()));
-    }
-
+    
     /**
      * 선택한 매거진(index)의 정보를 가져온다 
      *
@@ -96,6 +80,18 @@ public class MagazineService {
             throw new ErrorException(ErrorCode.PICTURE_NOT_FOUND);
         }
         return new MagazineDetailDto(magazine,img);
+    }
+
+    /**
+     * 선택한 수량(number)만큼의 가장 최근 매거진 정보를 가져온다
+     */
+    public MagazineInfoDtoList getListOfNumber(Integer number) {
+        Pageable pageable = PageRequest.of(0,number);
+        Page<Magazine> magazinePage = magazineRepository.findAllByOrderByIdDesc(pageable);
+        return new MagazineInfoDtoList(magazineRepository.findAllByOrderByIdDesc(pageable)
+                .stream()
+                .map(MagazineInfoDto::entityToDto)
+                .collect(Collectors.toList()));
     }
 
 }
