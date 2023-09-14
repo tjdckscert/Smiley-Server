@@ -46,4 +46,17 @@ public class MagazineController {
         return ResponseEntity.ok(magazineDetailDto);
     }
 
+
+    @GetMapping("/magazines/recent")
+    @ApiOperation(value="최근 메저긴 정보 불러오기" , notes = "가장 최근의 메거진의 정보를 불러와서 반환한다. 사진은 서버에 저장된 사진을 반환.")
+    @ApiResponses(value = {
+            @ApiResponse(response = ErrorCode.class, message = "사진을 불러올 수 없습니다.", code = 500),
+            @ApiResponse(response = ErrorCode.class, message = "등록되지 않은 메거진 번호입니다.", code = 423)
+    })
+    public ResponseEntity<MagazineDetailDto> recentMagazineInfo() {
+        MagazineDetailDto magazineDetailDto =magazineService.getRecentMagazineDetail();
+        return ResponseEntity.ok(magazineDetailDto);
+    }
+
+
 }
