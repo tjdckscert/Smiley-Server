@@ -1,18 +1,13 @@
 package com.smiley.smileybackend._11_youtube.controller;
 
-import com.smiley.smileybackend._00_common.exception.ErrorCode;
-import com.smiley.smileybackend._08_magazine.dto.MagazineDetailDto;
-import com.smiley.smileybackend._08_magazine.dto.MagazineInfoDtoList;
-import com.smiley.smileybackend._08_magazine.service.MagazineService;
+
 import com.smiley.smileybackend._11_youtube.dto.YoutubeInfoDtoList;
 import com.smiley.smileybackend._11_youtube.service.YoutubeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 

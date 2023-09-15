@@ -1,13 +1,7 @@
 package com.smiley.smileybackend._11_youtube.service;
 
 
-import com.smiley.smileybackend._00_common.exception.ErrorCode;
-import com.smiley.smileybackend._00_common.exception.ErrorException;
-import com.smiley.smileybackend._08_magazine.domain.Magazine;
-import com.smiley.smileybackend._08_magazine.dto.MagazineDetailDto;
-import com.smiley.smileybackend._08_magazine.dto.MagazineInfoDto;
-import com.smiley.smileybackend._08_magazine.dto.MagazineInfoDtoList;
-import com.smiley.smileybackend._08_magazine.repository.MagazineRepository;
+
 import com.smiley.smileybackend._11_youtube.domain.Youtube;
 import com.smiley.smileybackend._11_youtube.dto.YoutubeInfoDto;
 import com.smiley.smileybackend._11_youtube.dto.YoutubeInfoDtoList;
