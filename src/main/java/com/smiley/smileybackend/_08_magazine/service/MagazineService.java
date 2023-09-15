@@ -37,7 +37,7 @@ public class MagazineService {
                 .map(MagazineInfoDto::entityToDto)
                 .collect(Collectors.toList()));
     }
-    
+
     /**
      * 선택한 매거진(index)의 정보를 가져온다 
      *
