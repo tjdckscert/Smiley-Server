@@ -62,25 +62,7 @@ public class MagazineService {
         }
         return new MagazineInfoDto(magazine,img);
     }
-
-    /**
-     * 최근 매거진(index)의 정보를 가져온다 ( id값이 가장 큰 것이 최근 매거진)
-     */
-    public MagazineInfoDto getRecentMagazineDetail() {
-        Magazine magazine = magazineRepository.findTopByOrderByIdDesc();
-        byte[] img;
-        try {
-            InputStream inputStream = new FileInputStream(magazine.getThumbnail());
-            long fileSize = new File(magazine.getThumbnail()).length();
-            img = new byte[(int) fileSize];
-            while (inputStream.read(img) > 0) ;
-            inputStream.close();
-        } catch (IOException e) {
-            throw new ErrorException(ErrorCode.PICTURE_NOT_FOUND);
-        }
-        return new MagazineInfoDto(magazine,img);
-    }
-
+    
     /**
      * 선택한 수량(number)만큼의 가장 최근 매거진 정보를 가져온다
      */
