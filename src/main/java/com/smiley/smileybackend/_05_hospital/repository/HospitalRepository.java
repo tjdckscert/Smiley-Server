@@ -15,12 +15,32 @@ public interface HospitalRepository extends JpaRepository<Hospital, Hospitalkeys
 
     @Query("select h from Hospital h where h.hPid = :hPid")
     Optional<Hospital> findByHPid(@Param("hPid") String hPid);
+
+
+    @Query(nativeQuery = true,value = "SELECT *,\n" +
+            "(6371*acos(cos(radians(:userlat))*cos(radians(wgs84lat))*cos(radians(wgs84lon) \n" +
+            "-radians(:userlon))+sin(radians(:userlat))*sin(radians(wgs84lat)))) \n" +
+            "AS distance \n" +
+            "FROM hospital \n" +
+            "HAVING distance <= :distance \n" +
+            "ORDER BY distance ;")
+    List<Hospital> findNearHospitals(@Param("distance") Double distance, @Param("userlat") Double  userlat, @Param("userlon") Double  userlon);
+
+
+
+    List<Hospital> findByIsPartnerIsTrue();
+
     @Query(nativeQuery = true,value = "SELECT *,\n" +
             "(6371*acos(cos(radians( :userlan))*cos(radians(wgs84lat))*cos(radians(wgs84lon) \n" +
             "-radians( :userlon))+sin(radians( :userlan))*sin(radians(wgs84lat)))) \n" +
             "AS distance \n" +
             "FROM hospital \n" +
+            "WHERE is_partner = TRUE \n" +
             "HAVING distance <= :distance \n" +
             "ORDER BY distance ;")
-    List<Hospital> findNearHospitals(@Param("distance") Double distance, @Param("userlan") Double  userlan, @Param("userlon") Double  userlon);
+    List<Hospital> findNearPartnerHospitals(@Param("distance") Double distance, @Param("userlan") Double  userlan, @Param("userlon") Double  userlon);
+
+
+
+
 }

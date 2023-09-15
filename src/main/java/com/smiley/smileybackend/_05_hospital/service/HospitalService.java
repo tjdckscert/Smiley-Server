@@ -1,12 +1,7 @@
 package com.smiley.smileybackend._05_hospital.service;
 
 import com.smiley.smileybackend._05_hospital.domain.Hospital;
-import com.smiley.smileybackend._05_hospital.dto.HospitalGeocodingDto;
-import com.smiley.smileybackend._05_hospital.dto.HospitalInfoDto;
-import com.smiley.smileybackend._05_hospital.dto.SimpleHospitalInfoDto;
-import com.smiley.smileybackend._05_hospital.dto.HospitalGeocodingDtoList;
-import com.smiley.smileybackend._05_hospital.dto.HospitalInfoDtoList;
-import com.smiley.smileybackend._05_hospital.dto.SimpleHospitalInfoDtoList;
+import com.smiley.smileybackend._05_hospital.dto.*;
 import com.smiley.smileybackend._01_user.dto.user.UserGeocodingDto;
 import com.smiley.smileybackend._00_common.exception.ErrorCode;
 import com.smiley.smileybackend._00_common.exception.ErrorException;
@@ -86,4 +81,27 @@ public class HospitalService {
                 .map(HospitalGeocodingDto::entityToDto)
                 .collect(Collectors.toList()));
     }
+
+
+    /**
+     * 제휴병원 리스트 반환
+     */
+    public PartnerHospitalDtoList getPartnerHospitalInfos() {
+        return new PartnerHospitalDtoList(hospitalRepository.findByIsPartnerIsTrue()
+                .stream()
+                .map(PartnerHospitalDto::entityToDto)
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * 근처 제휴병원 리스트 반환
+     */
+    public PartnerHospitalDtoList getNaerPartnerHospitalInfos(UserGeocodingDto userGeocodingDto) {
+        return new PartnerHospitalDtoList(hospitalRepository.findNearPartnerHospitals(userGeocodingDto.getDistance(),userGeocodingDto.getLatitude(),userGeocodingDto.getLongitude())
+                .stream()
+                .map(PartnerHospitalDto::entityToDto)
+                .collect(Collectors.toList()));
+    }
+
+
 }

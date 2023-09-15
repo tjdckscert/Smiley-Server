@@ -17,18 +17,17 @@ import java.util.List;
 @Getter
 @ToString
 @NoArgsConstructor
-@IdClass(Hospitalkeys.class)
 public class Hospital {
     /*
      *국립중앙의료원 국립중앙의료원 전국 병·의원 찾기 서비스 API 사용
      */
 
-    @Id
-    private Boolean isPartner;
-
     /*기관ID*/
     @Id
     private String hPid;
+
+    @Column
+    private Boolean isPartner;
 
     /*주소*/
     @Column

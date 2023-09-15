@@ -35,8 +35,8 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumns({
-            @JoinColumn(name = "hPid", foreignKey = @ForeignKey(name = "fk_booking_hospital")),
-            @JoinColumn(name = "is_partner"),
+            @JoinColumn(name = "hPid", foreignKey = @ForeignKey(name = "fk_booking_hospital"))
+
     })
     private Hospital hospital;
 
