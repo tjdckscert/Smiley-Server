@@ -1,7 +1,6 @@
 package com.smiley.smileybackend._08_magazine.service;
 
 import com.smiley.smileybackend._08_magazine.domain.Magazine;
-import com.smiley.smileybackend._08_magazine.dto.MagazineDetailDto;
 import com.smiley.smileybackend._08_magazine.dto.MagazineInfoDto;
 import com.smiley.smileybackend._08_magazine.dto.MagazineInfoDtoList;
 import com.smiley.smileybackend._00_common.exception.ErrorCode;
@@ -37,9 +36,9 @@ public class MagazineService {
                 .map(MagazineInfoDto::entityToDto)
                 .collect(Collectors.toList()));
     }
-    
+
     /**
-     * 선택한 매거진(index)의 정보를 가져온다 
+     * 선택한 매거진(index)의 정보를 가져온다
      *
      * @author : 김성찬
      * @param : 매거진 번호(index)
@@ -47,7 +46,7 @@ public class MagazineService {
      * @throws : 매거진이 존재 하지 않으면 MAGAZINE_NOT_FOUND
      * @throws : 사진이 존재 하지 않으면 PICTURE_NOT_FOUND
      */
-    public MagazineDetailDto getMagazineDetail(Integer number) {
+    public MagazineInfoDto getMagazineDetail(Integer number) {
         Magazine magazine = magazineRepository.findById(number).orElseThrow(
                 () -> new ErrorException(ErrorCode.MAGAZINE_NOT_FOUND)
         );
@@ -61,13 +60,13 @@ public class MagazineService {
         } catch (IOException e) {
             throw new ErrorException(ErrorCode.PICTURE_NOT_FOUND);
         }
-        return new MagazineDetailDto(magazine,img);
+        return new MagazineInfoDto(magazine,img);
     }
 
     /**
      * 최근 매거진(index)의 정보를 가져온다 ( id값이 가장 큰 것이 최근 매거진)
      */
-    public MagazineDetailDto getRecentMagazineDetail() {
+    public MagazineInfoDto getRecentMagazineDetail() {
         Magazine magazine = magazineRepository.findTopByOrderByIdDesc();
         byte[] img;
         try {
@@ -79,7 +78,7 @@ public class MagazineService {
         } catch (IOException e) {
             throw new ErrorException(ErrorCode.PICTURE_NOT_FOUND);
         }
-        return new MagazineDetailDto(magazine,img);
+        return new MagazineInfoDto(magazine,img);
     }
 
     /**

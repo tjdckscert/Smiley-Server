@@ -1,6 +1,6 @@
 package com.smiley.smileybackend._08_magazine.controller;
 
-import com.smiley.smileybackend._08_magazine.dto.MagazineDetailDto;
+import com.smiley.smileybackend._08_magazine.dto.MagazineInfoDto;
 import com.smiley.smileybackend._08_magazine.dto.MagazineInfoDtoList;
 import com.smiley.smileybackend._00_common.exception.ErrorCode;
 import com.smiley.smileybackend._08_magazine.service.MagazineService;
@@ -28,16 +28,15 @@ public class MagazineController {
 
     }
 
-
     @GetMapping("/magazines/{number}")
     @ApiOperation(value="선택한 메저긴 정보 불러오기" , notes = "선택한 메거진의 정보를 불러와서 반환한다. 사진은 서버에 저장된 사진을 반환.")
     @ApiResponses(value = {
             @ApiResponse(response = ErrorCode.class, message = "사진을 불러올 수 없습니다.", code = 500),
             @ApiResponse(response = ErrorCode.class, message = "등록되지 않은 메거진 번호입니다.", code = 423)
     })
-    public ResponseEntity<MagazineDetailDto> magazineinfo(@PathVariable Integer number) {
-        MagazineDetailDto magazineDetailDto =magazineService.getMagazineDetail(number);
-        return ResponseEntity.ok(magazineDetailDto);
+    public ResponseEntity<MagazineInfoDto> magazineinfo(@PathVariable Integer number) {
+        MagazineInfoDto magazineInfoDto =magazineService.getMagazineDetail(number);
+        return ResponseEntity.ok(magazineInfoDto);
     }
 
 
@@ -47,9 +46,9 @@ public class MagazineController {
             @ApiResponse(response = ErrorCode.class, message = "사진을 불러올 수 없습니다.", code = 500),
             @ApiResponse(response = ErrorCode.class, message = "등록되지 않은 메거진 번호입니다.", code = 423)
     })
-    public ResponseEntity<MagazineDetailDto> recentMagazineInfo() {
-        MagazineDetailDto magazineDetailDto =magazineService.getRecentMagazineDetail();
-        return ResponseEntity.ok(magazineDetailDto);
+    public ResponseEntity<MagazineInfoDto> recentMagazineInfo() {
+        MagazineInfoDto magazineInfoDto =magazineService.getRecentMagazineDetail();
+        return ResponseEntity.ok(magazineInfoDto);
     }
 
     @GetMapping("/magazines/recent/")

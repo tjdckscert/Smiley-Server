@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.*;
+import java.security.SecureRandom;
 
 @Getter
 @ToString
@@ -38,6 +39,20 @@ public class MagazineInfoDto {
         this.viewCount = viewCount;
         this.urlLink = urlLink;
     }
+
+    @Builder
+    public MagazineInfoDto(Magazine saved, byte[] img) {
+        SecureRandom random = new SecureRandom ();
+        this.id = saved.getId();
+        this.title = saved.getTitle();
+        this.subTitle = saved.getSubTitle();
+        this.author = saved.getAuthor();
+        this.thumbnail = img;
+        this.likes = random.nextInt(4000)+5000;
+        this.viewCount = random.nextInt(10000)+20000;
+        this.urlLink = saved.getUrlLink();
+    }
+
 
     @Builder
     public static MagazineInfoDto entityToDto(Magazine magazine)  {
