@@ -12,4 +12,7 @@ public interface MagazineRepository extends JpaRepository<Magazine,Integer> {
 
     Page<Magazine> findAllByOrderByIdDesc(Pageable pageable);
 
+    Magazine findTopByOrderByIdDesc();
+
+
 }

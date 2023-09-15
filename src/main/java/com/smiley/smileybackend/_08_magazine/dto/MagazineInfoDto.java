@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.*;
+import java.security.SecureRandom;
 
 @Getter
 @ToString
@@ -24,9 +25,11 @@ public class MagazineInfoDto {
     Integer likes;
     @ApiModelProperty( example = "읽은수")
     Integer viewCount;
+    @ApiModelProperty( example = "링크주소")
+    String urlLink;
 
     @Builder
-    public MagazineInfoDto(Integer id, String title, String subTitle, String author, byte[] thumbnail, Integer likes, Integer viewCount) {
+    public MagazineInfoDto(Integer id, String title, String subTitle, String author, byte[] thumbnail, Integer likes, Integer viewCount, String urlLink) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -34,7 +37,22 @@ public class MagazineInfoDto {
         this.thumbnail = thumbnail;
         this.likes = likes;
         this.viewCount = viewCount;
+        this.urlLink = urlLink;
     }
+
+    @Builder
+    public MagazineInfoDto(Magazine saved, byte[] img) {
+        SecureRandom random = new SecureRandom ();
+        this.id = saved.getId();
+        this.title = saved.getTitle();
+        this.subTitle = saved.getSubTitle();
+        this.author = saved.getAuthor();
+        this.thumbnail = img;
+        this.likes = random.nextInt(4000)+5000;
+        this.viewCount = random.nextInt(10000)+20000;
+        this.urlLink = saved.getUrlLink();
+    }
+
 
     @Builder
     public static MagazineInfoDto entityToDto(Magazine magazine)  {
@@ -56,6 +74,7 @@ public class MagazineInfoDto {
                 magazine.getAuthor(),
                 thumbnailImg,
                 magazine.getLikes(),
-                magazine.getViewCount());
+                magazine.getViewCount(),
+                magazine.getUrlLink());
     }
 }
