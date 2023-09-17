@@ -120,7 +120,7 @@ public class DrugService {
         }
 
         Map<String, Object> result = new HashMap<>();
-        result.put("isSafe", contraindicatedDrugResponseDtos);
+        result.put("danger", contraindicatedDrugResponseDtos);
         result.put("drugs", drugs);
 
         return result;
