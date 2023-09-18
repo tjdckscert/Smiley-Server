@@ -30,14 +30,6 @@ public class BookingInfoDto {
     @ApiModelProperty(value = "예약한 병원 hPid, 공백 X")
     private String hPid;
 
-    @Builder
-    public BookingInfoDto(String userNumber, LocalDateTime reservDate, String memo, String hPid) {
-        this.userNumber = userNumber;
-        this.reservDate = reservDate;
-        this.memo = memo;
-        this.hPid = hPid;
-    }
-
     public Booking toEntity(User user, Hospital hospital,String bookingNumber){
         return Booking.builder()
                 .reservDate(reservDate)

@@ -50,9 +50,8 @@ public class Booking {
         this.bookingNumber = bookingNumber;
         this.user = user;
         this.hospital = hospital;
-
-
     }
+
 
     public void patchBooking(PatchBookingDto patchBookingDto, Hospital hospital) {
         this.reservDate = patchBookingDto.getReservDate();
