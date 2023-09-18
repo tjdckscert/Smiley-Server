@@ -2,14 +2,12 @@ package com.smiley.smileybackend._07_drug.dto;
 
 import com.smiley.smileybackend._07_drug.domain.Drug;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
 @NoArgsConstructor
+@Setter
 public class DrugInfoDto {
 
     @ApiModelProperty( example = "품목기준코드")
@@ -58,12 +56,12 @@ public class DrugInfoDto {
 
     @Builder
     public DrugInfoDto(String itemCode, String itemNameKor, String itemNameEng, String itemSubstanceKor, String itemSubstanceEng, String professionalism, boolean isSafeForConsumption) {
-        this.itemCode = this.itemCode;
-        this.itemNameKor = this.itemNameKor;
-        this.itemNameEng = this.itemNameEng;
-        this.itemSubstanceKor = this.itemSubstanceKor;
-        this.itemSubstanceEng = this.itemSubstanceEng;
-        this.professionalism = this.professionalism;
-        this.isSafeForConsumption = this.isSafeForConsumption;
+        this.itemCode = itemCode;
+        this.itemNameKor = itemNameKor;
+        this.itemNameEng = itemNameEng;
+        this.itemSubstanceKor = itemSubstanceKor;
+        this.itemSubstanceEng = itemSubstanceEng;
+        this.professionalism = professionalism;
+        this.isSafeForConsumption = isSafeForConsumption;
     }
 }

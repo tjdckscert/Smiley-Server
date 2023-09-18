@@ -42,9 +42,9 @@ public class ContraindicatedDrugDto {
 
     @Builder
     public ContraindicatedDrugDto(String itemNameKor, String itemNameEng, String itemSubstanceKor) {
-        this.itemNameKor = this.itemNameKor;
-        this.itemNameEng = this.itemNameEng;
-        this.itemDescription = this.itemDescription;
+        this.itemNameKor = itemNameKor;
+        this.itemNameEng = itemNameEng;
+        this.itemDescription = itemDescription;
 
     }
 

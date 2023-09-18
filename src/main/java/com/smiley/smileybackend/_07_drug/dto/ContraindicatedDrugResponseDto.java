@@ -30,13 +30,3 @@ public class ContraindicatedDrugResponseDto {
     }
 
 }
-
-//{
-//        복용 금지 약 이름 : ㅁ
-//        금지 성분 : [
-//        {성분이름:ㅁ1
-//        설명 : ㅁ1 },
-//        {성분이름:ㅁ2
-//        설명 : ㅁ2 }
-//        ]
-//}
