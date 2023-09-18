@@ -1,19 +1,22 @@
-package com.smiley.smileybackend._01_user.dto.user;
+package com.smiley.smileybackend._06_booking.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.smiley.smileybackend._06_booking.domain.Booking;
+import com.smiley.smileybackend._05_hospital.domain.Hospital;
+import com.smiley.smileybackend._01_user.domain.User;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @NoArgsConstructor
-public class PatchBookingDto {
+@ToString
+public class BookingInfoDto {
 
-    @ApiModelProperty(value = "예약번호. 공백 X")
+    @ApiModelProperty(value = "예약 시, 입력안해도 됨 공백")
     private Integer id;
 
     @NotBlank(message = "회원번호를 확인할 수 없습니다.")
@@ -31,12 +34,19 @@ public class PatchBookingDto {
     private String hPid;
 
     @Builder
-    public PatchBookingDto(Integer id, String userNumber, LocalDateTime reservDate, String memo, String hPid) {
-        this.id = id;
+    public BookingInfoDto(String userNumber, LocalDateTime reservDate, String memo, String hPid) {
         this.userNumber = userNumber;
         this.reservDate = reservDate;
         this.memo = memo;
         this.hPid = hPid;
     }
 
+    public Booking toEntity(User user, Hospital hospital,String bookingNumber){
+        return Booking.builder()
+                .reservDate(reservDate)
+                .bookingNumber(bookingNumber)
+                .memo(memo)
+                .user(user)
+                .hospital(hospital).build();
+    }
 }
