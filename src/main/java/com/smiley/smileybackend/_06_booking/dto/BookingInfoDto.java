@@ -16,6 +16,9 @@ import java.time.LocalDateTime;
 @ToString
 public class BookingInfoDto {
 
+    @ApiModelProperty(value = "예약 시, 입력안해도 됨 공백")
+    private Integer id;
+
     @NotBlank(message = "회원번호를 확인할 수 없습니다.")
     @ApiModelProperty(value = "사용자 회원번호(KAKAO,GOOGLE). 공백 X")
     private String userNumber;
@@ -29,6 +32,14 @@ public class BookingInfoDto {
 
     @ApiModelProperty(value = "예약한 병원 hPid, 공백 X")
     private String hPid;
+
+    @Builder
+    public BookingInfoDto(String userNumber, LocalDateTime reservDate, String memo, String hPid) {
+        this.userNumber = userNumber;
+        this.reservDate = reservDate;
+        this.memo = memo;
+        this.hPid = hPid;
+    }
 
     public Booking toEntity(User user, Hospital hospital,String bookingNumber){
         return Booking.builder()

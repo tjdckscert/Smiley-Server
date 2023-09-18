@@ -4,7 +4,7 @@ package com.smiley.smileybackend._06_booking.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.smiley.smileybackend._01_user.domain.User;
 import com.smiley.smileybackend._05_hospital.domain.Hospital;
-import com.smiley.smileybackend._01_user.dto.user.PatchBookingDto;
+import com.smiley.smileybackend._06_booking.dto.BookingInfoDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -52,10 +52,10 @@ public class Booking {
         this.hospital = hospital;
     }
 
-
-    public void patchBooking(PatchBookingDto patchBookingDto, Hospital hospital) {
-        this.reservDate = patchBookingDto.getReservDate();
-        this.memo = patchBookingDto.getMemo();
+    public void Booking(BookingInfoDto bookingInfoDto, Hospital hospital) {
+        this.reservDate = bookingInfoDto.getReservDate();
+        this.memo = bookingInfoDto.getMemo();
         this.hospital=hospital;
     }
+
 }

@@ -7,7 +7,6 @@ import com.smiley.smileybackend._06_booking.dto.UserBookingDto;
 import com.smiley.smileybackend._06_booking.dto.UserBookingDtoList;
 import com.smiley.smileybackend._06_booking.dto.BookingCancelInfoDto;
 import com.smiley.smileybackend._06_booking.dto.BookingInfoDto;
-import com.smiley.smileybackend._01_user.dto.user.PatchBookingDto;
 import com.smiley.smileybackend._01_user.dto.user.UserMemoDto;
 import com.smiley.smileybackend._00_common.exception.ErrorCode;
 import com.smiley.smileybackend._00_common.exception.ErrorException;
@@ -109,12 +108,12 @@ public class BookingService {
         return UserBookingDto.entityToDto(booking);
     }
 
-    public UserBookingDto bookingPatch(PatchBookingDto patchBookingDto) {
-        Booking booking = bookingRepository.findById(patchBookingDto.getId()).orElseThrow(
+    public UserBookingDto bookingPatch(BookingInfoDto bookingInfoDto) {
+        Booking booking = bookingRepository.findById(bookingInfoDto.getId()).orElseThrow(
                 ()->new ErrorException(ErrorCode.BOOKING_NOT_FOUND)
         );
 
-        booking.patchBooking(patchBookingDto,booking.getHospital());
+        booking.Booking(bookingInfoDto,booking.getHospital());
         bookingRepository.save(booking);
         return UserBookingDto.entityToDto(booking);
     }
