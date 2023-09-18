@@ -27,6 +27,9 @@ public class Booking {
     @Column(length = 500)
     private String memo;
 
+    @Column(length = 500,unique = true)
+    private String bookingNumber;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_user_number", foreignKey = @ForeignKey(name = "fk_booking_user"))
     @JsonIgnore
@@ -35,18 +38,20 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumns({
-            @JoinColumn(name = "hPid", foreignKey = @ForeignKey(name = "fk_booking_hospital"))
-
+            @JoinColumn(name = "hPid", foreignKey = @ForeignKey(name = "fk_booking_hospital")),
     })
     private Hospital hospital;
 
     @Builder
-    public Booking(Integer id, LocalDateTime  reservDate, String memo, User user, Hospital hospital) {
+    public Booking(Integer id, LocalDateTime reservDate, String memo, String bookingNumber, User user, Hospital hospital) {
         this.id = id;
         this.reservDate = reservDate;
         this.memo = memo;
+        this.bookingNumber = bookingNumber;
         this.user = user;
         this.hospital = hospital;
+
+
     }
 
     public void patchBooking(PatchBookingDto patchBookingDto, Hospital hospital) {

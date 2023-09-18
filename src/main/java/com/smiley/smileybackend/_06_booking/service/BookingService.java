@@ -5,8 +5,8 @@ import com.smiley.smileybackend._05_hospital.domain.Hospital;
 import com.smiley.smileybackend._01_user.domain.User;
 import com.smiley.smileybackend._06_booking.dto.UserBookingDto;
 import com.smiley.smileybackend._06_booking.dto.UserBookingDtoList;
-import com.smiley.smileybackend._01_user.dto.user.BookingCancelInfoDto;
-import com.smiley.smileybackend._01_user.dto.user.BookingInfoDto;
+import com.smiley.smileybackend._06_booking.dto.BookingCancelInfoDto;
+import com.smiley.smileybackend._06_booking.dto.BookingInfoDto;
 import com.smiley.smileybackend._01_user.dto.user.PatchBookingDto;
 import com.smiley.smileybackend._01_user.dto.user.UserMemoDto;
 import com.smiley.smileybackend._00_common.exception.ErrorCode;
@@ -17,6 +17,7 @@ import com.smiley.smileybackend._01_user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,7 +39,6 @@ public class BookingService {
     /**
      * 사용자의 과거 예약 정보를 반환 한다.
      *
-     * @author : 김성찬
      * @param : 사용자 Index번호
      * @return : 예약 정보
      */    
@@ -52,7 +52,6 @@ public class BookingService {
     /**
      * 사용자의 현재 예약 정보를 반환 한다.
      *
-     * @author : 김성찬
      * @param : 사용자 Index번호
      * @return : 예약 정보
      */
@@ -65,17 +64,24 @@ public class BookingService {
     }
 
     /**
-     * 사용자의 예약 정보를 저장 한다.
+     * 병원 예약
      *
-     * @author : 김성찬
      * @param : 사용자 예약 정보
      * @return : 예약 정보
      */
     public UserBookingDto booking(BookingInfoDto bookingInfoDto) {
         Booking booking = bookingRepository.save(
                         bookingInfoDto.toEntity(getUser(bookingInfoDto.getUserNumber()),
-                        getHospital(bookingInfoDto.getHPid())));
+                        getHospital(bookingInfoDto.getHPid()),
+                                bookingNumber()));
         return UserBookingDto.entityToDto(booking);
+    }
+    /**
+     * 병원 예약 번호 생성
+     */
+    public String bookingNumber() {
+        String uuid = UUID.randomUUID().toString().replace("-","");
+        return uuid;
     }
 
     /**

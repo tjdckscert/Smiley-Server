@@ -1,4 +1,4 @@
-package com.smiley.smileybackend._01_user.dto.user;
+package com.smiley.smileybackend._06_booking.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smiley.smileybackend._06_booking.domain.Booking;
@@ -38,9 +38,10 @@ public class BookingInfoDto {
         this.hPid = hPid;
     }
 
-    public Booking toEntity(User user, Hospital hospital){
+    public Booking toEntity(User user, Hospital hospital,String bookingNumber){
         return Booking.builder()
                 .reservDate(reservDate)
+                .bookingNumber(bookingNumber)
                 .memo(memo)
                 .user(user)
                 .hospital(hospital).build();
