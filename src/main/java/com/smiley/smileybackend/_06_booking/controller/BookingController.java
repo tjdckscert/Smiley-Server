@@ -36,9 +36,9 @@ public class BookingController {
     }
 
     @GetMapping("/bookings/present/{userNumber}")
-    @ApiOperation(value="사용자 정보 과거 예약 정보" , notes = "사용자의 현재 예약 정보들을 반환한다.")
-    public ResponseEntity<UserBookingDto> presentBookingDtoLists(@PathVariable("userNumber") String userNumber){
-        UserBookingDto bookings = bookingService.getPresentBookings(userNumber);
+    @ApiOperation(value="사용자 정보 현재 예약 정보" , notes = "사용자의 현재 예약 정보들을 반환한다.")
+    public ResponseEntity<UserBookingDtoList> presentBookingDtoLists(@PathVariable("userNumber") String userNumber){
+        UserBookingDtoList bookings = bookingService.getPresentBookings(userNumber);
         return ResponseEntity.ok(bookings);
     }
 

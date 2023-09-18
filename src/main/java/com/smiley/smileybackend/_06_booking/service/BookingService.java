@@ -56,10 +56,12 @@ public class BookingService {
      * @param : 사용자 Index번호
      * @return : 예약 정보
      */
-    public UserBookingDto getPresentBookings(String userNumber) {
-        Booking booking = bookingRepository.findPresentBooking(userNumber);
-        log.info(booking.toString());
-        return UserBookingDto.entityToDto(bookingRepository.findPresentBooking(userNumber));
+
+    public UserBookingDtoList getPresentBookings(String userNumber) {
+        return new UserBookingDtoList(bookingRepository.findPresentBooking(userNumber)
+                .stream()
+                .map(UserBookingDto::entityToDto)
+                .collect(Collectors.toList())) ;
     }
 
     /**
@@ -70,7 +72,9 @@ public class BookingService {
      * @return : 예약 정보
      */
     public UserBookingDto booking(BookingInfoDto bookingInfoDto) {
-        Booking booking = bookingRepository.save(bookingInfoDto.toEntity(getUser(bookingInfoDto.getUserNumber()),getHospital(bookingInfoDto.getHPid())));
+        Booking booking = bookingRepository.save(
+                        bookingInfoDto.toEntity(getUser(bookingInfoDto.getUserNumber()),
+                        getHospital(bookingInfoDto.getHPid())));
         return UserBookingDto.entityToDto(booking);
     }
 

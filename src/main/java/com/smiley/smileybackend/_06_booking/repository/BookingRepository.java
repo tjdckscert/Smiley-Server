@@ -16,5 +16,5 @@ public interface BookingRepository extends JpaRepository<Booking,Integer> {
     List<Booking> findPastBooking (@Param(value = "userNumber") String  userNumber);
 
     @Query("select b from Booking b where b.reservDate > CURRENT_DATE and User_User_Number = :userNumber")
-    Booking findPresentBooking (@Param(value = "userNumber") String  userNumber);
+    List<Booking> findPresentBooking (@Param(value = "userNumber") String  userNumber);
 }

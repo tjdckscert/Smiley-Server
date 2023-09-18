@@ -41,6 +41,7 @@ public class BookingInfoDto {
     public Booking toEntity(User user, Hospital hospital){
         return Booking.builder()
                 .reservDate(reservDate)
+                .memo(memo)
                 .user(user)
                 .hospital(hospital).build();
     }
