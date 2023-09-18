@@ -7,7 +7,7 @@ import com.smiley.smileybackend._06_booking.dto.UserBookingDto;
 import com.smiley.smileybackend._06_booking.dto.UserBookingDtoList;
 import com.smiley.smileybackend._06_booking.dto.BookingCancelInfoDto;
 import com.smiley.smileybackend._06_booking.dto.BookingInfoDto;
-import com.smiley.smileybackend._01_user.dto.user.UserMemoDto;
+import com.smiley.smileybackend._06_booking.dto.UserMemoDto;
 import com.smiley.smileybackend._00_common.exception.ErrorCode;
 import com.smiley.smileybackend._00_common.exception.ErrorException;
 import com.smiley.smileybackend._06_booking.repository.BookingRepository;

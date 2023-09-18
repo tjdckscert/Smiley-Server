@@ -1,7 +1,7 @@
 package com.smiley.smileybackend._05_hospital.controller;
 
 import com.smiley.smileybackend._05_hospital.dto.*;
-import com.smiley.smileybackend._01_user.dto.user.UserGeocodingDto;
+import com.smiley.smileybackend._05_hospital.dto.UserGeocodingDto;
 import com.smiley.smileybackend._05_hospital.service.HospitalService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,12 +42,14 @@ public class HospitalController {
         }
 
         @PostMapping("hospitals/nearBy")
+        @ApiOperation(value="근처 병원들의 정보" , notes = "근처에 있는 병원들의 정보를 반환한다.")
         public ResponseEntity<HospitalGeocodingDtoList> nearhospitalinfos(@Valid @RequestBody UserGeocodingDto userGeocodingDto){
             HospitalGeocodingDtoList hospitals = hospitalService.getNearHospitalInfos(userGeocodingDto);
             return ResponseEntity.ok(hospitals);
         }
 
         @GetMapping("hospitals/partner")
+        @ApiOperation(value="파트너 병원들의 정보" , notes = "파트너 병원들의 정보를 반환한다.")
         public ResponseEntity<PartnerHospitalDtoList> partnerHospitalinfos(){
             PartnerHospitalDtoList hospitals = hospitalService.getPartnerHospitalInfos();
             return ResponseEntity.ok(hospitals);
@@ -55,6 +57,7 @@ public class HospitalController {
 
 
         @PostMapping("hospitals/nearBy/partner")
+        @ApiOperation(value="근처 파트너 병원들의 정보" , notes = "근처에 있는 파트너 병원들의 정보를 반환한다.")
         public ResponseEntity<PartnerHospitalDtoList> nearPartnerHospitalinfos(@Valid @RequestBody UserGeocodingDto userGeocodingDto){
             PartnerHospitalDtoList hospitals = hospitalService.getNaerPartnerHospitalInfos(userGeocodingDto);
             return ResponseEntity.ok(hospitals);

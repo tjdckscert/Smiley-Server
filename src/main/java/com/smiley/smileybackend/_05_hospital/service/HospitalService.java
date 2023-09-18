@@ -2,7 +2,7 @@ package com.smiley.smileybackend._05_hospital.service;
 
 import com.smiley.smileybackend._05_hospital.domain.Hospital;
 import com.smiley.smileybackend._05_hospital.dto.*;
-import com.smiley.smileybackend._01_user.dto.user.UserGeocodingDto;
+import com.smiley.smileybackend._05_hospital.dto.UserGeocodingDto;
 import com.smiley.smileybackend._00_common.exception.ErrorCode;
 import com.smiley.smileybackend._00_common.exception.ErrorException;
 import com.smiley.smileybackend._05_hospital.repository.HospitalRepository;

@@ -1,4 +1,4 @@
-package com.smiley.smileybackend._01_user.dto.user;
+package com.smiley.smileybackend._06_booking.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
