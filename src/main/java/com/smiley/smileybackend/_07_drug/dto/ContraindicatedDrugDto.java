@@ -41,7 +41,7 @@ public class ContraindicatedDrugDto {
     }
 
     @Builder
-    public ContraindicatedDrugDto(String itemNameKor, String itemNameEng, String itemSubstanceKor) {
+    public ContraindicatedDrugDto(String itemNameKor, String itemNameEng, String itemDescription) {
         this.itemNameKor = itemNameKor;
         this.itemNameEng = itemNameEng;
         this.itemDescription = itemDescription;
