@@ -49,9 +49,6 @@ public class Booking {
         this.hospital = hospital;
     }
 
-
-
-
     public void patchBooking(PatchBookingDto patchBookingDto, Hospital hospital) {
         this.reservDate = patchBookingDto.getReservDate();
         this.memo = patchBookingDto.getMemo();
